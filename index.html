@@ -476,6 +476,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
 .qlist li>span:last-child{text-align:right;color:var(--link);font-weight:800}.qlist em{font-style:normal;font-size:.76rem;color:var(--muted);font-weight:600;margin-left:4px}.qlist small{display:block;color:var(--muted);font-size:.76rem;font-weight:500}
 .qpol li{position:relative;padding-left:18px;margin:7px 0;color:var(--muted);font-size:.93rem}.qpol li::before{content:"✓";position:absolute;left:0;color:#17694a;font-weight:900}
 .qnote{font-size:.85rem;color:var(--muted);margin-top:14px!important}.consent[hidden]{display:none!important}
+.cnote{font-size:.8rem;color:var(--muted);line-height:1.5;margin:2px 0 0}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .poltitle{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:900;text-transform:uppercase;margin-top:64px}
 .policy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px;text-align:left}
@@ -560,7 +561,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
           <div class="f cbx"><span>Xã / phường</span><input id="l-place" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder="Gõ để tìm, ví dụ: vinh yen"><ul class="cbl" role="listbox" hidden></ul></div>
           <label class="f">Cơ sở<select id="l-cs"><option>Cơ sở 1 – phường Vĩnh Yên</option><option>Cơ sở 2 – phường Vĩnh Phúc</option><option>Chưa chọn</option></select></label>
         </div>
-        <label class="consent"><input type="checkbox" id="l-ok"> Đồng ý để dữ liệu cá nhân được Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc thu thập, xử lý để tư vấn tuyển sinh theo Nghị định 13/2023/NĐ-CP.</label>
+        <p class="cnote">Khi gửi thông tin, em đồng ý để Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc liên hệ tư vấn tuyển sinh. Thông tin chỉ dùng để tư vấn, được bảo vệ theo Luật Bảo vệ dữ liệu cá nhân.</p>
         <input id="l-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="err" id="l-err" hidden></p>
         <button class="btn btn-g submit" type="submit">Gửi thông tin</button>
         <div class="done" id="l-done" hidden></div>
@@ -794,8 +795,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
       <label class="f">Đối tượng<select id="m-who"><option value="">Chọn đối tượng</option><option>Tốt nghiệp THCS (lớp 9)</option><option>Tốt nghiệp THPT (lớp 12)</option><option>Đã có bằng trung cấp</option><option>Người đi làm</option></select></label>
       <label class="f">Trình độ<select id="m-level"></select></label>
       <label class="f">Ngành đăng ký học<select id="m-major"><option value="">Chọn ngành học</option></select></label>
-      <label class="consent" id="m-hcwrap" hidden style="margin-top:0"><input type="checkbox" id="m-hc"> Gửi kèm thông tin hoàn cảnh gia đình em đã chọn để được tư vấn chính sách miễn, giảm học phí.</label>
-      <label class="consent" style="margin-top:0"><input type="checkbox" id="m-ok"> Đồng ý cho Nhà trường liên hệ tư vấn theo Nghị định 13/2023/NĐ-CP.</label>
+      <p class="cnote">Khi gửi thông tin, em đồng ý để Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc liên hệ tư vấn tuyển sinh. Thông tin chỉ dùng để tư vấn, được bảo vệ theo Luật Bảo vệ dữ liệu cá nhân.</p>
       <input id="m-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="err" id="m-err" hidden style="margin:0"></p>
       <button class="btn btn-g" type="submit" style="text-transform:uppercase">Đăng ký ngay</button>
       <div class="done" id="m-done" hidden style="margin:0"></div>
@@ -915,7 +915,7 @@ const cr=$("#careers");$("#cprev").onclick=()=>cr.scrollBy({left:-cr.clientWidth
 const QS=[
  {k:"who",q:"Em (hoặc anh/chị) hiện là?",a:WHO.map(x=>[x[0],x[0]])},
  {k:"con",q:"Con của anh/chị hiện là?",when:A=>A.who==="Phụ huynh",a:WHO.slice(0,5).map(x=>[x[0],x[0]])},
- {k:"hc",multi:1,q:"Gia đình em có thuộc trường hợp nào sau đây không?",sub:"Chọn được nhiều ý. Thông tin giúp gợi ý đúng chính sách miễn, giảm học phí.",a:[["Hộ nghèo hoặc cận nghèo","ngheo"],["Dân tộc thiểu số","dtts"],["Ở thôn, xã đặc biệt khó khăn","dbkk"],["Mồ côi, khuyết tật hoặc con người có công","mc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Gia đình bình thường","bt"],["Không muốn trả lời","no"]]},
+ {k:"hc",multi:1,q:"Gia đình em có thuộc trường hợp nào sau đây không?",sub:"Chọn được nhiều ý. Thông tin giúp gợi ý đúng chính sách miễn, giảm học phí và được gửi kèm khi em bấm gửi kết quả. Không muốn chia sẻ thì chọn “Không muốn trả lời”.",a:[["Hộ nghèo hoặc cận nghèo","ngheo"],["Dân tộc thiểu số","dtts"],["Ở thôn, xã đặc biệt khó khăn","dbkk"],["Mồ côi, khuyết tật hoặc con người có công","mc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Gia đình bình thường","bt"],["Không muốn trả lời","no"]]},
  {k:"q1",q:"Lúc rảnh, em thích làm gì nhất?",a:[["Tháo lắp, sửa xe, máy móc","a","co"],["Lắp đồ điện, nghịch mạch điện tử","b","dien"],["Máy tính, thiết kế, mạng xã hội","c","it"],["Bán hàng online, tính toán chi tiêu","d","kd"],["Nấu ăn, trang điểm, may vá","e","dv"],["Chăm vật nuôi, trồng cây","f","ny"],["Học ngoại ngữ, xem phim nước ngoài","g","nn"]]},
  {k:"q2",q:"Môn học nào em thấy dễ nhất?",a:[["Toán, Vật lý","a","co,dien"],["Tin học","b","it"],["Toán, Giáo dục kinh tế","c","kd"],["Công nghệ, Mỹ thuật","d","dv,co"],["Sinh học","e","ny"],["Ngoại ngữ, Ngữ văn","f","nn,kd"]]},
  {k:"q3",q:"Em muốn làm việc ở đâu?",a:[["Nhà máy, xưởng sản xuất","a","co,dien"],["Văn phòng, công ty","b","kd,it"],["Nhà hàng, khách sạn, spa, cửa hàng thời trang","c","dv"],["Trang trại, phòng khám thú y","d","ny"],["Công ty nước ngoài, làm phiên dịch","e","nn"],["Tự mở cửa hàng, xưởng riêng","f","kd,co"]]},
@@ -978,7 +978,7 @@ function quiz(){const r=$("#quiz"),L=qsteps();
   window.QHC=hc.filter(x=>HC_TXT[x]).map(x=>HC_TXT[x]).join(", ");
   $("#qsee").onclick=()=>{showProg(tops[0]);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})};
   $("#qre").onclick=()=>{QA={};qstep=0;quiz()};
-  $("#qsend").onclick=()=>{const first=sug[0];$("#m-who").value=WHO_LV[w]?w:"Chưa rõ, cần tư vấn";CM.fillL();if(first){$("#m-level").value=first[1];CM.fillM();$("#m-major").value=first[0][0]}openModal(null,true);$("#m-hcwrap").hidden=!window.QHC};
+  $("#qsend").onclick=()=>{const first=sug[0];$("#m-who").value=WHO_LV[w]?w:"Chưa rõ, cần tư vấn";CM.fillL();if(first){$("#m-level").value=first[1];CM.fillM();$("#m-major").value=first[0][0]}openModal(null,true)};
 }
 quiz();
 
@@ -1014,7 +1014,7 @@ function tick(){$("#days").textContent=Math.max(0,Math.ceil((END-Date.now())/864
 
 // modal
 const modal=$("#modal");
-function openModal(major,fq){if(!fq){window.QNOTE="";window.QHC="";const hw=$("#m-hcwrap");if(hw){hw.hidden=true;$("#m-hc").checked=false}}if(major){const w=$("#m-who"),l=$("#m-level"),m=M.find(x=>x[0]===major);if(!w.value)w.value="Tốt nghiệp THPT (lớp 12)";CM.fillL();const ks=WHO_LV[w.value]||[];const k=m&&(ks.includes(l.value)&&m[LV_IDX[l.value]]?l.value:ks.find(k=>m[LV_IDX[k]]));if(k){l.value=k;CM.fillM();$("#m-major").value=major}}modal.hidden=false;setTimeout(()=>$("#m-name").focus(),50)}
+function openModal(major,fq){if(!fq){window.QNOTE="";window.QHC=""}if(major){const w=$("#m-who"),l=$("#m-level"),m=M.find(x=>x[0]===major);if(!w.value)w.value="Tốt nghiệp THPT (lớp 12)";CM.fillL();const ks=WHO_LV[w.value]||[];const k=m&&(ks.includes(l.value)&&m[LV_IDX[l.value]]?l.value:ks.find(k=>m[LV_IDX[k]]));if(k){l.value=k;CM.fillM();$("#m-major").value=major}}modal.hidden=false;setTimeout(()=>$("#m-name").focus(),50)}
 let autoShown=false,engaged=false;
 function closeModal(){modal.hidden=true;autoShown=true;try{sessionStorage.setItem("vcet-popup","1")}catch(e){}}
 // Tự hiện form sau 12 giây (hoặc khi đọc quá nửa trang), mỗi lượt truy cập 1 lần; không hiện nếu em đang điền form
@@ -1066,10 +1066,10 @@ function placeVal(){return [$('#l-place').value.trim(),$('#l-tinh').value.trim()
 const SHEET_URL="https://script.google.com/macros/s/AKfycbzNSQJMOURAFVrGaNKgF0lqLLHR6SoTt3_0mY6zGAkjFrUcqTPgSRrxsYcU5XJZdKblrQ/exec";
 function bindForm(id,p){$(id).addEventListener("submit",e=>{e.preventDefault();
   const name=$(p+"-name").value.trim(),phone=$(p+"-phone").value.replace(/[\s.]/g,"");const err=$(p+"-err");
-  let m="";if(!name)m="Vui lòng nhập họ và tên.";else if(!/^0\d{9}$/.test(phone))m="Số điện thoại cần đủ 10 số, bắt đầu bằng 0.";else if(p==="#l"&&!$("#l-major").value)m="Vui lòng chọn đối tượng, trình độ và ngành đăng ký.";else if(!$(p+"-ok").checked)m="Vui lòng tích ô đồng ý để nhà trường liên hệ tư vấn.";
+  let m="";if(!name)m="Vui lòng nhập họ và tên.";else if(!/^0\d{9}$/.test(phone))m="Số điện thoại cần đủ 10 số, bắt đầu bằng 0.";else if(p==="#l"&&!$("#l-major").value)m="Vui lòng chọn đối tượng, trình độ và ngành đăng ký.";
   err.hidden=!m;err.textContent=m;if(m)return;const mj=$(p+"-major").value;const d=$(p+"-done");const btn=e.target.querySelector('[type=submit]');
   const v=k=>{const el=$(p+"-"+k);return el?el.value.trim():""};
-  const lvn=$(p+"-level")&&$(p+"-level").value?LV[$(p+"-level").value]:"";const data={name,phone,who:v("who"),major:[lvn,mj].filter(Boolean).join(" – "),cs:v("cs"),place:placeVal(),form:p==="#l"?"Form trang chủ":(window.QNOTE?"Tư vấn chọn nghề":"Form bật lên"),note:p==="#m"&&window.QNOTE?window.QNOTE+($("#m-hc").checked&&window.QHC?" | Hoàn cảnh: "+window.QHC:""):"",page:location.href,hp:v("hp")};
+  const lvn=$(p+"-level")&&$(p+"-level").value?LV[$(p+"-level").value]:"";const data={name,phone,who:v("who"),major:[lvn,mj].filter(Boolean).join(" – "),cs:v("cs"),place:placeVal(),form:p==="#l"?"Form trang chủ":(window.QNOTE?"Tư vấn chọn nghề":"Form bật lên"),note:p==="#m"&&window.QNOTE?window.QNOTE+(window.QHC?" | Hoàn cảnh: "+window.QHC:""):"",page:location.href,hp:v("hp")};
   const thanks=()=>{d.hidden=false;d.innerHTML=`Cảm ơn <b>${name.replace(/[<>&]/g,"")}</b>! Thầy Phan Thanh Bình sẽ gọi lại số <b>${phone}</b>${mj?" để tư vấn ngành <b>"+mj.replace(/[<>&]/g,"")+"</b>":""}. Cần gấp, em nhắn Zalo 0989 465 017 nhé.`;e.target.reset()};
   if(!SHEET_URL){thanks();return}
   btn.disabled=true;btn.textContent="Đang gửi...";
