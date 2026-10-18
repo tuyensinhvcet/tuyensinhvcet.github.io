@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tuyển sinh 2026 – Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc (VCET)</title>
-<meta name="description" content="Tuyển sinh Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc. Nhiều ngành giảm 70% học phí, tư vấn chọn nghề miễn phí. Hotline: 0989 465 017.">
+<meta name="description" content="Tuyển sinh Trung học nghề, Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc. Học sinh lớp 9 được miễn học phí, nhiều ngành giảm 70% học phí, tư vấn chọn nghề miễn phí. Hotline: 0989 465 017.">
 <link rel="canonical" href="https://tuyensinhvcet.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:site_name" content="Tuyển sinh VCET">
 <meta property="og:url" content="https://tuyensinhvcet.github.io/">
 <meta property="og:title" content="Tuyển sinh VCET 2026 – 2027 · Chọn đúng nghề – Vững tương lai">
-<meta property="og:description" content="Tuyển sinh Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc. Nhiều ngành giảm 70% học phí, tư vấn chọn nghề miễn phí. Hotline: 0989 465 017.">
+<meta property="og:description" content="Tuyển sinh Trung học nghề, Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc. Học sinh lớp 9 được miễn học phí, nhiều ngành giảm 70% học phí, tư vấn chọn nghề miễn phí. Hotline: 0989 465 017.">
 <meta property="og:image" content="https://tuyensinhvcet.github.io/anh/anh-chia-se.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -170,15 +170,16 @@ label.f input,label.f select{font:inherit;font-weight:400;font-size:.95rem;paddi
 @media (max-width:860px){.prog{grid-template-columns:1fr}.prog .ph{min-height:220px}}
 
 /* systems */
-.sys{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.sys{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+@media (max-width:1100px){.sys{grid-template-columns:repeat(2,1fr)}}
 .sys article{background:var(--surface);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(20,40,90,.06)}
 .sys .ph{aspect-ratio:16/9}
 .sys .body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
 .sys .who{align-self:flex-start;font-size:.76rem;font-weight:800;background:var(--gold);color:#1a1f3a;padding:4px 10px;border-radius:6px;text-transform:uppercase}
 .sys h3{font-size:1.35rem;font-weight:900;text-transform:uppercase}
 .sys ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:.93rem}
-.sys li{display:flex;gap:10px}
-.sys li::before{content:"✦";color:var(--gold-2);flex:none}
+.sys li{position:relative;padding-left:22px}
+.sys li::before{content:"✦";color:var(--gold-2);position:absolute;left:0}
 .sys .foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:.86rem;color:var(--muted)}
 @media (max-width:900px){.sys{grid-template-columns:1fr}}
 
@@ -489,6 +490,8 @@ select:disabled{opacity:.6;cursor:not-allowed}
 .cnote{font-size:.8rem;color:var(--muted);line-height:1.5;margin:2px 0 0}
 #quiz{min-width:0}.qres .btn{white-space:normal;text-align:center}
 .qshare{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;font-size:.88rem;color:var(--muted)}.qshare button,.qshare a{font:inherit;font-weight:700;border:1.5px solid var(--line);background:var(--bg);color:var(--link);border-radius:999px;padding:7px 14px;cursor:pointer;text-decoration:none}.qshare em{font-style:normal;color:#17694a;font-weight:700}.qshare [hidden]{display:none}
+.cmp{margin:36px auto 0;max-width:900px;text-align:left}.cmp h3{font-size:1.15rem;font-weight:900;margin-bottom:12px;text-align:center}.cmpt{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface)}.cmpt>div{display:grid;grid-template-columns:150px 1fr 1fr;gap:0;border-top:1px solid var(--line)}.cmpt>div:first-child{border-top:0}.cmpt span{padding:11px 14px;font-size:.92rem}.cmpt [role=rowheader]{font-weight:800;color:var(--head);background:var(--soft)}.cmpt .hd span{font-weight:900;color:#fff;background:var(--navy)}.cmpt .hd span:first-child{background:var(--navy)}.cmp .meta{text-align:center;margin-top:12px;color:var(--muted);font-size:.9rem}.cmp .meta a{color:var(--link);font-weight:700}
+@media (max-width:640px){.cmpt>div{grid-template-columns:96px 1fr 1fr}.cmpt span{padding:9px 8px;font-size:.84rem}}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .poltitle{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:900;text-transform:uppercase;margin-top:64px}
 .policy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px;text-align:left}
@@ -607,12 +610,14 @@ select:disabled{opacity:.6;cursor:not-allowed}
 <section class="sec alt center" id="he">
   <div class="wrap">
     <span class="eyebrow">Trình độ tuyển sinh</span>
-    <h2 class="title">Ba con đường <span class="grad">phù hợp từng em</span></h2>
+    <h2 class="title">Bốn con đường <span class="grad">phù hợp từng em</span></h2>
     <div class="sys" style="text-align:left">
       <article><figure class="ph" data-slot="he-tc" data-ai style="--c1:#0E638F;--c2:#26A8D4"><span class="tag">Ảnh lớp trung cấp</span></figure><div class="body"><span class="who">Tốt nghiệp lớp 9</span><h3>Trung cấp + THPT</h3><ul><li>3 năm: bằng Trung cấp và bằng tốt nghiệp THPT</li><li>Hoặc 2 năm: bằng Trung cấp và giấy chứng nhận văn hóa THPT</li><li>Xét học bạ THCS · <b>miễn 100% học phí</b> (NĐ 238, Điều 15)</li></ul><div class="foot">22 ngành · 2.184 chỉ tiêu</div></div></article>
+      <article><figure class="ph" data-slot="prog:dien" data-ai style="--c1:#17694a;--c2:#26A8D4"><span class="tag">Ảnh lớp trung học nghề</span></figure><div class="body"><span class="who">Tốt nghiệp lớp 9</span><h3>Trung học nghề</h3><ul><li>3 năm: học văn hóa THPT kết hợp học nghề, thực hành tại xưởng trường và doanh nghiệp</li><li>Bằng Trung học nghề, tương đương bằng tốt nghiệp THPT</li><li><b>Miễn học phí</b>, hỗ trợ chi phí học tập theo quy định</li><li>Học tiếp liên thông trung cấp 1 năm hoặc cao đẳng 2 năm</li></ul><div class="foot">4 ngành: Điện công nghiệp, Cơ điện tử, Truyền thông và mạng máy tính, Quản trị khách sạn</div></div></article>
       <article><figure class="ph" data-slot="he-cd" data-ai style="--c1:#274081;--c2:#26A8D4"><span class="tag">Ảnh sinh viên cao đẳng</span></figure><div class="body"><span class="who">Tốt nghiệp lớp 12</span><h3>Cao đẳng chính quy</h3><ul><li>2–3 năm, bằng Kỹ sư / Cử nhân thực hành, có hệ CLC</li><li>Xét học bạ, kết quả HK1 lớp 12</li><li>Miễn, giảm học phí theo NĐ 238 hoặc hỗ trợ 800.000đ/tháng theo NQ 36</li></ul><div class="foot">26 ngành · 1.115 chỉ tiêu</div></div></article>
       <article><figure class="ph" data-slot="he-lt" data-ai style="--c1:#16275a;--c2:#4a6fd1"><span class="tag">Ảnh tại doanh nghiệp</span></figure><div class="body"><span class="who">Đã có bằng trung cấp</span><h3>Liên thông cao đẳng</h3><ul><li>1 năm, cùng hoặc gần ngành trung cấp</li><li>Làm tại doanh nghiệp T2–T6, học tối và/hoặc cuối tuần</li><li>Thu nhập khoảng 6–10 triệu đồng/tháng</li></ul><div class="foot">17 ngành · 980 chỉ tiêu</div></div></article>
     </div>
+    <div class="cmp"><h3>Học sinh lớp 9 chọn Trung cấp hay Trung học nghề?</h3><div class="cmpt" role="table"><div role="row" class="hd"><span role="columnheader"></span><span role="columnheader">Trung cấp + THPT</span><span role="columnheader">Trung học nghề</span></div><div role="row"><span role="rowheader">Thời gian</span><span>3 năm (hoặc 2 năm, nhận giấy chứng nhận văn hóa THPT)</span><span>3 năm</span></div><div role="row"><span role="rowheader">Bằng nhận được</span><span>Bằng Trung cấp và bằng tốt nghiệp THPT</span><span>Bằng Trung học nghề, tương đương bằng tốt nghiệp THPT</span></div><div role="row"><span role="rowheader">Ngành học</span><span>22 ngành</span><span>4 ngành</span></div><div role="row"><span role="rowheader">Học phí</span><span>Miễn 100% học phí</span><span>Miễn học phí</span></div><div role="row"><span role="rowheader">Học tiếp</span><span>Liên thông cao đẳng 1 năm</span><span>Liên thông trung cấp 1 năm hoặc cao đẳng 2 năm</span></div></div><p class="meta">Chưa chắc chọn hướng nào? Làm <a href="#trac-nghiem">Tư vấn chọn nghề</a> hoặc gọi Thầy Bình 0989 465 017.</p></div>
   </div>
 </section>
 
@@ -716,7 +721,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
     <h2 class="title">Chuẩn bị hồ sơ <span class="grad">theo từng hệ</span></h2>
     <p class="sub">Nộp trực tiếp tại hai cơ sở hoặc đăng ký online tại <a href="https://tuyensinhvcet.github.io" style="color:inherit;font-weight:700">tuyensinhvcet.github.io</a> · hạn 31/12/2026</p>
     <div class="docs">
-      <div class="dt" role="tablist" id="doctabs"><button role="tab" data-d="tc9" aria-selected="true">Trung cấp · tốt nghiệp THCS</button><button role="tab" data-d="tc12" aria-selected="false">Trung cấp · tốt nghiệp THPT</button><button role="tab" data-d="cd" aria-selected="false">Cao đẳng</button><button role="tab" data-d="lt" aria-selected="false">Liên thông cao đẳng</button></div>
+      <div class="dt" role="tablist" id="doctabs"><button role="tab" data-d="tc9" aria-selected="true">Trung cấp · tốt nghiệp THCS</button><button role="tab" data-d="thn" aria-selected="false">Trung học nghề</button><button role="tab" data-d="tc12" aria-selected="false">Trung cấp · tốt nghiệp THPT</button><button role="tab" data-d="cd" aria-selected="false">Cao đẳng</button><button role="tab" data-d="lt" aria-selected="false">Liên thông cao đẳng</button></div>
       <div role="tabpanel"><ul class="checklist" id="doclist"></ul><p class="meta" id="docmeta"></p></div>
     </div>
   </div>
@@ -832,16 +837,16 @@ const M=[
  ["Cắt gọt kim loại","co","kt",{cd:95,clc:1,y:3},{lt:70},{tc:90}],
  ["Cơ khí chế tạo","co","kt",null,null,{tc:100}],
  ["Hàn","co","kt",null,null,{tc:30}],
- ["Cơ điện tử","dien","kt",{cd:35,y:2},null,{tc:70}],
+ ["Cơ điện tử","dien","kt",{cd:35,y:2},null,{tc:70},{thn:1}],
  ["Công nghệ kỹ thuật điện, điện tử","dien","kt",{cd:35,clc:1,y:3},{lt:50},{tc:100}],
  ["Công nghệ kỹ thuật điều khiển và tự động hóa","dien","kt",{cd:35,clc:1,y:3},null,null],
- ["Điện công nghiệp","dien","kt",{cd:85,clc:1,y:3},{lt:70},{tc:125}],
+ ["Điện công nghiệp","dien","kt",{cd:85,clc:1,y:3},{lt:70},{tc:125},{thn:1}],
  ["Điện công nghiệp và dân dụng","dien","kt",null,null,{tc:150}],
  ["Điện tử công nghiệp","dien","kt",{cd:40,clc:1,y:3},{lt:110},{tc:170}],
  ["Công nghệ vi mạch bán dẫn","dien","kt",{cd:30,y:3},null,null],
  ["Kỹ thuật máy lạnh và điều hòa không khí","dien","kt",{cd:70,clc:1,y:3},{lt:90},{tc:170}],
  ["Công nghệ cơ khí, sưởi ấm và điều hòa không khí","dien","kt",{cd:30,y:2},null,{tc:70}],
- ["Truyền thông và mạng máy tính","it","kt",{cd:50,clc:1,y:3},{lt:55},null],
+ ["Truyền thông và mạng máy tính","it","kt",{cd:50,clc:1,y:3},{lt:55},null,{thn:1}],
  ["Công nghệ thông tin (Ứng dụng phần mềm)","it","kt",{cd:30,clc:1,y:3},{lt:30},null],
  ["Kỹ thuật sửa chữa, lắp ráp máy tính","it","kt",{cd:25,y:3},{lt:90},{tc:150}],
  ["Tin học văn phòng","it","kt",null,null,{tc:190}],
@@ -851,7 +856,7 @@ const M=[
  ["Kế toán","kd","kd",{cd:70,y:3},{lt:50},null],
  ["Kế toán doanh nghiệp","kd","kd",{cd:70,y:3},{lt:50},{tc:70}],
  ["Quản trị kinh doanh","kd","kd",{cd:80,y:2},null,null],
- ["Quản trị khách sạn","dv","dv",{cd:15,y:2},null,null],
+ ["Quản trị khách sạn","dv","dv",{cd:15,y:2},null,null,{thn:1}],
  ["Kỹ thuật chế biến món ăn","dv","dv",{cd:30,y:3},{lt:25},{tc:65}],
  ["Chăm sóc sắc đẹp","dv","dv",null,null,{tc:100}],
  ["May thời trang","dv","sx",{cd:15,y:2},{lt:25},{tc:70}],
@@ -890,8 +895,8 @@ function go(i){cur=(i+slides.length)%slides.length;slides.forEach((s,k)=>s.class
 $("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);go(0);
 
 // Chọn theo thứ tự: đối tượng → trình độ → ngành của trình độ đó
-const LV={tc:"Trung cấp",cd:"Cao đẳng",lt:"Liên thông cao đẳng"},LV_IDX={cd:3,lt:4,tc:5};
-const WHO=[["Tốt nghiệp THCS (lớp 9)",["tc"]],["Học hết lớp 10, 11 rồi nghỉ",["tc"]],["Tốt nghiệp THPT (lớp 12)",["cd","tc"]],["Đã có bằng trung cấp",["lt","cd"]],["Đã có bằng cao đẳng, đại học (văn bằng 2)",["cd","tc"]],["Người đi làm",["cd","lt","tc"]],["Bộ đội xuất ngũ",["cd","tc","lt"]],["Phụ huynh",["tc","cd","lt"]],["Chưa rõ, cần tư vấn",["cd","tc","lt"]]];
+const LV={tc:"Trung cấp",thn:"Trung học nghề",cd:"Cao đẳng",lt:"Liên thông cao đẳng"},LV_IDX={cd:3,lt:4,tc:5,thn:6};
+const WHO=[["Tốt nghiệp THCS (lớp 9)",["tc","thn"]],["Học hết lớp 10, 11 rồi nghỉ",["tc"]],["Tốt nghiệp THPT (lớp 12)",["cd","tc"]],["Đã có bằng trung cấp",["lt","cd"]],["Đã có bằng cao đẳng, đại học (văn bằng 2)",["cd","tc"]],["Người đi làm",["cd","lt","tc"]],["Bộ đội xuất ngũ",["cd","tc","lt"]],["Phụ huynh",["tc","thn","cd","lt"]],["Chưa rõ, cần tư vấn",["cd","tc","thn","lt"]]];
 const WHO_LV=Object.fromEntries(WHO);
 function cascade(p){const w=$(p+"-who"),l=$(p+"-level"),mj=$(p+"-major");
   w.innerHTML='<option value="">Chọn đối tượng</option>'+WHO.map(x=>"<option>"+x[0]+"</option>").join("");
@@ -913,7 +918,7 @@ function badge(n,cd,tc){const a=G70.cd.includes(n),b=G70.tc.includes(n),c=N36.cd
 function showProg(g){
   pt.querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.dataset.g===g));
   const list=M.filter(m=>m[1]===g),c=GC[g];
-  const items=list.map(([n,_,f,cd,lt,tc])=>{const h=[cd?`Cao đẳng ${cd.y} năm${cd.clc?" (có CLC)":""}`:"",lt?"Liên thông":"",tc?"Trung cấp":""].filter(Boolean).join(" · ");return `<li><span><b>${n}</b><small>${h}</small>${badge(n,cd||lt,tc)}</span><button type="button" data-major="${n}" aria-label="Đăng ký ${n}">→</button></li>`}).join("");
+  const items=list.map(([n,_,f,cd,lt,tc,thn])=>{const h=[cd?`Cao đẳng ${cd.y} năm${cd.clc?" (có CLC)":""}`:"",lt?"Liên thông":"",tc?"Trung cấp":"",thn?"Trung học nghề":""].filter(Boolean).join(" · ");return `<li><span><b>${n}</b><small>${h}</small>${badge(n,cd||lt,tc)}</span><button type="button" data-major="${n}" aria-label="Đăng ký ${n}">→</button></li>`}).join("");
   $("#prog").innerHTML=`<figure class="ph" data-slot="prog:${g}" style="--c1:${c[0]};--c2:${c[1]}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">${ICON[g]}</svg></div><span class="tag">Ảnh / video ${G[g]}</span></figure><div style="text-align:left"><h3>${G[g]}</h3><p class="desc">${DESC[g]}</p><ul class="plist">${items}</ul><div class="go"><button class="btn btn-g" data-open>Đăng ký ngay →</button></div></div>`;
   applyPhotos($("#prog"));
 }
@@ -943,11 +948,11 @@ const QS=[
  {k:"tg",q:"Anh/chị có thể học vào thời gian nào?",when:A=>A.who==="Người đi làm"||A.who==="Bộ đội xuất ngũ",a:[["Ban ngày","Học ban ngày"],["Buổi tối","Học buổi tối"],["Thứ 7, chủ nhật","Học thứ 7, chủ nhật"]]}
 ];
 const HC_TXT={ngheo:"Hộ nghèo/cận nghèo",dtts:"Dân tộc thiểu số",dbkk:"Ở thôn, xã đặc biệt khó khăn",mc:"Mồ côi/khuyết tật/con người có công",tnld:"Cha hoặc mẹ bị TNLĐ/bệnh nghề nghiệp",vh:"Cần vừa học vừa có thu nhập"};
-const LV_TXT={"Tốt nghiệp THCS (lớp 9)":"Trung cấp + THPT 3 năm: nhận bằng Trung cấp và bằng tốt nghiệp THPT; hoặc chương trình Trung học nghề.","Học hết lớp 10, 11 rồi nghỉ":"Trung cấp, học kèm văn hóa THPT để có thể nhận đủ bằng.","Tốt nghiệp THPT (lớp 12)":"Cao đẳng 2–3 năm (bằng Kỹ sư/Cử nhân thực hành) hoặc Trung cấp.","Đã có bằng trung cấp":"Liên thông cao đẳng 1 năm, cùng hoặc gần ngành đã học.","Đã có bằng cao đẳng, đại học (văn bằng 2)":"Học văn bằng 2 trình độ cao đẳng hoặc trung cấp để có thêm một nghề.","Người đi làm":"Cao đẳng có lớp học tối, thứ 7, chủ nhật; liên thông nếu đã có bằng trung cấp.","Bộ đội xuất ngũ":"Cao đẳng hoặc trung cấp theo bằng đã có; bộ đội xuất ngũ được hỗ trợ học nghề theo quy định.","Chưa rõ, cần tư vấn":"Thầy sẽ tư vấn trình độ phù hợp khi gọi lại."};
+const LV_TXT={"Tốt nghiệp THCS (lớp 9)":"Trung cấp + THPT 3 năm: nhận bằng Trung cấp và bằng tốt nghiệp THPT. Hoặc Trung học nghề 3 năm: bằng tương đương tốt nghiệp THPT, miễn học phí, 4 ngành Điện công nghiệp, Cơ điện tử, Truyền thông và mạng máy tính, Quản trị khách sạn.","Học hết lớp 10, 11 rồi nghỉ":"Trung cấp, học kèm văn hóa THPT để có thể nhận đủ bằng.","Tốt nghiệp THPT (lớp 12)":"Cao đẳng 2–3 năm (bằng Kỹ sư/Cử nhân thực hành) hoặc Trung cấp.","Đã có bằng trung cấp":"Liên thông cao đẳng 1 năm, cùng hoặc gần ngành đã học.","Đã có bằng cao đẳng, đại học (văn bằng 2)":"Học văn bằng 2 trình độ cao đẳng hoặc trung cấp để có thêm một nghề.","Người đi làm":"Cao đẳng có lớp học tối, thứ 7, chủ nhật; liên thông nếu đã có bằng trung cấp.","Bộ đội xuất ngũ":"Cao đẳng hoặc trung cấp theo bằng đã có; bộ đội xuất ngũ được hỗ trợ học nghề theo quy định.","Chưa rõ, cần tư vấn":"Thầy sẽ tư vấn trình độ phù hợp khi gọi lại."};
 let QA={},qstep=0;
 const qsteps=()=>QS.filter(S=>!S.when||S.when(QA));
 const effWho=()=>QA.who==="Phụ huynh"?(QA.con||"Phụ huynh"):QA.who;
-function feeFor(m,lv){const hc=(QA.hc||"").split(",").filter(Boolean),w=effWho(),fk=lv==="lt"?"cd":lv,list=[];
+function feeFor(m,lv){if(lv==="thn")return "0đ <small>(miễn học phí, hỗ trợ chi phí học tập theo quy định)</small>";const hc=(QA.hc||"").split(",").filter(Boolean),w=effWho(),fk=lv==="lt"?"cd":lv,list=[];
   if(lv==="tc"&&(w==="Tốt nghiệp THCS (lớp 9)"||w==="Học hết lớp 10, 11 rồi nghỉ"))list.push([100,"miễn học phí (tốt nghiệp THCS học trung cấp)"]);
   if(hc.includes("mc"))list.push([100,"có thể được miễn học phí"]);
   if(hc.includes("dtts")&&hc.includes("ngheo"))list.push([100,"có thể được miễn học phí"]);
@@ -970,6 +975,7 @@ function quiz(){const r=$("#quiz"),L=qsteps();
   const tops=Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]);if(!tops.length)tops.push("co");
   const w=effWho(),lvs=WHO_LV[w]||["cd","tc","lt"],lv=lvs[0],hc=(QA.hc||"").split(",").filter(Boolean);
   const sug=[];tops.forEach(g=>{let k=lvs.find(k=>M.some(m=>m[1]===g&&m[LV_IDX[k]]));if(!k)return;M.filter(m=>m[1]===g&&m[LV_IDX[k]]).slice(0,3).forEach(m=>sug.push([m,k]))});
+  if(lvs.includes("thn")&&lvs[0]!=="thn")M.filter(m=>m[6]&&tops.includes(m[1])).forEach(m=>sug.push([m,"thn"]));
   const pol=[];
   if(hc.some(x=>["ngheo","dtts","mc"].includes(x)))pol.push("Có thể được hưởng chính sách nội trú (QĐ 53/2015): học bổng 60–100% mức lương cơ sở mỗi tháng, hỗ trợ đồ dùng cá nhân, tiền đi lại và tiền Tết nếu thuộc diện.");
   if(hc.includes("vh"))pol.push("Thực tập tại doanh nghiệp có thu nhập khoảng 6–10 triệu đồng/tháng; người đã có bằng trung cấp có thể học liên thông, đi làm từ thứ 2 đến thứ 6.");
@@ -985,7 +991,7 @@ function quiz(){const r=$("#quiz"),L=qsteps();
    <h4>${tops.map(g=>G[g]).join(" · ")}</h4>
    <div class="qblk"><b>Trình độ phù hợp</b><p>${LV_TXT[w]||"Thầy sẽ tư vấn trình độ phù hợp."}</p></div>
    <div class="qblk"><b>Ngành gợi ý và học phí sau ưu đãi</b><ul class="qlist">${sug.map(([m,k])=>`<li><span>${m[0]} <em>${lvName(k)}</em></span><span>${feeFor(m,k)}</span></li>`).join("")||"<li>Thầy sẽ tư vấn ngành phù hợp.</li>"}</ul></div>
-   ${abroad?`<div class="qblk"><b>Lộ trình ra nước ngoài${QA.nuoc&&QA.nuoc!=="Chưa chọn nước"?" – "+QA.nuoc:""}</b><p>Học nghề tại trường kết hợp học ngoại ngữ: nhà trường dạy miễn phí tiếng Nhật, Hàn, Đài Loan và giới thiệu du học, việc làm sau tốt nghiệp. Nhà trường đang hợp tác với Tập đoàn Keio (Nhật Bản) và Tập đoàn Giáo dục Hữu Chi Kiều (Trung Quốc). Điều kiện, chi phí từng chương trình sẽ được tư vấn cụ thể.</p></div>`:""}
+   ${abroad?`<div class="qblk"><b>Lộ trình ra nước ngoài${QA.nuoc&&QA.nuoc!=="Chưa chọn nước"?" – "+QA.nuoc:""}</b><p>Học nghề tại trường kết hợp học ngoại ngữ: nhà trường dạy miễn phí tiếng Anh, Nhật, Hàn, Trung, Đức và giới thiệu du học, việc làm sau tốt nghiệp. Nhà trường đang hợp tác với Tập đoàn Keio (Nhật Bản) và Tập đoàn Giáo dục Hữu Chi Kiều (Trung Quốc). Điều kiện, chi phí từng chương trình sẽ được tư vấn cụ thể.</p></div>`:""}
    <div class="qblk"><b>Chính sách em có thể được hưởng</b><ul class="qpol">${pol.map(x=>`<li>${x}</li>`).join("")}</ul></div>
    <p class="qnote">Kết quả để tham khảo. Thầy sẽ tư vấn kỹ và xác nhận chính sách khi gọi lại.</p>
    <div class="row"><button class="btn btn-g" type="button" id="qsend">Gửi kết quả để được tư vấn miễn phí</button><button class="btn btn-n" type="button" id="qsee">Xem các ngành này</button></div>
@@ -1027,6 +1033,7 @@ const D={
  tc12:{li:["Phiếu đăng ký dự tuyển vào giáo dục nghề nghiệp (theo mẫu)","Bản sao học bạ THPT","Bản sao bằng tốt nghiệp THPT hoặc giấy chứng nhận tốt nghiệp tạm thời","Bản sao giấy khai sinh","Bản sao căn cước công dân","Giấy tờ minh chứng đối tượng, chính sách ưu tiên (nếu có)"],m:"Nhận hồ sơ đến hết 31/12/2026."},
  cd:{li:["Đơn đăng ký xét tuyển (theo mẫu của Trường)","Bản sao học bạ THPT","Bản sao bằng tốt nghiệp THPT hoặc giấy chứng nhận tốt nghiệp tạm thời","Bản sao căn cước công dân","Giấy tờ minh chứng đối tượng, chính sách ưu tiên (nếu có)","Hệ chất lượng cao: minh chứng ngoại ngữ đầu vào bậc 1/6 hoặc tương đương"],m:"Nhận hồ sơ đến hết 31/12/2026."},
  lt:{li:["Đơn đăng ký xét tuyển (theo mẫu của Trường)","Bản sao bằng tốt nghiệp trung cấp / trung học nghề","Bản sao bảng điểm trung cấp","Bản sao bằng tốt nghiệp THPT hoặc giấy chứng nhận đủ khối lượng văn hóa THPT","Bản sao căn cước công dân","Giấy tờ minh chứng đối tượng, chính sách ưu tiên (nếu có)"],m:"Nhận hồ sơ đến hết 31/12/2026."}};
+D.thn={li:D.tc9.li,m:"Nhận hồ sơ đến hết 31/12/2026."};
 function showDoc(k){document.querySelectorAll("#doctabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.d===k));$("#doclist").innerHTML=D[k].li.map(x=>`<li>${x}</li>`).join("");$("#docmeta").textContent=D[k].m}
 $("#doctabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b)showDoc(b.dataset.d)});showDoc("tc9");
 
