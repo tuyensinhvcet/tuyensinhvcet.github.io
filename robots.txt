@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tuyensinhvcet.github.io/sitemap.xml
