@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tuyển sinh VCET 2026</title>
 <meta name="description" content="Tuyển sinh Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật – Công nghệ Vĩnh Phúc. Tư vấn: 0989 465 017.">
 <meta property="og:title" content="Tuyển sinh VCET 2026 – 2027 · Chọn đúng nghề – Vững tương lai">
@@ -422,7 +427,7 @@ label.f input,label.f select{border-radius:10px;padding:13px 14px}
 .news h3{font-size:1.02rem;font-weight:800;line-height:1.4}
 .news p{font-size:.9rem;color:var(--muted);flex:1}
 .news .more{font-size:.86rem;font-weight:800;color:var(--link)}
-.partners.names{grid-template-columns:repeat(3,minmax(0,220px));justify-content:center;margin-top:14px}
+.partners.names{grid-template-columns:repeat(2,minmax(0,200px));justify-content:center;margin-top:14px}
 .partners.names div{border:1px solid var(--line);border-style:solid;background:var(--surface);aspect-ratio:5/2;font-size:.95rem;font-weight:800;color:var(--ink,#0d1838)}
 .soc{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
 .soc a{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border-radius:999px;padding:7px 14px;font-size:.86rem;font-weight:700;color:inherit;text-decoration:none}
@@ -442,12 +447,16 @@ label.f input,label.f select{border-radius:10px;padding:13px 14px}
 .policy-nt b{color:var(--link)}
 @media (max-width:980px){.policy{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.policy{grid-template-columns:1fr}}
-.partners.logos{grid-template-columns:repeat(3,minmax(0,220px));justify-content:center}
+.partners.logos{grid-template-columns:repeat(5,minmax(0,200px));justify-content:center}
+@media (max-width:760px){.partners.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .partners.logos div{border:1px solid var(--line);background:#fff;aspect-ratio:5/2;padding:14px}
 .partners.logos img{max-width:100%;max-height:100%;object-fit:contain}
 .ph[data-ai].has::before{content:"Ảnh minh họa";position:absolute;right:10px;bottom:10px;z-index:2;font-size:.68rem;font-weight:600;color:#fff;background:rgba(8,16,40,.45);padding:3px 8px;border-radius:6px}
 .slide .ph[data-ai].has::before{bottom:auto;top:14px;right:14px}
 </style>
+<link rel="icon" href="anh/icon-nganh-nghe.png">
+</head>
+<body>
 
 <header>
   <div class="wrap nav">
@@ -660,7 +669,7 @@ label.f input,label.f select{border-radius:10px;padding:13px 14px}
 <section class="sec center">
   <div class="wrap">
     <h2 class="title grad">Đối tác của chúng tôi</h2>
-    <div class="partners logos"><div><img src="anh/doi-tac-honda.png" alt="Honda"></div><div><img src="anh/doi-tac-foxconn.png" alt="Foxconn"></div><div><img src="anh/doi-tac-japfa.png" alt="Japfa"></div></div><div class="partners names"><div>Canon Việt Nam</div><div>Haesung Vina</div><div>Smart CY Việt Nam</div></div><p class="note" style="margin-top:14px">Doanh nghiệp liên kết đào tạo, thực tập và tuyển dụng sinh viên VCET.</p>
+    <div class="partners logos"><div><img src="anh/doi-tac-honda.png" alt="Honda"></div><div><img src="anh/doi-tac-foxconn.png" alt="Foxconn"></div><div><img src="anh/doi-tac-japfa.png" alt="Japfa"></div><div><img src="anh/doi-tac-canon.png" alt="Canon Việt Nam"></div><div><img src="anh/doi-tac-haesung-vina.png" alt="Haesung Vina"></div></div><div class="partners names"><div>Smart CY Việt Nam</div><div>Trí Phổ Việt Nam</div></div><p class="note" style="margin-top:14px">Doanh nghiệp liên kết đào tạo, thực tập và tuyển dụng sinh viên VCET.</p>
   </div>
 </section>
 
@@ -920,3 +929,6 @@ function bindForm(id,p){$(id).addEventListener("submit",e=>{e.preventDefault();
 bindForm("#lead","#l");bindForm("#mform","#m");
 applyPhotos();
 </script>
+
+</body>
+</html>
