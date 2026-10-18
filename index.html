@@ -198,7 +198,7 @@ label.f input,label.f select{font:inherit;font-weight:400;font-size:.95rem;paddi
 .qtext{font-size:1.2rem;font-weight:800;color:var(--head)}
 .qopts{display:grid;gap:10px}
 .qopts button{font:inherit;text-align:left;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;font-weight:600}
-.qopts button:hover{border-color:var(--cyan);background:var(--chip)}
+@media(hover:hover){.qopts button:hover{border-color:var(--cyan);background:var(--chip)}}
 .qres h4{margin:0;font-size:1.5rem;font-weight:900;color:var(--head)}
 .qres p{color:var(--muted);margin-top:8px}
 .qres .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
@@ -466,6 +466,16 @@ a.hot,a.zalo,a.bubble{text-decoration:none}
 .bdg{display:inline-block;margin-top:5px;font-style:normal;font-size:.74rem;font-weight:800;padding:3px 9px;border-radius:999px}
 .b70{background:#fff1cc;color:#8a5a00}.b36{background:#e3f6ec;color:#17694a}
 select:disabled{opacity:.6;cursor:not-allowed}
+.quiz .qopts{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.qopts button[aria-pressed="true"]{border-color:var(--cyan);background:var(--chip);color:var(--chip-fg)}.qopts button[aria-pressed="true"]::after{content:" ✓";font-weight:800}
+.qsub{color:var(--muted);font-size:.9rem;margin-top:-6px}
+.qback{font:inherit;background:none;border:0;color:var(--link);font-weight:700;cursor:pointer;padding:0}
+.qnext{align-self:flex-start;margin-top:4px}
+.qblk{margin-top:16px}.qblk>b{display:block;font-weight:800;color:var(--head);margin-bottom:4px}.qblk p{margin-top:0}
+.qlist,.qpol{margin:6px 0 0;padding:0;list-style:none}.qlist li{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed var(--line);font-weight:600}
+.qlist li>span:last-child{text-align:right;color:var(--link);font-weight:800}.qlist em{font-style:normal;font-size:.76rem;color:var(--muted);font-weight:600;margin-left:4px}.qlist small{display:block;color:var(--muted);font-size:.76rem;font-weight:500}
+.qpol li{position:relative;padding-left:18px;margin:7px 0;color:var(--muted);font-size:.93rem}.qpol li::before{content:"✓";position:absolute;left:0;color:#17694a;font-weight:900}
+.qnote{font-size:.85rem;color:var(--muted);margin-top:14px!important}.consent[hidden]{display:none!important}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .poltitle{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:900;text-transform:uppercase;margin-top:64px}
 .policy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px;text-align:left}
@@ -607,7 +617,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
     <span class="eyebrow">Giải mã nghề nghiệp</span>
     <h2 class="title">Em hợp với <span class="grad">nhóm nghề nào?</span></h2>
     <div class="quiz" style="text-align:left">
-      <div class="l"><h3>5 câu hỏi,<br><span>1 phút</span></h3><p>Trả lời nhanh theo sở thích, trang sẽ gợi ý nhóm ngành phù hợp với em. Kết quả chỉ để tham khảo, thầy cô sẽ tư vấn kỹ hơn.</p></div>
+      <div class="l"><h3>Tư vấn chọn nghề<br><span>chỉ 2 phút</span></h3><p>Trả lời vài câu về bản thân, hoàn cảnh gia đình, sở thích và mong muốn (kể cả du học, đi làm việc ở nước ngoài). Trang sẽ gợi ý trình độ, ngành học, học phí sau ưu đãi và chính sách em có thể được hưởng.</p><p>Kết quả để tham khảo, Thầy sẽ tư vấn kỹ khi gọi lại.</p></div>
       <div class="r" id="quiz" aria-live="polite"></div>
     </div>
   </div>
@@ -784,6 +794,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
       <label class="f">Đối tượng<select id="m-who"><option value="">Chọn đối tượng</option><option>Tốt nghiệp THCS (lớp 9)</option><option>Tốt nghiệp THPT (lớp 12)</option><option>Đã có bằng trung cấp</option><option>Người đi làm</option></select></label>
       <label class="f">Trình độ<select id="m-level"></select></label>
       <label class="f">Ngành đăng ký học<select id="m-major"><option value="">Chọn ngành học</option></select></label>
+      <label class="consent" id="m-hcwrap" hidden style="margin-top:0"><input type="checkbox" id="m-hc"> Gửi kèm thông tin hoàn cảnh gia đình em đã chọn để được tư vấn chính sách miễn, giảm học phí.</label>
       <label class="consent" style="margin-top:0"><input type="checkbox" id="m-ok"> Đồng ý cho Nhà trường liên hệ tư vấn theo Nghị định 13/2023/NĐ-CP.</label>
       <input id="m-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="err" id="m-err" hidden style="margin:0"></p>
       <button class="btn btn-g" type="submit" style="text-transform:uppercase">Đăng ký ngay</button>
@@ -865,8 +876,10 @@ $("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);go(0);
 
 // Chọn theo thứ tự: đối tượng → trình độ → ngành của trình độ đó
 const LV={tc:"Trung cấp",cd:"Cao đẳng",lt:"Liên thông cao đẳng"},LV_IDX={cd:3,lt:4,tc:5};
-const WHO_LV={"Tốt nghiệp THCS (lớp 9)":["tc"],"Tốt nghiệp THPT (lớp 12)":["cd","tc"],"Đã có bằng trung cấp":["lt","cd"],"Người đi làm":["cd","lt","tc"],"Phụ huynh":["tc","cd","lt"]};
+const WHO=[["Tốt nghiệp THCS (lớp 9)",["tc"]],["Học hết lớp 10, 11 rồi nghỉ",["tc"]],["Tốt nghiệp THPT (lớp 12)",["cd","tc"]],["Đã có bằng trung cấp",["lt","cd"]],["Đã có bằng cao đẳng, đại học (văn bằng 2)",["cd","tc"]],["Người đi làm",["cd","lt","tc"]],["Bộ đội xuất ngũ",["cd","tc","lt"]],["Phụ huynh",["tc","cd","lt"]],["Chưa rõ, cần tư vấn",["cd","tc","lt"]]];
+const WHO_LV=Object.fromEntries(WHO);
 function cascade(p){const w=$(p+"-who"),l=$(p+"-level"),mj=$(p+"-major");
+  w.innerHTML='<option value="">Chọn đối tượng</option>'+WHO.map(x=>"<option>"+x[0]+"</option>").join("");
   const fillM=()=>{const k=l.value,cur=mj.value;const L=k?M.filter(m=>m[LV_IDX[k]]):[];mj.innerHTML='<option value="">'+(k?"Chọn ngành học":"Chọn trình độ trước")+'</option>'+L.map(m=>"<option>"+m[0]+"</option>").join("");mj.disabled=!k;if(L.some(m=>m[0]===cur))mj.value=cur};
   const fillL=()=>{const ks=WHO_LV[w.value]||[],cur=l.value;l.innerHTML='<option value="">'+(ks.length?"Chọn trình độ":"Chọn đối tượng trước")+'</option>'+ks.map(k=>'<option value="'+k+'">'+LV[k]+"</option>").join("");l.disabled=!ks.length;if(ks.includes(cur))l.value=cur;else if(ks.length===1)l.value=ks[0];fillM()};
   w.addEventListener("change",fillL);l.addEventListener("change",fillM);w.form.addEventListener("reset",()=>setTimeout(fillL,0));fillL();return {fillL,fillM}}
@@ -898,23 +911,74 @@ $("#careers").innerHTML=Object.entries(JOBS).map(([g,js])=>{const c=GC[g];return
 document.addEventListener("click",e=>{const b=e.target.closest(".career .more");if(!b)return;showProg(b.dataset.g);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})});
 const cr=$("#careers");$("#cprev").onclick=()=>cr.scrollBy({left:-cr.clientWidth*0.8,behavior:"smooth"});$("#cnext").onclick=()=>cr.scrollBy({left:cr.clientWidth*0.8,behavior:"smooth"});
 // quiz
-const QZ=[
- {q:"Lúc rảnh, em thích làm gì nhất?",a:[["Tháo lắp, sửa đồ đạc, xe máy","co"],["Nghịch mạch điện, đồ điện tử","dien"],["Ngồi máy tính, tìm hiểu phần mềm","it"],["Buôn bán, tính toán, lên kế hoạch","kd"]]},
- {q:"Môn học em thấy dễ chịu nhất?",a:[["Công nghệ, kỹ thuật","co"],["Vật lý","dien"],["Tin học","it"],["Toán, tiếng Anh, ngoại ngữ","kd"]]},
- {q:"Em muốn làm việc ở đâu?",a:[["Xưởng, nhà máy","co"],["Khu công nghiệp, công trình","dien"],["Văn phòng, phòng máy","it"],["Nhà hàng, khách sạn, cửa hàng","dv"]]},
- {q:"Em thích làm việc với…",a:[["Máy móc, dụng cụ","co"],["Thiết bị, hệ thống điều khiển","dien"],["Số liệu, giấy tờ, khách hàng","kd"],["Con người, vật nuôi, món ăn","dv"]]},
- {q:"Điều em mong muốn nhất sau khi ra trường?",a:[["Có tay nghề vững, tự mở xưởng","co"],["Vào nhà máy lớn, thu nhập ổn định","dien"],["Làm công việc gắn với công nghệ","it"],["Làm dịch vụ, tiếp xúc nhiều người","dv"]]}
+// Tư vấn chọn nghề: đối tượng → hoàn cảnh → sở thích → mong muốn (du học, xuất khẩu lao động) → lộ trình gợi ý
+const QS=[
+ {k:"who",q:"Em (hoặc anh/chị) hiện là?",a:WHO.map(x=>[x[0],x[0]])},
+ {k:"con",q:"Con của anh/chị hiện là?",when:A=>A.who==="Phụ huynh",a:WHO.slice(0,5).map(x=>[x[0],x[0]])},
+ {k:"hc",multi:1,q:"Gia đình em có thuộc trường hợp nào sau đây không?",sub:"Chọn được nhiều ý. Thông tin giúp gợi ý đúng chính sách miễn, giảm học phí.",a:[["Hộ nghèo hoặc cận nghèo","ngheo"],["Dân tộc thiểu số","dtts"],["Ở thôn, xã đặc biệt khó khăn","dbkk"],["Mồ côi, khuyết tật hoặc con người có công","mc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Gia đình bình thường","bt"],["Không muốn trả lời","no"]]},
+ {k:"q1",q:"Lúc rảnh, em thích làm gì nhất?",a:[["Tháo lắp, sửa xe, máy móc","a","co"],["Lắp đồ điện, nghịch mạch điện tử","b","dien"],["Máy tính, thiết kế, mạng xã hội","c","it"],["Bán hàng online, tính toán chi tiêu","d","kd"],["Nấu ăn, trang điểm, may vá","e","dv"],["Chăm vật nuôi, trồng cây","f","ny"],["Học ngoại ngữ, xem phim nước ngoài","g","nn"]]},
+ {k:"q2",q:"Môn học nào em thấy dễ nhất?",a:[["Toán, Vật lý","a","co,dien"],["Tin học","b","it"],["Toán, Giáo dục kinh tế","c","kd"],["Công nghệ, Mỹ thuật","d","dv,co"],["Sinh học","e","ny"],["Ngoại ngữ, Ngữ văn","f","nn,kd"]]},
+ {k:"q3",q:"Em muốn làm việc ở đâu?",a:[["Nhà máy, xưởng sản xuất","a","co,dien"],["Văn phòng, công ty","b","kd,it"],["Nhà hàng, khách sạn, spa, cửa hàng thời trang","c","dv"],["Trang trại, phòng khám thú y","d","ny"],["Công ty nước ngoài, làm phiên dịch","e","nn"],["Tự mở cửa hàng, xưởng riêng","f","kd,co"]]},
+ {k:"q4",q:"Điểm mạnh của em là gì?",a:[["Khéo tay, thích làm thực hành","a","co,dien"],["Giao tiếp tốt, thích gặp gỡ mọi người","b","kd,dv"],["Tỉ mỉ, cẩn thận, kiên trì","c","dien,it"],["Có mắt thẩm mỹ, sáng tạo","d","dv,it"],["Yêu động vật, kiên nhẫn chăm sóc","e","ny"],["Nhớ từ mới, học ngoại ngữ nhanh","f","nn"]]},
+ {k:"goal",q:"Ra trường, em mong muốn điều gì nhất?",a:[["Đi làm ngay ở khu công nghiệp","Đi làm ngay ở khu công nghiệp","co,dien"],["Làm cho doanh nghiệp nước ngoài tại Việt Nam","Làm cho doanh nghiệp nước ngoài","nn,dien,it"],["Mở cửa hàng, kinh doanh riêng","Kinh doanh riêng","kd,dv"],["Học tiếp lên đại học","Học tiếp lên đại học","it,kd"],["Đi du học","Đi du học","nn"],["Đi làm việc ở nước ngoài (xuất khẩu lao động)","Đi làm việc ở nước ngoài","co,dv,dien"]]},
+ {k:"nuoc",q:"Em quan tâm nước nào?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Nhật Bản","Nhật Bản","co,dv"],["Hàn Quốc","Hàn Quốc","co,dien"],["Đài Loan","Đài Loan","dien,nn"],["Trung Quốc","Trung Quốc","nn"],["Đức","Đức","co,dien"],["Chưa biết","Chưa chọn nước",""]]},
+ {k:"ngoaingu",q:"Em đã biết ngoại ngữ của nước đó chưa?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Chưa biết","Chưa biết ngoại ngữ"],["Biết chút ít","Biết chút ít ngoại ngữ"],["Đã có chứng chỉ","Đã có chứng chỉ ngoại ngữ"]]},
+ {k:"khi",q:"Em muốn đi lúc nào?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Ngay sau khi tốt nghiệp","Đi ngay sau tốt nghiệp"],["Làm việc vài năm rồi mới đi","Đi sau vài năm làm việc"]]},
+ {k:"tg",q:"Anh/chị có thể học vào thời gian nào?",when:A=>A.who==="Người đi làm"||A.who==="Bộ đội xuất ngũ",a:[["Ban ngày","Học ban ngày"],["Buổi tối","Học buổi tối"],["Thứ 7, chủ nhật","Học thứ 7, chủ nhật"]]}
 ];
-let qi=0,score={};
-function quiz(){
-  const r=$("#quiz");
-  if(qi<QZ.length){const Q=QZ[qi];r.innerHTML=`<div class="qprog"><i style="width:${qi/QZ.length*100}%"></i></div><div class="qnum">Câu ${qi+1}/${QZ.length}</div><div class="qtext">${Q.q}</div><div class="qopts">${Q.a.map(([t,g])=>`<button type="button" data-g="${g}">${t}</button>`).join("")}</div>`;
-    r.querySelectorAll(".qopts button").forEach(b=>b.onclick=()=>{score[b.dataset.g]=(score[b.dataset.g]||0)+1;qi++;quiz()});return}
-  const best=Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
-  const ms=M.filter(m=>m[1]===best).slice(0,4).map(m=>m[0]).join(", ");
-  r.innerHTML=`<div class="qprog"><i style="width:100%"></i></div><div class="qres"><div class="qnum">Gợi ý cho em</div><h4>${G[best]}</h4><p>Một số ngành phù hợp: ${ms}.</p><div class="row"><button class="btn btn-g" type="button" id="qsee">Xem các ngành này</button><button class="btn btn-n" type="button" data-open>Nhận tư vấn</button></div><p style="margin-top:14px"><button type="button" id="qre" style="font:inherit;background:none;border:0;color:var(--link);font-weight:700;cursor:pointer;padding:0">Làm lại</button></p></div>`;
-  $("#qsee").onclick=()=>{showProg(best);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})};
-  $("#qre").onclick=()=>{qi=0;score={};quiz()};
+const HC_TXT={ngheo:"Hộ nghèo/cận nghèo",dtts:"Dân tộc thiểu số",dbkk:"Ở thôn, xã đặc biệt khó khăn",mc:"Mồ côi/khuyết tật/con người có công",tnld:"Cha hoặc mẹ bị TNLĐ/bệnh nghề nghiệp",vh:"Cần vừa học vừa có thu nhập"};
+const LV_TXT={"Tốt nghiệp THCS (lớp 9)":"Trung cấp + THPT 3 năm: nhận bằng Trung cấp và bằng tốt nghiệp THPT; hoặc chương trình Trung học nghề.","Học hết lớp 10, 11 rồi nghỉ":"Trung cấp, học kèm văn hóa THPT để có thể nhận đủ bằng.","Tốt nghiệp THPT (lớp 12)":"Cao đẳng 2–3 năm (bằng Kỹ sư/Cử nhân thực hành) hoặc Trung cấp.","Đã có bằng trung cấp":"Liên thông cao đẳng 1 năm, cùng hoặc gần ngành đã học.","Đã có bằng cao đẳng, đại học (văn bằng 2)":"Học văn bằng 2 trình độ cao đẳng hoặc trung cấp để có thêm một nghề.","Người đi làm":"Cao đẳng có lớp học tối, thứ 7, chủ nhật; liên thông nếu đã có bằng trung cấp.","Bộ đội xuất ngũ":"Cao đẳng hoặc trung cấp theo bằng đã có; bộ đội xuất ngũ được hỗ trợ học nghề theo quy định.","Chưa rõ, cần tư vấn":"Thầy sẽ tư vấn trình độ phù hợp khi gọi lại."};
+let QA={},qstep=0;
+const qsteps=()=>QS.filter(S=>!S.when||S.when(QA));
+const effWho=()=>QA.who==="Phụ huynh"?(QA.con||"Phụ huynh"):QA.who;
+function feeFor(m,lv){const hc=QA.hc||[],w=effWho(),fk=lv==="lt"?"cd":lv,list=[];
+  if(lv==="tc"&&(w==="Tốt nghiệp THCS (lớp 9)"||w==="Học hết lớp 10, 11 rồi nghỉ"))list.push([100,"miễn học phí (tốt nghiệp THCS học trung cấp)"]);
+  if(hc.includes("mc"))list.push([100,"có thể được miễn học phí"]);
+  if(hc.includes("dtts")&&hc.includes("ngheo"))list.push([100,"có thể được miễn học phí"]);
+  if(G70[fk].includes(m[0]))list.push([70,"giảm 70% (ngành nặng nhọc, độc hại)"]);
+  if(hc.includes("dtts")&&hc.includes("dbkk"))list.push([70,"có thể được giảm 70%"]);
+  if(hc.includes("tnld"))list.push([50,"có thể được giảm 50%"]);
+  list.sort((a,b)=>b[0]-a[0]);const [pct,why]=list[0]||[0,""];const rate=FEE[fk][m[2]],pay=rate*(100-pct)/100;
+  const n36=!pct&&N36[fk].includes(m[0])&&w==="Tốt nghiệp THPT (lớp 12)";
+  return `${pct===100?"0đ":vnd(pay)+"/tháng"}${pct?` <small>(${why}, giá gốc ${vnd(rate)})</small>`:""}${n36?` <small>+ hỗ trợ 800.000đ/tháng theo NQ 36*</small>`:""}`}
+function quiz(){const r=$("#quiz"),L=qsteps();
+  if(qstep<L.length){const S=L[qstep],cur=QA[S.k];
+    r.innerHTML=`<div class="qprog"><i style="width:${qstep/L.length*100}%"></i></div><div class="qnum">Bước ${qstep+1}/${L.length}${qstep?` · <button type="button" class="qback">← Quay lại</button>`:""}</div><div class="qtext">${S.q}</div>${S.sub?`<p class="qsub">${S.sub}</p>`:""}<div class="qopts">${S.a.map(o=>`<button type="button" data-v="${o[1]}"${S.multi?` aria-pressed="${(cur||[]).includes(o[1])}"`:""}>${o[0]}</button>`).join("")}</div>${S.multi?`<button type="button" class="btn btn-n qnext">Tiếp tục →</button>`:""}`;
+    const bk=r.querySelector(".qback");if(bk)bk.onclick=()=>{qstep--;quiz()};
+    r.querySelectorAll(".qopts button").forEach(b=>b.onclick=()=>{const v=b.dataset.v;
+      if(S.multi){let a=QA[S.k]||[];if(v==="no"||v==="bt")a=a.includes(v)?[]:[v];else{a=a.filter(x=>x!=="no"&&x!=="bt");a=a.includes(v)?a.filter(x=>x!==v):a.concat(v)}QA[S.k]=a;r.querySelectorAll(".qopts button").forEach(x=>x.setAttribute("aria-pressed",a.includes(x.dataset.v)))}
+      else{QA[S.k]=v;qstep++;quiz()}});
+    const nx=r.querySelector(".qnext");if(nx)nx.onclick=()=>{QA[S.k]=QA[S.k]||[];qstep++;quiz()};return}
+  // kết quả
+  const sc={};L.forEach(S=>{const v=QA[S.k];(S.multi?[]:[v]).forEach(x=>{const o=S.a.find(o=>o[1]===x);if(o&&o[2])o[2].split(",").forEach((g,i)=>sc[g]=(sc[g]||0)+(i?1:2))})});
+  const tops=Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]);if(!tops.length)tops.push("co");
+  const w=effWho(),lvs=WHO_LV[w]||["cd","tc","lt"],lv=lvs[0],hc=QA.hc||[];
+  const sug=[];tops.forEach(g=>{let k=lvs.find(k=>M.some(m=>m[1]===g&&m[LV_IDX[k]]));if(!k)return;M.filter(m=>m[1]===g&&m[LV_IDX[k]]).slice(0,3).forEach(m=>sug.push([m,k]))});
+  const pol=[];
+  if(hc.some(x=>["ngheo","dtts","mc"].includes(x)))pol.push("Có thể được hưởng chính sách nội trú (QĐ 53/2015): học bổng 60–100% mức lương cơ sở mỗi tháng, hỗ trợ đồ dùng cá nhân, tiền đi lại và tiền Tết nếu thuộc diện.");
+  if(hc.includes("vh"))pol.push("Thực tập tại doanh nghiệp có thu nhập khoảng 6–10 triệu đồng/tháng; người đã có bằng trung cấp có thể học liên thông, đi làm từ thứ 2 đến thứ 6.");
+  if(w==="Tốt nghiệp THPT (lớp 12)")pol.push("*Hỗ trợ 800.000đ/tháng (NQ 36) áp dụng cho người tốt nghiệp THPT tại Phú Thọ, dưới 25 tuổi, học văn bằng thứ nhất ngành trong danh mục.");
+  if(w==="Bộ đội xuất ngũ")pol.push("Bộ đội xuất ngũ được hỗ trợ học nghề theo quy định; Thầy sẽ hướng dẫn hồ sơ cụ thể.");
+  if(w==="Đã có bằng cao đẳng, đại học (văn bằng 2)")pol.push("Nhà trường nhận người đã có bằng cao đẳng, đại học học văn bằng 2.");
+  if(QA.tg)pol.push("Một số ngành cao đẳng có lớp học tối, thứ 7, chủ nhật, 30% thời lượng học trực tuyến.");
+  pol.push("Hồ sơ miễn, giảm học phí gồm đơn theo mẫu và giấy tờ chứng minh theo Thông báo 119/TB-CĐKTCN.");
+  const abroad=QA.goal==="Đi du học"||QA.goal==="Đi làm việc ở nước ngoài";
+  const lvName=k=>LV[k];
+  r.innerHTML=`<div class="qprog"><i style="width:100%"></i></div><div class="qres">
+   <div class="qnum">Lộ trình gợi ý cho ${QA.who==="Phụ huynh"?"con anh/chị":"em"}</div>
+   <h4>${tops.map(g=>G[g]).join(" · ")}</h4>
+   <div class="qblk"><b>Trình độ phù hợp</b><p>${LV_TXT[w]||"Thầy sẽ tư vấn trình độ phù hợp."}</p></div>
+   <div class="qblk"><b>Ngành gợi ý và học phí sau ưu đãi</b><ul class="qlist">${sug.map(([m,k])=>`<li><span>${m[0]} <em>${lvName(k)}</em></span><span>${feeFor(m,k)}</span></li>`).join("")||"<li>Thầy sẽ tư vấn ngành phù hợp.</li>"}</ul></div>
+   ${abroad?`<div class="qblk"><b>Lộ trình ra nước ngoài${QA.nuoc&&QA.nuoc!=="Chưa chọn nước"?" – "+QA.nuoc:""}</b><p>Học nghề tại trường kết hợp học ngoại ngữ: nhà trường dạy miễn phí tiếng Nhật, Hàn, Đài Loan và giới thiệu du học, việc làm sau tốt nghiệp. Nhà trường đang hợp tác với Tập đoàn Keio (Nhật Bản) và Tập đoàn Giáo dục Hữu Chi Kiều (Trung Quốc). Điều kiện, chi phí từng chương trình sẽ được tư vấn cụ thể.</p></div>`:""}
+   <div class="qblk"><b>Chính sách em có thể được hưởng</b><ul class="qpol">${pol.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+   <p class="qnote">Kết quả để tham khảo. Thầy sẽ tư vấn kỹ và xác nhận chính sách khi gọi lại.</p>
+   <div class="row"><button class="btn btn-g" type="button" id="qsend">Gửi kết quả để được tư vấn miễn phí</button><button class="btn btn-n" type="button" id="qsee">Xem các ngành này</button></div>
+   <p style="margin-top:14px"><button type="button" id="qre" class="qback">Làm lại từ đầu</button></p></div>`;
+  window.QNOTE=["Tư vấn chọn nghề: "+tops.map(g=>G[g]).join(", "),"Ngành gợi ý: "+sug.map(([m,k])=>LV[k]+" "+m[0]).join("; "),"Mong muốn: "+(QA.goal||""),abroad?[QA.nuoc,QA.ngoaingu,QA.khi].filter(Boolean).join(", "):"",QA.tg||""].filter(x=>x&&!/: $/.test(x)).join(" | ");
+  window.QHC=hc.filter(x=>HC_TXT[x]).map(x=>HC_TXT[x]).join(", ");
+  $("#qsee").onclick=()=>{showProg(tops[0]);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})};
+  $("#qre").onclick=()=>{QA={};qstep=0;quiz()};
+  $("#qsend").onclick=()=>{const first=sug[0];$("#m-who").value=WHO_LV[w]?w:"Chưa rõ, cần tư vấn";CM.fillL();if(first){$("#m-level").value=first[1];CM.fillM();$("#m-major").value=first[0][0]}openModal(null,true);$("#m-hcwrap").hidden=!window.QHC};
 }
 quiz();
 
@@ -950,7 +1014,7 @@ function tick(){$("#days").textContent=Math.max(0,Math.ceil((END-Date.now())/864
 
 // modal
 const modal=$("#modal");
-function openModal(major){if(major){const w=$("#m-who"),l=$("#m-level"),m=M.find(x=>x[0]===major);if(!w.value)w.value="Tốt nghiệp THPT (lớp 12)";CM.fillL();const ks=WHO_LV[w.value]||[];const k=m&&(ks.includes(l.value)&&m[LV_IDX[l.value]]?l.value:ks.find(k=>m[LV_IDX[k]]));if(k){l.value=k;CM.fillM();$("#m-major").value=major}}modal.hidden=false;setTimeout(()=>$("#m-name").focus(),50)}
+function openModal(major,fq){if(!fq){window.QNOTE="";window.QHC="";const hw=$("#m-hcwrap");if(hw){hw.hidden=true;$("#m-hc").checked=false}}if(major){const w=$("#m-who"),l=$("#m-level"),m=M.find(x=>x[0]===major);if(!w.value)w.value="Tốt nghiệp THPT (lớp 12)";CM.fillL();const ks=WHO_LV[w.value]||[];const k=m&&(ks.includes(l.value)&&m[LV_IDX[l.value]]?l.value:ks.find(k=>m[LV_IDX[k]]));if(k){l.value=k;CM.fillM();$("#m-major").value=major}}modal.hidden=false;setTimeout(()=>$("#m-name").focus(),50)}
 let autoShown=false,engaged=false;
 function closeModal(){modal.hidden=true;autoShown=true;try{sessionStorage.setItem("vcet-popup","1")}catch(e){}}
 // Tự hiện form sau 12 giây (hoặc khi đọc quá nửa trang), mỗi lượt truy cập 1 lần; không hiện nếu em đang điền form
@@ -1005,7 +1069,7 @@ function bindForm(id,p){$(id).addEventListener("submit",e=>{e.preventDefault();
   let m="";if(!name)m="Vui lòng nhập họ và tên.";else if(!/^0\d{9}$/.test(phone))m="Số điện thoại cần đủ 10 số, bắt đầu bằng 0.";else if(p==="#l"&&!$("#l-major").value)m="Vui lòng chọn đối tượng, trình độ và ngành đăng ký.";else if(!$(p+"-ok").checked)m="Vui lòng tích ô đồng ý để nhà trường liên hệ tư vấn.";
   err.hidden=!m;err.textContent=m;if(m)return;const mj=$(p+"-major").value;const d=$(p+"-done");const btn=e.target.querySelector('[type=submit]');
   const v=k=>{const el=$(p+"-"+k);return el?el.value.trim():""};
-  const lvn=$(p+"-level")&&$(p+"-level").value?LV[$(p+"-level").value]:"";const data={name,phone,who:v("who"),major:[lvn,mj].filter(Boolean).join(" – "),cs:v("cs"),place:placeVal(),form:p==="#l"?"Form trang chủ":"Form bật lên",page:location.href,hp:v("hp")};
+  const lvn=$(p+"-level")&&$(p+"-level").value?LV[$(p+"-level").value]:"";const data={name,phone,who:v("who"),major:[lvn,mj].filter(Boolean).join(" – "),cs:v("cs"),place:placeVal(),form:p==="#l"?"Form trang chủ":(window.QNOTE?"Tư vấn chọn nghề":"Form bật lên"),note:p==="#m"&&window.QNOTE?window.QNOTE+($("#m-hc").checked&&window.QHC?" | Hoàn cảnh: "+window.QHC:""):"",page:location.href,hp:v("hp")};
   const thanks=()=>{d.hidden=false;d.innerHTML=`Cảm ơn <b>${name.replace(/[<>&]/g,"")}</b>! Thầy Phan Thanh Bình sẽ gọi lại số <b>${phone}</b>${mj?" để tư vấn ngành <b>"+mj.replace(/[<>&]/g,"")+"</b>":""}. Cần gấp, em nhắn Zalo 0989 465 017 nhé.`;e.target.reset()};
   if(!SHEET_URL){thanks();return}
   btn.disabled=true;btn.textContent="Đang gửi...";
