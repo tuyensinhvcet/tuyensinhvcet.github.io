@@ -3,10 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tuyển sinh VCET 2026</title>
-<meta name="description" content="Tuyển sinh Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc. Tư vấn: 0989 465 017.">
+<title>Tuyển sinh 2026 – Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc (VCET)</title>
+<meta name="description" content="Tuyển sinh Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc. Nhiều ngành giảm 70% học phí, tư vấn chọn nghề miễn phí. Hotline: 0989 465 017.">
+<link rel="canonical" href="https://tuyensinhvcet.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Tuyển sinh VCET">
+<meta property="og:url" content="https://tuyensinhvcet.github.io/">
 <meta property="og:title" content="Tuyển sinh VCET 2026 – 2027 · Chọn đúng nghề – Vững tương lai">
-<meta property="og:image" content="anh/anh-chia-se.jpg">
+<meta property="og:description" content="Tuyển sinh Trung cấp, Cao đẳng, Liên thông năm học 2026 – 2027 Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc. Nhiều ngành giảm 70% học phí, tư vấn chọn nghề miễn phí. Hotline: 0989 465 017.">
+<meta property="og:image" content="https://tuyensinhvcet.github.io/anh/anh-chia-se.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollegeOrUniversity", "name": "Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc", "alternateName": "VCET", "url": "https://tuyensinhvcet.github.io/", "logo": "https://tuyensinhvcet.github.io/anh/logo.png", "telephone": "+84989465017", "sameAs": ["https://vp-cet.edu.vn/", "https://www.facebook.com/thaybinhhuongnghiep", "https://www.tiktok.com/@caodangktcnvp", "https://www.youtube.com/@truongcdktcnvp"]}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap">
@@ -477,6 +487,8 @@ select:disabled{opacity:.6;cursor:not-allowed}
 .qpol li{position:relative;padding-left:18px;margin:7px 0;color:var(--muted);font-size:.93rem}.qpol li::before{content:"✓";position:absolute;left:0;color:#17694a;font-weight:900}
 .qnote{font-size:.85rem;color:var(--muted);margin-top:14px!important}.consent[hidden]{display:none!important}
 .cnote{font-size:.8rem;color:var(--muted);line-height:1.5;margin:2px 0 0}
+#quiz{min-width:0}.qres .btn{white-space:normal;text-align:center}
+.qshare{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;font-size:.88rem;color:var(--muted)}.qshare button,.qshare a{font:inherit;font-weight:700;border:1.5px solid var(--line);background:var(--bg);color:var(--link);border-radius:999px;padding:7px 14px;cursor:pointer;text-decoration:none}.qshare em{font-style:normal;color:#17694a;font-weight:700}.qshare [hidden]{display:none}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .poltitle{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:900;text-transform:uppercase;margin-top:64px}
 .policy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px;text-align:left}
@@ -805,6 +817,9 @@ select:disabled{opacity:.6;cursor:not-allowed}
 <div class="toast" id="toast" hidden></div>
 
 <script>
+// Link theo kênh: ?nguon=tiktok, ?gt=ten-nguoi-gioi-thieu → ghi vào cột Nguồn trên Google Sheets
+(function(){try{const q=new URLSearchParams(location.search),c=s=>String(s).replace(/[^\p{L}\p{N} ._-]/gu,"").slice(0,40),n=q.get("nguon"),g=q.get("gt");if(n)localStorage.setItem("vcet-nguon",c(n));if(g)localStorage.setItem("vcet-gt",c(g));if(!n&&!localStorage.getItem("vcet-nguon")&&document.referrer){const h=new URL(document.referrer).hostname;if(!/tuyensinhvcet/.test(h))localStorage.setItem("vcet-nguon",h.replace(/^(www|m|l|lm)\./,""))}}catch(e){}})();
+function srcTag(){let n="",g="";try{n=localStorage.getItem("vcet-nguon")||"";g=localStorage.getItem("vcet-gt")||""}catch(e){}return (n?" · Kênh: "+n:"")+(g?" · Người giới thiệu: "+g:"")}
 // ẢNH: điền đường dẫn ảnh vào đây; ô tương ứng sẽ tự hiện ảnh. Ảnh chương trình theo lĩnh vực: "prog:co", "prog:dien"...; nghề nghiệp: "job:co"...
 // Ảnh nằm trong thư mục anh/ cạnh file này. Thay ảnh: lưu đè cùng tên file.
 const PHOTOS={"banner-1": "anh/banner-1-xet-tuyen.jpg", "banner-2": "anh/banner-2-chon-nghe.jpg", "banner-3": "anh/banner-3-thuc-tap.jpg", "popup": "anh/popup-sinh-vien.jpg", "he-tc": "anh/he-trung-cap.jpg", "he-cd": "anh/he-cao-dang.jpg", "he-lt": "anh/he-lien-thong.jpg", "about": "anh/gioi-thieu-truong.jpg", "prog:co": "anh/chuong-trinh-co-khi-o-to.jpg", "prog:dien": "anh/chuong-trinh-dien-dien-tu.jpg", "prog:it": "anh/chuong-trinh-cong-nghe-thong-tin.jpg", "prog:kd": "anh/chuong-trinh-kinh-te.jpg", "prog:dv": "anh/chuong-trinh-dich-vu.jpg", "prog:ny": "anh/chuong-trinh-thu-y.jpg", "prog:nn": "anh/chuong-trinh-tieng-trung.jpg", "job:co": "anh/nghe-co-khi-o-to.jpg", "job:dien": "anh/nghe-dien-dien-tu.jpg", "job:it": "anh/nghe-cong-nghe-thong-tin.jpg", "job:kd": "anh/nghe-kinh-te.jpg", "job:dv": "anh/nghe-dich-vu.jpg", "job:ny": "anh/nghe-thu-y.jpg"};
@@ -974,11 +989,16 @@ function quiz(){const r=$("#quiz"),L=qsteps();
    <div class="qblk"><b>Chính sách em có thể được hưởng</b><ul class="qpol">${pol.map(x=>`<li>${x}</li>`).join("")}</ul></div>
    <p class="qnote">Kết quả để tham khảo. Thầy sẽ tư vấn kỹ và xác nhận chính sách khi gọi lại.</p>
    <div class="row"><button class="btn btn-g" type="button" id="qsend">Gửi kết quả để được tư vấn miễn phí</button><button class="btn btn-n" type="button" id="qsee">Xem các ngành này</button></div>
+   <div class="qshare"><span>Rủ bạn làm thử:</span><button type="button" id="qsh" hidden>Chia sẻ qua Zalo, Messenger…</button><a id="qfb" target="_blank" rel="noopener">Facebook</a><button type="button" id="qcp">Sao chép link</button><em id="qcpok" hidden>Đã sao chép</em></div>
    <p style="margin-top:14px"><button type="button" id="qre" class="qback">Làm lại từ đầu</button></p></div>`;
   window.QNOTE=["Tư vấn chọn nghề: "+tops.map(g=>G[g]).join(", "),"Ngành gợi ý: "+sug.map(([m,k])=>LV[k]+" "+m[0]).join("; "),"Mong muốn: "+(QA.goal||""),abroad?[QA.nuoc,QA.ngoaingu,QA.khi].filter(Boolean).join(", "):"",QA.tg||""].filter(x=>x&&!/: $/.test(x)).join(" | ");
   window.QHC=hc.filter(x=>HC_TXT[x]).map(x=>HC_TXT[x]).join(", ");
   $("#qsee").onclick=()=>{showProg(tops[0]);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})};
   $("#qre").onclick=()=>{QA={};qstep=0;quiz()};
+  {const url="https://tuyensinhvcet.github.io/?nguon=chia-se-ket-qua#trac-nghiem",txt="Mình vừa làm Tư vấn chọn nghề của Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc: hợp nhóm "+G[tops[0]]+". Bạn làm thử 2 phút xem hợp nghề gì nhé!";
+   $("#qfb").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url);
+   if(navigator.share){$("#qsh").hidden=false;$("#qsh").onclick=()=>navigator.share({title:"Tư vấn chọn nghề VCET",text:txt,url}).catch(()=>{})}
+   $("#qcp").onclick=()=>{const t=txt+" "+url,ok=()=>{$("#qcpok").hidden=false};if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,()=>{});else{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(e){}a.remove()}}}
   $("#qsend").onclick=()=>{const first=sug[0];$("#m-who").value=WHO_LV[w]?w:"Chưa rõ, cần tư vấn";CM.fillL();if(first){$("#m-level").value=first[1];CM.fillM();$("#m-major").value=first[0][0]}openModal(null,true)};
 }
 quiz();
@@ -1070,7 +1090,7 @@ function bindForm(id,p){$(id).addEventListener("submit",e=>{e.preventDefault();
   let m="";if(!name)m="Vui lòng nhập họ và tên.";else if(!/^0\d{9}$/.test(phone))m="Số điện thoại cần đủ 10 số, bắt đầu bằng 0.";else if(p==="#l"&&!$("#l-major").value)m="Vui lòng chọn đối tượng, trình độ và ngành đăng ký.";
   err.hidden=!m;err.textContent=m;if(m)return;const mj=$(p+"-major").value;const d=$(p+"-done");const btn=e.target.querySelector('[type=submit]');
   const v=k=>{const el=$(p+"-"+k);return el?el.value.trim():""};
-  const lvn=$(p+"-level")&&$(p+"-level").value?LV[$(p+"-level").value]:"";const data={name,phone,who:v("who"),major:[lvn,mj].filter(Boolean).join(" – "),cs:v("cs"),place:placeVal(),form:p==="#l"?"Form trang chủ":(window.QNOTE?"Tư vấn chọn nghề":"Form bật lên"),note:p==="#m"&&window.QNOTE?window.QNOTE+(window.QHC?" | Hoàn cảnh: "+window.QHC:""):"",page:location.href,hp:v("hp")};
+  const lvn=$(p+"-level")&&$(p+"-level").value?LV[$(p+"-level").value]:"";const data={name,phone,who:v("who"),major:[lvn,mj].filter(Boolean).join(" – "),cs:v("cs"),place:placeVal(),form:(p==="#l"?"Form trang chủ":(window.QNOTE?"Tư vấn chọn nghề":"Form bật lên"))+srcTag(),note:p==="#m"&&window.QNOTE?window.QNOTE+(window.QHC?" | Hoàn cảnh: "+window.QHC:""):"",page:location.href,hp:v("hp")};
   const thanks=()=>{d.hidden=false;d.innerHTML=`Cảm ơn <b>${name.replace(/[<>&]/g,"")}</b>! Thầy Phan Thanh Bình sẽ gọi lại số <b>${phone}</b>${mj?" để tư vấn ngành <b>"+mj.replace(/[<>&]/g,"")+"</b>":""}. Cần gấp, em nhắn Zalo 0989 465 017 nhé.`;e.target.reset()};
   if(!SHEET_URL){thanks();return}
   btn.disabled=true;btn.textContent="Đang gửi...";
