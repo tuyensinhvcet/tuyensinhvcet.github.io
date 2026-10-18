@@ -915,7 +915,7 @@ const cr=$("#careers");$("#cprev").onclick=()=>cr.scrollBy({left:-cr.clientWidth
 const QS=[
  {k:"who",q:"Em (hoặc anh/chị) hiện là?",a:WHO.map(x=>[x[0],x[0]])},
  {k:"con",q:"Con của anh/chị hiện là?",when:A=>A.who==="Phụ huynh",a:WHO.slice(0,5).map(x=>[x[0],x[0]])},
- {k:"hc",multi:1,q:"Gia đình em có thuộc trường hợp nào sau đây không?",sub:"Chọn được nhiều ý. Thông tin giúp gợi ý đúng chính sách miễn, giảm học phí và được gửi kèm khi em bấm gửi kết quả. Không muốn chia sẻ thì chọn “Không muốn trả lời”.",a:[["Hộ nghèo hoặc cận nghèo","ngheo"],["Dân tộc thiểu số","dtts"],["Ở thôn, xã đặc biệt khó khăn","dbkk"],["Mồ côi, khuyết tật hoặc con người có công","mc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Gia đình bình thường","bt"],["Không muốn trả lời","no"]]},
+ {k:"hc",q:"Gia đình em thuộc trường hợp nào?",sub:"Chọn ý đúng nhất. Thông tin giúp gợi ý chính sách miễn, giảm học phí và được gửi kèm khi em bấm gửi kết quả.",a:[["Gia đình bình thường","bt"],["Hộ nghèo hoặc cận nghèo","ngheo"],["Dân tộc thiểu số","dtts"],["Dân tộc thiểu số, thuộc hộ nghèo hoặc cận nghèo","dtts,ngheo"],["Dân tộc thiểu số, ở thôn, xã đặc biệt khó khăn","dtts,dbkk"],["Mồ côi, khuyết tật hoặc con người có công","mc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Không muốn trả lời","no"]]},
  {k:"q1",q:"Lúc rảnh, em thích làm gì nhất?",a:[["Tháo lắp, sửa xe, máy móc","a","co"],["Lắp đồ điện, nghịch mạch điện tử","b","dien"],["Máy tính, thiết kế, mạng xã hội","c","it"],["Bán hàng online, tính toán chi tiêu","d","kd"],["Nấu ăn, trang điểm, may vá","e","dv"],["Chăm vật nuôi, trồng cây","f","ny"],["Học ngoại ngữ, xem phim nước ngoài","g","nn"]]},
  {k:"q2",q:"Môn học nào em thấy dễ nhất?",a:[["Toán, Vật lý","a","co,dien"],["Tin học","b","it"],["Toán, Giáo dục kinh tế","c","kd"],["Công nghệ, Mỹ thuật","d","dv,co"],["Sinh học","e","ny"],["Ngoại ngữ, Ngữ văn","f","nn,kd"]]},
  {k:"q3",q:"Em muốn làm việc ở đâu?",a:[["Nhà máy, xưởng sản xuất","a","co,dien"],["Văn phòng, công ty","b","kd,it"],["Nhà hàng, khách sạn, spa, cửa hàng thời trang","c","dv"],["Trang trại, phòng khám thú y","d","ny"],["Công ty nước ngoài, làm phiên dịch","e","nn"],["Tự mở cửa hàng, xưởng riêng","f","kd,co"]]},
@@ -931,7 +931,7 @@ const LV_TXT={"Tốt nghiệp THCS (lớp 9)":"Trung cấp + THPT 3 năm: nhận
 let QA={},qstep=0;
 const qsteps=()=>QS.filter(S=>!S.when||S.when(QA));
 const effWho=()=>QA.who==="Phụ huynh"?(QA.con||"Phụ huynh"):QA.who;
-function feeFor(m,lv){const hc=QA.hc||[],w=effWho(),fk=lv==="lt"?"cd":lv,list=[];
+function feeFor(m,lv){const hc=(QA.hc||"").split(",").filter(Boolean),w=effWho(),fk=lv==="lt"?"cd":lv,list=[];
   if(lv==="tc"&&(w==="Tốt nghiệp THCS (lớp 9)"||w==="Học hết lớp 10, 11 rồi nghỉ"))list.push([100,"miễn học phí (tốt nghiệp THCS học trung cấp)"]);
   if(hc.includes("mc"))list.push([100,"có thể được miễn học phí"]);
   if(hc.includes("dtts")&&hc.includes("ngheo"))list.push([100,"có thể được miễn học phí"]);
@@ -952,7 +952,7 @@ function quiz(){const r=$("#quiz"),L=qsteps();
   // kết quả
   const sc={};L.forEach(S=>{const v=QA[S.k];(S.multi?[]:[v]).forEach(x=>{const o=S.a.find(o=>o[1]===x);if(o&&o[2])o[2].split(",").forEach((g,i)=>sc[g]=(sc[g]||0)+(i?1:2))})});
   const tops=Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]);if(!tops.length)tops.push("co");
-  const w=effWho(),lvs=WHO_LV[w]||["cd","tc","lt"],lv=lvs[0],hc=QA.hc||[];
+  const w=effWho(),lvs=WHO_LV[w]||["cd","tc","lt"],lv=lvs[0],hc=(QA.hc||"").split(",").filter(Boolean);
   const sug=[];tops.forEach(g=>{let k=lvs.find(k=>M.some(m=>m[1]===g&&m[LV_IDX[k]]));if(!k)return;M.filter(m=>m[1]===g&&m[LV_IDX[k]]).slice(0,3).forEach(m=>sug.push([m,k]))});
   const pol=[];
   if(hc.some(x=>["ngheo","dtts","mc"].includes(x)))pol.push("Có thể được hưởng chính sách nội trú (QĐ 53/2015): học bổng 60–100% mức lương cơ sở mỗi tháng, hỗ trợ đồ dùng cá nhân, tiền đi lại và tiền Tết nếu thuộc diện.");
