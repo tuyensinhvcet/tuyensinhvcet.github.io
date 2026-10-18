@@ -521,8 +521,9 @@ label.f input,label.f select{border-radius:10px;padding:13px 14px}
           <label class="f"><span>Số điện thoại / Zalo <b>*</b></span><input id="l-phone" inputmode="tel" autocomplete="tel" placeholder="Nhập số điện thoại"></label>
           <label class="f"><span>Đối tượng <b>*</b></span><select id="l-who"><option value="">Chọn đối tượng</option><option>Tốt nghiệp THCS (lớp 9)</option><option>Tốt nghiệp THPT (lớp 12)</option><option>Đã có bằng trung cấp</option><option>Người đi làm</option><option>Phụ huynh</option></select></label>
           <label class="f"><span>Ngành đăng ký <b>*</b></span><select id="l-major"><option value="">Chọn ngành học</option></select></label>
+          <label class="f">Tỉnh / thành phố<select id="l-tinh"></select></label>
+          <label class="f">Xã / phường<select id="l-xa"></select><input id="l-place" placeholder="Nhập xã / phường" hidden></label>
           <label class="f">Cơ sở<select id="l-cs"><option>Cơ sở 1 – phường Vĩnh Yên</option><option>Cơ sở 2 – phường Vĩnh Phúc</option><option>Chưa chọn</option></select></label>
-          <label class="f">Xã / phường<input id="l-place" placeholder="Nơi em đang ở"></label>
         </div>
         <label class="consent"><input type="checkbox" id="l-ok"> Đồng ý để dữ liệu cá nhân được Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc thu thập, xử lý để tư vấn tuyển sinh theo Nghị định 13/2023/NĐ-CP.</label>
         <input id="l-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="err" id="l-err" hidden></p>
@@ -919,6 +920,19 @@ function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTim
 document.addEventListener("click",e=>{const b=e.target.closest("[data-copy]");if(!b)return;const v=b.dataset.copy;
   (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast("Đã sao chép "+v+". Mở Zalo và dán để nhắn tin")).catch(()=>toast("Zalo tư vấn: "+v))});
 
+// Tỉnh / xã: 34 tỉnh, thành sau sắp xếp 2025; Phú Thọ có sẵn 148 xã, phường (NQ 1676/NQ-UBTVQH15); tỉnh khác tải từ provinces.open-api.vn
+const TINH="1=Thành phố Hà Nội,4=Tỉnh Cao Bằng,8=Tỉnh Tuyên Quang,11=Tỉnh Điện Biên,12=Tỉnh Lai Châu,14=Tỉnh Sơn La,15=Tỉnh Lào Cai,19=Tỉnh Thái Nguyên,20=Tỉnh Lạng Sơn,22=Tỉnh Quảng Ninh,24=Tỉnh Bắc Ninh,25=Tỉnh Phú Thọ,31=Thành phố Hải Phòng,33=Tỉnh Hưng Yên,37=Tỉnh Ninh Bình,38=Tỉnh Thanh Hóa,40=Tỉnh Nghệ An,42=Tỉnh Hà Tĩnh,44=Tỉnh Quảng Trị,46=Thành phố Huế,48=Thành phố Đà Nẵng,51=Tỉnh Quảng Ngãi,52=Tỉnh Gia Lai,56=Tỉnh Khánh Hòa,66=Tỉnh Đắk Lắk,68=Tỉnh Lâm Đồng,75=Tỉnh Đồng Nai,79=Thành phố Hồ Chí Minh,80=Tỉnh Tây Ninh,82=Tỉnh Đồng Tháp,86=Tỉnh Vĩnh Long,91=Tỉnh An Giang,92=Thành phố Cần Thơ,96=Tỉnh Cà Mau".split(',').map(x=>x.split('='));
+const PT_XA="#Tân Hòa;#Hòa Bình;#Thống Nhất;@Đà Bắc;@Đức Nhàn;@Tân Pheo;@Quy Đức;@Cao Sơn;@Tiền Phong;#Kỳ Sơn;@Thịnh Minh;@Lương Sơn;@Liên Sơn;@Kim Bôi;@Nật Sơn;@Mường Động;@Cao Dương;@Hợp Kim;@Dũng Tiến;@Cao Phong;@Thung Nai;@Mường Thàng;@Tân Lạc;@Mường Hoa;@Vân Sơn;@Mường Bi;@Toàn Thắng;@Mai Châu;@Tân Mai;@Pà Cò;@Bao La;@Mai Hạ;@Lạc Sơn;@Mường Vang;@Nhân Nghĩa;@Thượng Cốc;@Yên Phú;@Quyết Thắng;@Ngọc Sơn;@Đại Đồng;@Yên Thủy;@Lạc Lương;@Yên Trị;@Lạc Thủy;@An Nghĩa;@An Bình;#Nông Trang;#Việt Trì;#Thanh Miếu;#Vân Phú;#Phú Thọ;#Âu Cơ;#Phong Châu;@Đoan Hùng;@Bằng Luân;@Chí Đám;@Tây Cốc;@Chân Mộng;@Hạ Hòa;@Đan Thượng;@Hiền Lương;@Yên Kỳ;@Văn Lang;@Vĩnh Chân;@Thanh Ba;@Quảng Yên;@Hoàng Cương;@Đông Thành;@Chí Tiên;@Liên Minh;@Phù Ninh;@Phú Mỹ;@Trạm Thản;@Dân Chủ;@Bình Phú;@Yên Lập;@Sơn Lương;@Xuân Viên;@Trung Sơn;@Thượng Long;@Minh Hòa;@Cẩm Khê;@Tiên Lương;@Vân Bán;@Phú Khê;@Hùng Việt;@Đồng Lương;@Tam Nông;@Hiền Quan;@Vạn Xuân;@Thọ Văn;@Lâm Thao;@Xuân Lũng;@Hy Cương;@Phùng Nguyên;@Bản Nguyên;@Thanh Sơn;@Thu Cúc;@Lai Đồng;@Tân Sơn;@Võ Miếu;@Xuân Đài;@Minh Đài;@Văn Miếu;@Cự Đồng;@Long Cốc;@Hương Cần;@Khả Cửu;@Yên Sơn;@Đào Xá;@Thanh Thủy;@Tu Vũ;#Vĩnh Yên;#Vĩnh Phúc;#Phúc Yên;#Xuân Hòa;@Lập Thạch;@Hợp Lý;@Yên Lãng;@Hải Lựu;@Thái Hòa;@Liên Hòa;@Tam Sơn;@Tiên Lữ;@Sông Lô;@Sơn Đông;@Tam Dương;@Tam Dương Bắc;@Hoàng An;@Hội Thịnh;@Tam Đảo;@Đạo Trù;@Đại Đình;@Bình Nguyên;@Bình Tuyền;@Bình Xuyên;@Xuân Lãng;@Yên Lạc;@Tề Lỗ;@Tam Hồng;@Nguyệt Đức;@Liên Châu;@Vĩnh Tường;@Vĩnh An;@Vĩnh Hưng;@Vĩnh Thành;@Thổ Tang;@Vĩnh Phú";
+const XA_CACHE={'25':PT_XA};
+const decXa=s=>s.split(';').map(w=>w.replace(/^#/,'Phường ').replace(/^@/,'Xã ').replace(/^!/,'Đặc khu ')).sort((a,b)=>a.replace(/^\S+ (khu )?/,'').localeCompare(b.replace(/^\S+ (khu )?/,''),'vi'));
+function setXa(list){const xa=$('#l-xa'),tx=$('#l-place');if(!list){xa.hidden=true;tx.hidden=false;return}xa.hidden=false;tx.hidden=true;xa.innerHTML='<option value="">Chọn xã / phường</option>'+list.map(n=>'<option>'+n+'</option>').join('')}
+async function fillXa(){const c=$('#l-tinh').value;if(XA_CACHE[c]){setXa(decXa(XA_CACHE[c]));return}
+  $('#l-xa').innerHTML='<option value="">Đang tải danh sách...</option>';
+  try{const r=await fetch('https://provinces.open-api.vn/api/v2/p/'+c+'?depth=2');const j=await r.json();
+    XA_CACHE[c]=j.wards.map(w=>w.name.replace(/^xã /,'Xã ').replace(/^Phường /,'#').replace(/^Xã /,'@').replace(/^Đặc khu /,'!')).join(';');if($('#l-tinh').value===c)setXa(decXa(XA_CACHE[c]))}
+  catch(e){if($('#l-tinh').value===c)setXa(null)}}
+function placeVal(){const t=$('#l-tinh'),tn=t.options[t.selectedIndex]?t.options[t.selectedIndex].text:'';const xa=$('#l-xa').hidden?$('#l-place').value.trim():$('#l-xa').value;return [xa,tn].filter(Boolean).join(', ')}
+(function(){const t=$('#l-tinh');if(!t)return;t.innerHTML=TINH.map(([c,n])=>'<option value="'+c+'"'+(c==='25'?' selected':'')+'>'+n+'</option>').join('');t.addEventListener('change',fillXa);fillXa();$('#lead').addEventListener('reset',()=>setTimeout(()=>{t.value='25';fillXa()},0))})();
 // Địa chỉ Google Apps Script nhận đăng ký (dán vào giữa hai dấu ngoặc kép)
 const SHEET_URL="https://script.google.com/macros/s/AKfycbzNSQJMOURAFVrGaNKgF0lqLLHR6SoTt3_0mY6zGAkjFrUcqTPgSRrxsYcU5XJZdKblrQ/exec";
 function bindForm(id,p){$(id).addEventListener("submit",e=>{e.preventDefault();
@@ -926,7 +940,7 @@ function bindForm(id,p){$(id).addEventListener("submit",e=>{e.preventDefault();
   let m="";if(!name)m="Vui lòng nhập họ và tên.";else if(!/^0\d{9}$/.test(phone))m="Số điện thoại cần đủ 10 số, bắt đầu bằng 0.";else if(!$(p+"-ok").checked)m="Vui lòng tích ô đồng ý để nhà trường liên hệ tư vấn.";
   err.hidden=!m;err.textContent=m;if(m)return;const mj=$(p+"-major").value;const d=$(p+"-done");const btn=e.target.querySelector('[type=submit]');
   const v=k=>{const el=$(p+"-"+k);return el?el.value.trim():""};
-  const data={name,phone,who:v("who"),major:mj,cs:v("cs"),place:v("place"),form:p==="#l"?"Form trang chủ":"Form bật lên",page:location.href,hp:v("hp")};
+  const data={name,phone,who:v("who"),major:mj,cs:v("cs"),place:placeVal(),form:p==="#l"?"Form trang chủ":"Form bật lên",page:location.href,hp:v("hp")};
   const thanks=()=>{d.hidden=false;d.innerHTML=`Cảm ơn <b>${name.replace(/[<>&]/g,"")}</b>! Thầy Phan Thanh Bình sẽ gọi lại số <b>${phone}</b>${mj?" để tư vấn ngành <b>"+mj.replace(/[<>&]/g,"")+"</b>":""}. Cần gấp, em nhắn Zalo 0989 465 017 nhé.`;e.target.reset()};
   if(!SHEET_URL){thanks();return}
   btn.disabled=true;btn.textContent="Đang gửi...";
