@@ -462,6 +462,8 @@ a.hot,a.zalo,a.bubble{text-decoration:none}
 .sc .tx em{display:block;font-style:normal;color:var(--muted);font-size:.92rem;margin-top:6px}
 .sc .go{margin-top:auto;font-weight:800;font-size:.9rem;color:var(--link)}
 @media (max-width:760px){.socials{grid-template-columns:1fr}.sc{flex-direction:row;align-items:center;flex-wrap:wrap;padding:18px}.sc .tx{flex:1;min-width:0}.sc .go{margin-top:0;width:100%}}
+.bdg{display:inline-block;margin-top:5px;font-style:normal;font-size:.74rem;font-weight:800;padding:3px 9px;border-radius:999px}
+.b70{background:#fff1cc;color:#8a5a00}.b36{background:#e3f6ec;color:#17694a}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .poltitle{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:900;text-transform:uppercase;margin-top:64px}
 .policy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px;text-align:left}
@@ -559,7 +561,7 @@ a.hot,a.zalo,a.bubble{text-decoration:none}
     <span class="eyebrow">Tại sao chọn chúng tôi</span>
     <h2 class="title">Lý do lựa chọn<br><span class="grad">VCET Vĩnh Phúc</span></h2>
     <div class="reasons">
-      <div class="reason"><img class="ricon" src="anh/icon-hoc-phi.png" alt="" width="160" height="160"><b>−70%</b><h3>Học phí</h3><p>cho người học thuộc diện theo Nghị định 238/2025/NĐ-CP</p></div>
+      <div class="reason"><img class="ricon" src="anh/icon-hoc-phi.png" alt="" width="160" height="160"><b>420K</b><h3>Học phí chỉ từ</h3><p>đồng/tháng với 12 ngành được giảm 70% theo Nghị định 238</p></div>
       <div class="reason"><img class="ricon" src="anh/icon-thuc-tap.png" alt="" width="160" height="160"><b>6–10tr</b><h3>Thu nhập khi thực tập</h3><p>mỗi tháng tại doanh nghiệp, có bảo hiểm theo quy định</p></div>
       <div class="reason"><img class="ricon" src="anh/icon-nganh-nghe.png" alt="" width="160" height="160"><b>32</b><h3>Ngành nghề</h3><p>kỹ thuật, công nghệ, kinh tế, dịch vụ ở 3 trình độ</p></div>
       <div class="reason"><img class="ricon" src="anh/icon-xe-dua-don.png" alt="" width="160" height="160"><b>2</b><h3>Cơ sở đào tạo</h3><p>có xe đưa đón học sinh, sinh viên tất cả các xã trong tỉnh</p></div>
@@ -617,7 +619,7 @@ a.hot,a.zalo,a.bubble{text-decoration:none}
       <div class="in">
         <div><div style="font-size:.88rem;font-weight:600;margin-bottom:6px">Trình độ</div><div class="seg" id="fee-lv"><button data-v="cd" aria-pressed="true">Cao đẳng / Liên thông</button><button data-v="tc" aria-pressed="false">Trung cấp</button></div></div>
         <label>Ngành học<select id="fee-major"></select></label>
-        <label>Diện chính sách của em<select id="fee-cut"><option value="0">Không thuộc diện miễn, giảm</option><option value="thcs">Tốt nghiệp THCS học trung cấp: miễn 100%</option><option value="100">Diện được miễn 100% khác</option><option value="70">Diện được giảm 70%</option><option value="50">Diện được giảm 50%</option></select></label>
+        <label>Diện chính sách của em<select id="fee-cut"><option value="0">Không thuộc diện miễn, giảm</option><option value="thcs">Tốt nghiệp THCS học trung cấp: miễn 100%</option><option value="100">Diện được miễn 100% khác</option><option value="70">Dân tộc thiểu số ở vùng đặc biệt khó khăn (giảm 70%)</option><option value="50">Diện được giảm 50%</option></select></label>
         <p class="note" id="fee-note"></p>
       </div>
       <div class="out" aria-live="polite">
@@ -629,9 +631,9 @@ a.hot,a.zalo,a.bubble{text-decoration:none}
     <h3 class="poltitle">Ai được miễn, giảm, hỗ trợ học phí?</h3>
     <div class="policy">
       <div class="pc p100"><em>Miễn 100%</em><ul><li><b>Tốt nghiệp THCS học trung cấp</b></li><li>Người khuyết tật</li><li>Học trung cấp, cao đẳng mồ côi cả cha lẫn mẹ, không nơi nương tựa</li><li>Dân tộc thiểu số có cha, mẹ (hoặc ông bà nếu ở cùng) thuộc hộ nghèo, cận nghèo</li><li>Dân tộc thiểu số rất ít người</li><li>Đối tượng theo Pháp lệnh Ưu đãi người có công; học sinh cử tuyển</li><li>Học ngành, nghề khó tuyển sinh mà xã hội có nhu cầu (theo danh mục Bộ GD&amp;ĐT)</li></ul><small>NĐ 238/2025/NĐ-CP, Điều 15</small></div>
-      <div class="pc p70"><em>Giảm 70%</em><ul><li>Học một số nghề nặng nhọc, độc hại, nguy hiểm theo danh mục của cơ quan quản lý giáo dục nghề nghiệp</li><li>Dân tộc thiểu số mà bản thân và cha hoặc mẹ thường trú ở thôn/bản đặc biệt khó khăn, xã khu vực III vùng dân tộc thiểu số và miền núi, xã đặc biệt khó khăn</li></ul><small>NĐ 238/2025/NĐ-CP, Điều 16 khoản 1</small></div>
+      <div class="pc p70"><em>Giảm 70%</em><ul><li>Học ngành nặng nhọc, độc hại, nguy hiểm. <b>Cao đẳng:</b> Công nghệ kỹ thuật cơ khí, Công nghệ ô tô, Công nghệ kỹ thuật điện, điện tử, Cắt gọt kim loại, Kỹ thuật máy lạnh và điều hòa không khí, Điện công nghiệp, Dịch vụ thú y, Kỹ thuật chế biến món ăn, May thời trang. <b>Trung cấp:</b> Công nghệ ô tô, Hàn, Công nghệ kỹ thuật điện, điện tử, Cắt gọt kim loại, Kỹ thuật máy lạnh và điều hòa không khí, Điện công nghiệp và dân dụng, Điện công nghiệp, Chăn nuôi – thú y, Kỹ thuật chế biến món ăn, May thời trang</li><li>Dân tộc thiểu số mà bản thân và cha hoặc mẹ thường trú ở thôn/bản đặc biệt khó khăn, xã khu vực III vùng dân tộc thiểu số và miền núi, xã đặc biệt khó khăn</li></ul><small>NĐ 238/2025/NĐ-CP, Điều 16 khoản 1; TT 05/2023/TT-BLĐTBXH; TB 119/TB-CĐKTCN</small></div>
       <div class="pc p50"><em>Giảm 50%</em><ul><li>Có cha hoặc mẹ bị tai nạn lao động hoặc mắc bệnh nghề nghiệp, đang hưởng trợ cấp thường xuyên</li></ul><small>NĐ 238/2025/NĐ-CP, Điều 16 khoản 2</small></div>
-      <div class="pc psup"><em>Hỗ trợ 800.000đ/tháng</em><ul><li>Tốt nghiệp THPT do tỉnh Phú Thọ cấp bằng, dưới 25 tuổi khi nhập học</li><li>Học trung cấp, cao đẳng chính quy văn bằng thứ nhất, ngành trong danh mục của tỉnh</li><li>Tối đa 20 tháng (trung cấp), 30 tháng (cao đẳng)</li><li>Không áp dụng cùng lúc với miễn, giảm học phí</li></ul><small>NQ 36/2025/NQ-HĐND tỉnh Phú Thọ</small></div>
+      <div class="pc psup"><em>Hỗ trợ 800.000đ/tháng</em><ul><li>Tốt nghiệp THPT do tỉnh Phú Thọ cấp bằng, dưới 25 tuổi khi nhập học</li><li>Học chính quy văn bằng thứ nhất các ngành: <b>Cao đẳng:</b> Logistics, Thương mại điện tử, Công nghệ thông tin, Công nghệ kỹ thuật điều khiển và tự động hóa, Điện tử công nghiệp, Công nghệ vi mạch bán dẫn. <b>Trung cấp:</b> Thương mại điện tử</li><li>Tối đa 20 tháng (trung cấp), 30 tháng (cao đẳng)</li><li>Không áp dụng cùng lúc với miễn, giảm học phí</li></ul><small>NQ 36/2025/NQ-HĐND tỉnh Phú Thọ; TB 119/TB-CĐKTCN</small></div>
     </div>
     <div class="policy-nt"><b>Chính sách nội trú</b> (QĐ 53/2015/QĐ-TTg): học sinh dân tộc thiểu số hoặc người khuyết tật thuộc hộ nghèo, cận nghèo; tốt nghiệp trường phổ thông dân tộc nội trú; người Kinh hộ nghèo, cận nghèo hoặc khuyết tật ở vùng đặc biệt khó khăn được nhận học bổng 60–100% mức lương cơ sở mỗi tháng, hỗ trợ 1.000.000đ mua đồ dùng cá nhân, tiền đi lại và tiền Tết.</div>
   </div>
@@ -864,10 +866,15 @@ $("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);go(0);
 const ORDER=["co","dien","it","kd","dv","ny","nn"];
 const pt=$("#ptabs");
 ORDER.forEach((g,i)=>{const b=document.createElement("button");b.setAttribute("role","tab");b.textContent=G[g];b.dataset.g=g;b.setAttribute("aria-selected",i===0);b.onclick=()=>showProg(g);pt.appendChild(b)});
+// Thông báo 119/TB-CĐKTCN (20/8/2026): ngành giảm 70% (nặng nhọc, độc hại, TT 05/2023) và ngành hỗ trợ 800.000đ (NQ 36)
+const G70={cd:["Công nghệ kỹ thuật cơ khí","Công nghệ ô tô","Công nghệ kỹ thuật điện, điện tử","Cắt gọt kim loại","Kỹ thuật máy lạnh và điều hòa không khí","Điện công nghiệp","Dịch vụ thú y","Kỹ thuật chế biến món ăn","May thời trang"],tc:["Công nghệ ô tô","Hàn","Công nghệ kỹ thuật điện, điện tử","Cắt gọt kim loại","Kỹ thuật máy lạnh và điều hòa không khí","Điện công nghiệp và dân dụng","Điện công nghiệp","Chăn nuôi – thú y","Kỹ thuật chế biến món ăn","May thời trang"]};
+const N36={cd:["Logistics","Thương mại điện tử","Công nghệ thông tin (Ứng dụng phần mềm)","Công nghệ kỹ thuật điều khiển và tự động hóa","Điện tử công nghiệp","Công nghệ vi mạch bán dẫn"],tc:["Thương mại điện tử"]};
+function badge(n,cd,tc){const a=G70.cd.includes(n),b=G70.tc.includes(n),c=N36.cd.includes(n),d=N36.tc.includes(n);const lv=(x,y,hc,ht)=>(x&&y)||!(hc&&ht)?"":x?" (cao đẳng)":" (trung cấp)";
+  if(a||b)return `<em class="bdg b70">Giảm 70% học phí${lv(a,b,cd,tc)}</em>`;if(c||d)return `<em class="bdg b36">Hỗ trợ 800.000đ/tháng${lv(c,d,cd,tc)}</em>`;return ""}
 function showProg(g){
   pt.querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.dataset.g===g));
   const list=M.filter(m=>m[1]===g),c=GC[g];
-  const items=list.map(([n,_,f,cd,lt,tc])=>{const h=[cd?`Cao đẳng ${cd.y} năm${cd.clc?" (có CLC)":""}`:"",lt?"Liên thông":"",tc?"Trung cấp":""].filter(Boolean).join(" · ");return `<li><span><b>${n}</b><small>${h}</small></span><button type="button" data-major="${n}" aria-label="Đăng ký ${n}">→</button></li>`}).join("");
+  const items=list.map(([n,_,f,cd,lt,tc])=>{const h=[cd?`Cao đẳng ${cd.y} năm${cd.clc?" (có CLC)":""}`:"",lt?"Liên thông":"",tc?"Trung cấp":""].filter(Boolean).join(" · ");return `<li><span><b>${n}</b><small>${h}</small>${badge(n,cd||lt,tc)}</span><button type="button" data-major="${n}" aria-label="Đăng ký ${n}">→</button></li>`}).join("");
   $("#prog").innerHTML=`<figure class="ph" data-slot="prog:${g}" style="--c1:${c[0]};--c2:${c[1]}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">${ICON[g]}</svg></div><span class="tag">Ảnh / video ${G[g]}</span></figure><div style="text-align:left"><h3>${G[g]}</h3><p class="desc">${DESC[g]}</p><ul class="plist">${items}</ul><div class="go"><button class="btn btn-g" data-open>Đăng ký ngay →</button></div></div>`;
   applyPhotos($("#prog"));
 }
@@ -904,17 +911,17 @@ quiz();
 let flv="cd";
 $("#fee-lv").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;flv=b.dataset.v;$("#fee-lv").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));fillFee()});
 function fillFee(){const sel=$("#fee-major"),prev=sel.value;sel.innerHTML="";
-  M.filter(m=>flv==="cd"?(m[3]||m[4]):m[5]).forEach(m=>{const o=document.createElement("option");o.value=m[0];o.textContent=m[0];sel.appendChild(o);
+  M.filter(m=>flv==="cd"?(m[3]||m[4]):m[5]).forEach(m=>{const o=document.createElement("option");o.value=m[0];o.textContent=m[0]+(G70[flv].includes(m[0])?" · giảm 70%":N36[flv].includes(m[0])?" · hỗ trợ 800.000đ":"");sel.appendChild(o);
     if(flv==="cd"&&m[3]&&m[3].clc){const c=document.createElement("option");c.value=m[0]+"|clc";c.textContent=m[0]+" (CLC)";sel.appendChild(c)}});
   if([...sel.options].some(o=>o.value===prev))sel.value=prev;calc()}
 function syncCut(){const o=$("#fee-cut").querySelector('option[value="thcs"]');o.hidden=o.disabled=flv!=="tc";if(flv!=="tc"&&$("#fee-cut").value==="thcs")$("#fee-cut").value="0"}
 function calc(){syncCut();const [name,clc]=$("#fee-major").value.split("|");const m=M.find(x=>x[0]===name);if(!m)return;
-  const rate=clc?FEE.cd.clc:FEE[flv][m[2]];const cv=$("#fee-cut").value;const pct=cv==="0"?0:cv==="thcs"?100:+cv;const pay=rate*(100-pct)/100;
+  const rate=clc?FEE.cd.clc:FEE[flv][m[2]];const cv=$("#fee-cut").value;const g70=!clc&&G70[flv].includes(name);const pct=(cv==="thcs"||cv==="100")?100:Math.max(cv==="0"?0:+cv,g70?70:0);const pay=rate*(100-pct)/100;
   $("#fee-month").innerHTML=vnd(pay)+' <small>/ tháng</small>';
   let L=`<div><span>Mức thu ${clc?"chương trình CLC":"nhóm ngành"}</span><b>${vnd(rate)}</b></div>`;
-  if(pct)L+=`<div><span>${pct===100?"Miễn":"Giảm "+pct+"%"} theo NĐ 238</span><b>−${vnd(rate*pct/100)}</b></div>`;
+  if(pct)L+=`<div><span>${pct===100?"Miễn học phí":"Giảm "+pct+"%"}${pct===70&&g70&&cv!=="70"?" – ngành nặng nhọc, độc hại (NĐ 238, TB 119)":" theo NĐ 238"}</span><b>−${vnd(rate*pct/100)}</b></div>`;
   L+=`<div><span>Học kỳ I (5 tháng)</span><b>${vnd(pay*5)}</b></div>`;
-  if(!pct)L+=`<div class="plus"><span>Có thể được hỗ trợ 800.000đ/tháng (NQ 36) nếu tốt nghiệp THPT tại Phú Thọ, dưới 25 tuổi, học ngành trong danh mục</span><b>+800.000đ</b></div>`;
+  if(!pct&&!clc&&N36[flv].includes(name))L+=`<div class="plus"><span>Ngành được hỗ trợ học tập theo NQ 36: nhận thêm 800.000đ/tháng nếu tốt nghiệp THPT tại Phú Thọ, dưới 25 tuổi</span><b>+800.000đ</b></div>`;
   $("#fee-lines").innerHTML=L;$("#fee-note").textContent=clc?"Chương trình chất lượng cao: 1.800.000đ/tháng.":"Nhóm ngành: "+FG[m[2]]+"."}
 $("#fee-major").addEventListener("change",calc);$("#fee-cut").addEventListener("change",calc);fillFee();
 
