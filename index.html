@@ -492,6 +492,9 @@ select:disabled{opacity:.6;cursor:not-allowed}
 .qshare{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;font-size:.88rem;color:var(--muted)}.qshare button,.qshare a{font:inherit;font-weight:700;border:1.5px solid var(--line);background:var(--bg);color:var(--link);border-radius:999px;padding:7px 14px;cursor:pointer;text-decoration:none}.qshare em{font-style:normal;color:#17694a;font-weight:700}.qshare [hidden]{display:none}
 .cmp{margin:36px auto 0;max-width:900px;text-align:left}.cmp h3{font-size:1.15rem;font-weight:900;margin-bottom:12px;text-align:center}.cmpt{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface)}.cmpt>div{display:grid;grid-template-columns:150px 1fr 1fr;gap:0;border-top:1px solid var(--line)}.cmpt>div:first-child{border-top:0}.cmpt span{padding:11px 14px;font-size:.92rem}.cmpt [role=rowheader]{font-weight:800;color:var(--head);background:var(--soft)}.cmpt .hd span{font-weight:900;color:#fff;background:var(--navy)}.cmpt .hd span:first-child{background:var(--navy)}.cmp .meta{text-align:center;margin-top:12px;color:var(--muted);font-size:.9rem}.cmp .meta a{color:var(--link);font-weight:700}
 @media (max-width:640px){.cmpt>div{grid-template-columns:96px 1fr 1fr}.cmpt span{padding:9px 8px;font-size:.84rem}}
+.qs a{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.95);color:#121a33;border-radius:18px;padding:10px 14px 10px 12px;font-weight:600;font-size:.9rem;line-height:1.35;text-decoration:none;transition:transform .15s,box-shadow .15s}.qs a b{font-weight:800}.qs a span{flex:1}.qs a em{font-style:normal;font-weight:900;color:var(--navy);flex:none}.qs a:hover{transform:translateX(4px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+@media (max-width:820px){.quiz .l{padding:16px 20px;gap:0}.quiz .l p{display:none}.quiz .l h3{font-size:1.15rem}.quiz .l h3 br{display:none}.quiz .l h3 span::before{content:" · "}.quiz .r{padding:22px 18px}}
+@media (max-width:520px){.bubble{left:auto;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px))}.bubble .z{width:48px;height:48px;font-size:.72rem}}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .poltitle{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:900;text-transform:uppercase;margin-top:64px}
 .policy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px;text-align:left}
@@ -540,9 +543,9 @@ select:disabled{opacity:.6;cursor:not-allowed}
       <figure class="ph" data-slot="banner-2" data-ai style="--c1:#0E638F;--c2:#26A8D4"><span class="tag">Ảnh banner 2: sinh viên thực hành</span></figure><div class="shade"></div>
       <div class="wrap">
         <span class="k">Giải mã nghề nghiệp</span>
-        <h2>Em hợp với <span>nghề nào?</span></h2>
-        <div class="qs"><div><i>1</i>Em thích làm với máy móc hay con người?</div><div><i>2</i>Em mạnh về tay nghề hay giấy tờ, số liệu?</div><div><i>3</i>Em muốn làm ở nhà máy, văn phòng hay dịch vụ?</div></div>
-        <div class="ctas"><a class="btn btn-g" href="#trac-nghiem">Làm trắc nghiệm ngay</a></div>
+        <h2>Xem mình hợp <span>với nghề nào?</span></h2>
+        <div class="qs"><a href="#trac-nghiem" class="qgo"><i>1</i><span><b>Điểm số chưa cao?</b> Vẫn có nghề hợp với em</span><em aria-hidden="true">→</em></a><a href="#trac-nghiem" class="qgo"><i>2</i><span><b>Mê điện thoại, game, làm đẹp hay nấu ăn?</b> Đều thành nghề được</span><em aria-hidden="true">→</em></a><a href="#trac-nghiem" class="qgo"><i>3</i><span><b>Gia đình khó khăn?</b> Có chính sách miễn, giảm học phí cho em</span><em aria-hidden="true">→</em></a></div>
+        <div class="ctas"><a class="btn btn-g" href="#trac-nghiem">Bắt đầu tư vấn chọn nghề (2 phút)</a></div>
       </div>
     </div>
     <div class="slide">
@@ -633,7 +636,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
 <section class="sec center" id="trac-nghiem">
   <div class="wrap">
     <span class="eyebrow">Giải mã nghề nghiệp</span>
-    <h2 class="title">Em hợp với <span class="grad">nhóm nghề nào?</span></h2>
+    <h2 class="title">Xem mình hợp với <span class="grad">nghề nào?</span></h2>
     <div class="quiz" style="text-align:left">
       <div class="l"><h3>Tư vấn chọn nghề<br><span>chỉ 2 phút</span></h3><p>Trả lời vài câu về bản thân, hoàn cảnh gia đình, sở thích và mong muốn (kể cả du học, đi làm việc ở nước ngoài). Trang sẽ gợi ý trình độ, ngành học, học phí sau ưu đãi và chính sách em có thể được hưởng.</p><p>Kết quả để tham khảo, Thầy sẽ tư vấn kỹ khi gọi lại.</p></div>
       <div class="r" id="quiz" aria-live="polite"></div>
@@ -965,10 +968,10 @@ function feeFor(m,lv){if(lv==="thn")return "0đ <small>(miễn học phí, hỗ 
 function quiz(){const r=$("#quiz"),L=qsteps();
   if(qstep<L.length){const S=L[qstep],cur=QA[S.k];
     r.innerHTML=`<div class="qprog"><i style="width:${qstep/L.length*100}%"></i></div><div class="qnum">Bước ${qstep+1}/${L.length}${qstep?` · <button type="button" class="qback">← Quay lại</button>`:""}</div><div class="qtext">${S.q}</div>${S.sub?`<p class="qsub">${S.sub}</p>`:""}<div class="qopts">${S.a.map(o=>`<button type="button" data-v="${o[1]}"${S.multi?` aria-pressed="${(cur||[]).includes(o[1])}"`:""}>${o[0]}</button>`).join("")}</div>${S.multi?`<button type="button" class="btn btn-n qnext">Tiếp tục →</button>`:""}`;
-    const bk=r.querySelector(".qback");if(bk)bk.onclick=()=>{qstep--;quiz()};
+    const bk=r.querySelector(".qback");if(bk)bk.onclick=()=>{qstep--;quiz();goQuiz()};
     r.querySelectorAll(".qopts button").forEach(b=>b.onclick=()=>{const v=b.dataset.v;
       if(S.multi){let a=QA[S.k]||[];if(v==="no"||v==="bt")a=a.includes(v)?[]:[v];else{a=a.filter(x=>x!=="no"&&x!=="bt");a=a.includes(v)?a.filter(x=>x!==v):a.concat(v)}QA[S.k]=a;r.querySelectorAll(".qopts button").forEach(x=>x.setAttribute("aria-pressed",a.includes(x.dataset.v)))}
-      else{QA[S.k]=v;qstep++;quiz()}});
+      else{QA[S.k]=v;qstep++;quiz();goQuiz()}});
     const nx=r.querySelector(".qnext");if(nx)nx.onclick=()=>{QA[S.k]=QA[S.k]||[];qstep++;quiz()};return}
   // kết quả
   const sc={};L.forEach(S=>{const v=QA[S.k];(S.multi?[]:[v]).forEach(x=>{const o=S.a.find(o=>o[1]===x);if(o&&o[2])o[2].split(",").forEach((g,i)=>sc[g]=(sc[g]||0)+(i?1:2))})});
@@ -1000,13 +1003,17 @@ function quiz(){const r=$("#quiz"),L=qsteps();
   window.QNOTE=["Tư vấn chọn nghề: "+tops.map(g=>G[g]).join(", "),"Ngành gợi ý: "+sug.map(([m,k])=>LV[k]+" "+m[0]).join("; "),"Mong muốn: "+(QA.goal||""),abroad?[QA.nuoc,QA.ngoaingu,QA.khi].filter(Boolean).join(", "):"",QA.tg||""].filter(x=>x&&!/: $/.test(x)).join(" | ");
   window.QHC=hc.filter(x=>HC_TXT[x]).map(x=>HC_TXT[x]).join(", ");
   $("#qsee").onclick=()=>{showProg(tops[0]);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})};
-  $("#qre").onclick=()=>{QA={};qstep=0;quiz()};
+  $("#qre").onclick=()=>{QA={};qstep=0;quiz();goQuiz()};
   {const url="https://tuyensinhvcet.github.io/?nguon=chia-se-ket-qua#trac-nghiem",txt="Mình vừa làm Tư vấn chọn nghề của Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc: hợp nhóm "+G[tops[0]]+". Bạn làm thử 2 phút xem hợp nghề gì nhé!";
    $("#qfb").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url);
    if(navigator.share){$("#qsh").hidden=false;$("#qsh").onclick=()=>navigator.share({title:"Tư vấn chọn nghề VCET",text:txt,url}).catch(()=>{})}
    $("#qcp").onclick=()=>{const t=txt+" "+url,ok=()=>{$("#qcpok").hidden=false};if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,()=>{});else{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(e){}a.remove()}}}
   $("#qsend").onclick=()=>{const first=sug[0];$("#m-who").value=WHO_LV[w]?w:"Chưa rõ, cần tư vấn";CM.fillL();if(first){$("#m-level").value=first[1];CM.fillM();$("#m-major").value=first[0][0]}openModal(null,true)};
 }
+// Tư vấn chọn nghề: vào thẳng câu hỏi, tự cuộn sau mỗi bước
+function goQuiz(force){const q=$("#quiz");if(!q)return;const h=(document.querySelector("header")||{offsetHeight:0}).offsetHeight,t=q.getBoundingClientRect().top;if(!force&&t>=h&&t<innerHeight*.35)return;window.scrollTo({top:Math.max(0,t+scrollY-h-10),behavior:"smooth"})}
+document.addEventListener("click",e=>{const a=e.target.closest('a[href="#trac-nghiem"]');if(!a)return;e.preventDefault();goQuiz(true);try{history.replaceState(null,"","#trac-nghiem")}catch(_){}});
+if(location.hash==="#trac-nghiem")addEventListener("load",()=>setTimeout(()=>goQuiz(true),150));
 quiz();
 
 // fee
