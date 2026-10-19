@@ -194,3 +194,4 @@ footer .src{margin-top:10px;font-size:.8rem;color:#8e9bbd}
 .lvnote{font-size:.84rem;color:var(--muted);margin-top:10px}
 [data-g].off{display:none!important}
 .fees .r.hl{background:var(--chip)}
+.lvc .fee .g{display:inline-block;margin-top:6px;font-size:.74rem;font-weight:800;color:#fff;background:var(--green);border-radius:6px;padding:2px 8px}
