@@ -107,7 +107,16 @@ f.addEventListener("submit",e=>{e.preventDefault();
 const modal=$("#modal"),slot=$("#mslot"),home=$("#rf-home");
 function openM(){slot.appendChild(f);modal.hidden=false;document.body.style.overflow="hidden";setTimeout(()=>$("#r-name").focus(),60)}
 function closeM(){modal.hidden=true;document.body.style.overflow="";home.appendChild(f)}
-document.addEventListener("click",e=>{const a=e.target.closest('a[href="#dang-ky"],[data-open]');if(!a)return;e.preventDefault();openM()});
+document.addEventListener("click",e=>{const a=e.target.closest('a[href="#dang-ky"],[data-open]');if(!a)return;e.preventDefault();
+  const pw=a.dataset.who||"";if(pw){w.value=pw;fillL();mj.value=PAGE;fillL();if(a.dataset.lvk&&[...l.options].some(o=>o.value===a.dataset.lvk)){l.value=a.dataset.lvk;fillM();mj.value=PAGE}}openM()});
+// "Em là": lọc trình độ trên trang
+const GW={"9":"Tốt nghiệp THCS (lớp 9)","12":"Tốt nghiệp THPT (lớp 12)","tc":"Đã có bằng trung cấp"};let GRP="all";
+function setG(g){GRP=g;document.querySelectorAll(".emla button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.grp===g));
+  document.querySelectorAll(".lvcs [data-g],.path[data-g]").forEach(el=>el.classList.toggle("off",g!=="all"&&el.dataset.g!==g));
+  document.querySelectorAll(".fees .r[data-g]").forEach(el=>el.classList.toggle("hl",g!=="all"&&el.dataset.g===g));
+  if(GW[g]&&w.value!==GW[g]){w.value=GW[g];mj.value=PAGE;fillL();mj.value=PAGE}}
+document.addEventListener("click",e=>{const b=e.target.closest(".emla button");if(b)setG(b.dataset.grp)});
+try{const q=new URLSearchParams(location.search).get("em");if(q&&GW[q]&&document.querySelector(".emla"))setG(q)}catch(e){}
 $("#mclose").addEventListener("click",closeM);
 modal.addEventListener("click",e=>{if(e.target===modal)closeM()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)closeM()});
