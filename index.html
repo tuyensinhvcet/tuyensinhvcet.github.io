@@ -497,6 +497,11 @@ select:disabled{opacity:.6;cursor:not-allowed}
 @media (max-width:520px){.bubble{left:auto;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px))}.bubble .z{width:48px;height:48px;font-size:.72rem}}
 .q36{display:block;width:fit-content;margin:4px 0 0 auto;font-style:normal;font-size:.74rem;font-weight:800;color:#fff;background:#17694a;border-radius:6px;padding:2px 8px;line-height:1.5}
 @media (min-width:821px){.quiz .l{justify-content:flex-start;padding-top:48px}}
+.plist li.pl{cursor:pointer;padding-left:10px;padding-right:10px;margin:0 -10px;border-radius:12px;transition:background .15s,box-shadow .15s}
+.plist li.pl:hover,.plist li.pl:focus-visible{background:var(--chip);box-shadow:0 6px 18px rgba(20,40,90,.08)}
+.plist li.pl:hover b,.plist li.pl:focus-visible b{font-weight:800;color:var(--link)}
+.plist li.pl:hover button{background:var(--gold);border-color:var(--gold-2);color:#1a1f3a}
+.plist .see{display:block;font-style:normal;font-size:.76rem;font-weight:800;color:var(--link);margin-top:4px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .poltitle{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:900;text-transform:uppercase;margin-top:64px}
 .policy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:22px;text-align:left}
@@ -920,15 +925,18 @@ const G70={cd:["Công nghệ kỹ thuật cơ khí","Công nghệ ô tô","Công
 const N36={cd:["Logistics","Thương mại điện tử","Công nghệ thông tin (Ứng dụng phần mềm)","Công nghệ kỹ thuật điều khiển và tự động hóa","Điện tử công nghiệp","Công nghệ vi mạch bán dẫn","Quản trị khách sạn","Công nghệ ô tô","Công nghệ kỹ thuật cơ khí","Công nghệ kỹ thuật điện, điện tử","Cắt gọt kim loại","Điện công nghiệp"],tc:["Thương mại điện tử","Logistics","Điện tử công nghiệp","Công nghệ ô tô","Công nghệ kỹ thuật điện, điện tử","Cắt gọt kim loại","Hàn","Điện công nghiệp và dân dụng","Điện công nghiệp","Chăn nuôi – thú y"]};
 function badge(n,cd,tc){const a=G70.cd.includes(n),b=G70.tc.includes(n),c=N36.cd.includes(n),d=N36.tc.includes(n);const lv=(x,y,hc,ht)=>(x&&y)||!(hc&&ht)?"":x?" (cao đẳng)":" (trung cấp)";
   if(a||b)return `<em class="bdg b70">Giảm 70% học phí${lv(a,b,cd,tc)}</em>`;if(c||d)return `<em class="bdg b36">Hỗ trợ 800.000đ/tháng${lv(c,d,cd,tc)}</em>`;return ""}
+// Trang riêng từng ngành (thư mục nganh/)
+const PAGES={"Công nghệ ô tô":"cong-nghe-o-to","Công nghệ kỹ thuật cơ khí":"cong-nghe-ky-thuat-co-khi","Cắt gọt kim loại":"cat-got-kim-loai","Cơ khí chế tạo":"co-khi-che-tao","Hàn":"han","Cơ điện tử":"co-dien-tu","Công nghệ kỹ thuật điện, điện tử":"cong-nghe-ky-thuat-dien-dien-tu","Công nghệ kỹ thuật điều khiển và tự động hóa":"cong-nghe-ky-thuat-dieu-khien-va-tu-dong-hoa","Điện công nghiệp":"dien-cong-nghiep","Điện công nghiệp và dân dụng":"dien-cong-nghiep-va-dan-dung","Điện tử công nghiệp":"dien-tu-cong-nghiep","Công nghệ vi mạch bán dẫn":"cong-nghe-vi-mach-ban-dan","Kỹ thuật máy lạnh và điều hòa không khí":"ky-thuat-may-lanh-va-dieu-hoa-khong-khi","Công nghệ cơ khí, sưởi ấm và điều hòa không khí":"cong-nghe-co-khi-suoi-am-va-dieu-hoa-khong-khi","Truyền thông và mạng máy tính":"truyen-thong-va-mang-may-tinh","Công nghệ thông tin (Ứng dụng phần mềm)":"cong-nghe-thong-tin-ung-dung-phan-mem","Kỹ thuật sửa chữa, lắp ráp máy tính":"ky-thuat-sua-chua-lap-rap-may-tinh","Tin học văn phòng":"tin-hoc-van-phong","Thương mại điện tử":"thuong-mai-dien-tu","Marketing thương mại":"marketing-thuong-mai","Logistics":"logistics","Kế toán":"ke-toan","Kế toán doanh nghiệp":"ke-toan-doanh-nghiep","Quản trị kinh doanh":"quan-tri-kinh-doanh","Quản trị khách sạn":"quan-tri-khach-san","Kỹ thuật chế biến món ăn":"ky-thuat-che-bien-mon-an","Chăm sóc sắc đẹp":"cham-soc-sac-dep","May thời trang":"may-thoi-trang","Dịch vụ thú y":"dich-vu-thu-y","Thú y":"thu-y","Chăn nuôi – thú y":"chan-nuoi-thu-y","Tiếng Trung Quốc":"tieng-trung-quoc"};
 function showProg(g){
   pt.querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.dataset.g===g));
   const list=M.filter(m=>m[1]===g),c=GC[g];
-  const items=list.map(([n,_,f,cd,lt,tc,thn])=>{const h=[cd?`Cao đẳng ${cd.y} năm${cd.clc?" (có CLC)":""}`:"",lt?"Liên thông":"",tc?"Trung cấp":"",thn?"Trung học nghề":""].filter(Boolean).join(" · ");return `<li><span><b>${n}</b><small>${h}</small>${badge(n,cd||lt,tc)}</span><button type="button" data-major="${n}" aria-label="Đăng ký ${n}">→</button></li>`}).join("");
+  const items=list.map(([n,_,f,cd,lt,tc,thn])=>{const h=[cd?`Cao đẳng ${cd.y} năm${cd.clc?" (có CLC)":""}`:"",lt?"Liên thông":"",tc?"Trung cấp":"",thn?"Trung học nghề":""].filter(Boolean).join(" · ");const pg=PAGES[n];return `<li class="pl${pg?" has":""}" data-pg="${pg||""}" data-name="${n}" tabindex="0" role="link" aria-label="${pg?"Xem chi tiết ngành ":"Đăng ký ngành "}${n}"><span><b>${n}</b><small>${h}</small>${badge(n,cd||lt,tc)}${pg?'<i class="see">Xem chi tiết ngành →</i>':""}</span><button type="button" data-major="${n}" aria-label="Đăng ký ${n}" title="Đăng ký">→</button></li>`}).join("");
   $("#prog").innerHTML=`<figure class="ph" data-slot="prog:${g}" style="--c1:${c[0]};--c2:${c[1]}"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">${ICON[g]}</svg></div><span class="tag">Ảnh / video ${G[g]}</span></figure><div style="text-align:left"><h3>${G[g]}</h3><p class="desc">${DESC[g]}</p><ul class="plist">${items}</ul><div class="go"><button class="btn btn-g" data-open>Đăng ký ngay →</button></div></div>`;
   applyPhotos($("#prog"));
 }
 showProg("co");
-document.addEventListener("click",e=>{const b=e.target.closest("[data-major]");if(!b)return;openModal(b.dataset.major)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-major]");if(b){openModal(b.dataset.major);return}const li=e.target.closest(".plist li.pl");if(!li)return;if(li.dataset.pg)location.href="nganh/"+li.dataset.pg+".html";else openModal(li.dataset.name)});
+document.addEventListener("keydown",e=>{if(e.key!=="Enter")return;const li=e.target.closest&&e.target.closest(".plist li.pl");if(li&&e.target===li)li.click()});
 
 // careers
 $("#careers").innerHTML=Object.entries(JOBS).map(([g,js])=>{const c=GC[g];return `<article class="career"><figure class="ph" data-slot="job:${g}" data-ai style="--c1:${c[0]};--c2:${c[1]}"><span class="tag">Ảnh sinh viên ${G[g]}</span></figure><div class="b"><h3>${G[g]}</h3><ul>${js.map(j=>`<li>${j}</li>`).join("")}</ul><button type="button" class="more" data-g="${g}">Xem các ngành →</button></div></article>`}).join("");
