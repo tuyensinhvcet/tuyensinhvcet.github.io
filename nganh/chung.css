@@ -176,3 +176,21 @@ footer .src{margin-top:10px;font-size:.8rem;color:#8e9bbd}
 .mbox [hidden]{display:none}
 .mclose{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--navy);color:#fff;font-size:1rem;cursor:pointer;z-index:2}
 @media (max-width:520px){.mbox .row2{grid-template-columns:1fr}.modal{align-items:flex-end;padding:0}.mbox{border-radius:22px 22px 0 0;max-height:92dvh}}
+/* chọn trình độ */
+.emla{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:30px}
+.emla span{font-weight:800;color:var(--head);margin-right:4px}
+.emla button{font:inherit;font-weight:700;font-size:.9rem;padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.emla button:hover{border-color:var(--cyan)}
+.emla button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.lvcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:16px}
+.lvc{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 30px rgba(20,40,90,.05)}
+.lvc .who{align-self:flex-start;font-size:.72rem;font-weight:800;background:var(--gold);color:#1a1f3a;padding:3px 9px;border-radius:6px;text-transform:uppercase}
+.lvc h3{font-size:1.2rem;font-weight:900}
+.lvc ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:.9rem;color:var(--muted)}
+.lvc .fee{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line)}
+.lvc .fee b{display:block;font-size:1.3rem;font-weight:900;color:var(--link)}
+.lvc .fee small{color:var(--muted);font-size:.8rem}
+.lvc .btn{padding:10px 16px;font-size:.88rem}
+.lvnote{font-size:.84rem;color:var(--muted);margin-top:10px}
+[data-g].off{display:none!important}
+.fees .r.hl{background:var(--chip)}
