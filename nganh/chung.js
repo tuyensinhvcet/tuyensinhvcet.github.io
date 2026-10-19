@@ -116,7 +116,7 @@ function setG(g){GRP=g;document.querySelectorAll(".emla button").forEach(b=>b.se
   document.querySelectorAll(".fees .r[data-g]").forEach(el=>el.classList.toggle("hl",g!=="all"&&el.dataset.g===g));
   if(GW[g]&&w.value!==GW[g]){w.value=GW[g];mj.value=PAGE;fillL();mj.value=PAGE}}
 document.addEventListener("click",e=>{const b=e.target.closest(".emla button");if(b)setG(b.dataset.grp)});
-try{const q=new URLSearchParams(location.search).get("em");if(q&&GW[q]&&document.querySelector(".emla"))setG(q)}catch(e){}
+try{const q=new URLSearchParams(location.search).get("em");if(q&&GW[q]&&document.querySelector('.emla [data-grp="'+q+'"]'))setG(q)}catch(e){}
 $("#mclose").addEventListener("click",closeM);
 modal.addEventListener("click",e=>{if(e.target===modal)closeM()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)closeM()});
