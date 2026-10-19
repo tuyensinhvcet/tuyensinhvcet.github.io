@@ -75,15 +75,19 @@
     <h2>Đăng ký <em>ngành Điện công nghiệp</em></h2>
     <div class="reg">
       <div class="l"><h3>Tư vấn<br><span>miễn phí</span></h3><p>Để lại số điện thoại, Thầy Phan Thanh Bình – Phó Giám đốc Trung tâm Tuyển sinh và Hợp tác doanh nghiệp sẽ gọi lại tư vấn trình độ, học phí và chính sách cho em.</p><p>Cần gấp: <a href="tel:0989465017">0989 465 017</a> (gọi hoặc Zalo)</p></div>
-      <form id="rf" data-major="Điện công nghiệp" novalidate>
-        <div class="row2"><label>Họ và tên *<input id="r-name" autocomplete="name" required></label><label>Số điện thoại *<input id="r-phone" type="tel" inputmode="numeric" autocomplete="tel" required></label></div>
-        <div class="row2"><label>Em là<select id="r-who"><option value="">Chọn đối tượng</option><option>Tốt nghiệp THCS (lớp 9)</option><option>Học hết lớp 10, 11 rồi nghỉ</option><option>Tốt nghiệp THPT (lớp 12)</option><option>Đã có bằng trung cấp</option><option>Đã có bằng cao đẳng, đại học (văn bằng 2)</option><option>Người đi làm</option><option>Bộ đội xuất ngũ</option><option>Phụ huynh</option><option>Chưa rõ, cần tư vấn</option></select></label><label>Trình độ muốn học<select id="r-level"><option value="">Chọn trình độ</option><option>Cao đẳng</option><option>Liên thông cao đẳng</option><option>Trung cấp</option><option>Trung học nghề</option></select></label></div>
-        <label>Xã / phường, tỉnh<input id="r-place" placeholder="Ví dụ: Phường Vĩnh Yên, Tỉnh Phú Thọ"></label>
+      <div id="rf-home"><form id="rf" data-major="Điện công nghiệp" novalidate>
+        <h3 class="ft">Đăng ký nhận tư vấn</h3>
+        <div class="row2"><label>Họ và tên *<input id="r-name" autocomplete="name" placeholder="Nhập họ và tên"></label><label>Số điện thoại / Zalo *<input id="r-phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Nhập số điện thoại"></label></div>
+        <div class="row2"><label>Đối tượng *<select id="r-who"></select></label><label>Trình độ đăng ký<select id="r-level"></select></label></div>
+        <label>Ngành đăng ký<select id="r-major"></select></label>
+        <p class="rnote" id="r-note" hidden></p>
+        <div class="row2"><div class="cbx"><span>Tỉnh / thành phố</span><input id="r-tinh" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder="Gõ để tìm tỉnh, thành"><ul class="cbl" role="listbox" hidden></ul></div><div class="cbx"><span>Xã / phường</span><input id="r-place" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder="Gõ để tìm, ví dụ: vinh yen"><ul class="cbl" role="listbox" hidden></ul></div></div>
+        <label>Cơ sở<select id="r-cs"><option>Cơ sở 1 – phường Vĩnh Yên</option><option>Cơ sở 2 – phường Vĩnh Phúc</option><option>Chưa chọn</option></select></label>
         <input class="hp" id="r-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <p class="cnote">Khi gửi thông tin, em đồng ý để Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc liên hệ tư vấn tuyển sinh. Thông tin chỉ dùng để tư vấn, được bảo vệ theo Luật Bảo vệ dữ liệu cá nhân.</p>
         <p class="err" id="r-err" hidden></p><div class="done" id="r-done" hidden></div>
         <button class="btn btn-g" type="submit">Gửi đăng ký</button>
-      </form>
+      </form></div>
     </div>
   </section>
   <section class="sec">
@@ -96,6 +100,7 @@
   <b>Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc</b><br>Cơ sở 1: Số 55B đường Hùng Vương, phường Vĩnh Yên, tỉnh Phú Thọ · Cơ sở 2: phường Vĩnh Phúc<br>Tư vấn tuyển sinh: Thầy Phan Thanh Bình – <a href="tel:0989465017">0989 465 017</a> · <a href="../">tuyensinhvcet.github.io</a>
   <p class="src">Nội dung ngành học tóm tắt từ Chương trình đào tạo năm 2025 của Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc (Quyết định 356/QĐ-CĐKTCN ngày 18/04/2025 – trình độ cao đẳng).</p>
 </div></footer>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-label="Đăng ký nhận tư vấn"><div class="mbox"><button class="mclose" id="mclose" type="button" aria-label="Đóng">✕</button><div id="mslot"></div></div></div>
 <div class="bar"><div class="wrap"><a href="tel:0989465017">Gọi tư vấn</a><a class="z" href="https://zalo.me/0989465017" target="_blank" rel="noopener">Zalo</a><a href="#dang-ky">Đăng ký</a></div></div>
 <script src="chung.js"></script>
 </body>
