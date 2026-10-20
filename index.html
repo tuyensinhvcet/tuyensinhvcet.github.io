@@ -923,7 +923,9 @@ const CL=cascade("#l"),CM=cascade("#m");
 // programs band
 const ORDER=["co","dien","it","kd","dv","ny","nn"];
 const pt=$("#ptabs");
-ORDER.forEach((g,i)=>{const b=document.createElement("button");b.setAttribute("role","tab");b.textContent=G[g];b.dataset.g=g;b.setAttribute("aria-selected",i===0);b.onclick=()=>showProg(g);pt.appendChild(b)});
+// Điện thoại: các nút nhóm ngành chiếm gần hết màn hình, bấm xong tự cuộn xuống danh sách ngành
+function toProg(force){if(!force&&!matchMedia("(max-width:760px)").matches)return;const h=(document.querySelector("header")||{}).offsetHeight||0;scrollTo({top:$("#prog").getBoundingClientRect().top+scrollY-h-10,behavior:"smooth"})}
+ORDER.forEach((g,i)=>{const b=document.createElement("button");b.setAttribute("role","tab");b.textContent=G[g];b.dataset.g=g;b.setAttribute("aria-selected",i===0);b.onclick=()=>{showProg(g);toProg()};pt.appendChild(b)});
 // Thông báo 119/TB-CĐKTCN (20/8/2026): ngành giảm 70% (nặng nhọc, độc hại, TT 05/2023) và ngành hỗ trợ 800.000đ (NQ 36)
 const G70={cd:["Công nghệ kỹ thuật cơ khí","Công nghệ ô tô","Công nghệ kỹ thuật điện, điện tử","Cắt gọt kim loại","Kỹ thuật máy lạnh và điều hòa không khí","Điện công nghiệp","Dịch vụ thú y","Kỹ thuật chế biến món ăn","May thời trang"],tc:["Công nghệ ô tô","Hàn","Công nghệ kỹ thuật điện, điện tử","Cắt gọt kim loại","Kỹ thuật máy lạnh và điều hòa không khí","Điện công nghiệp và dân dụng","Điện công nghiệp","Chăn nuôi – thú y","Kỹ thuật chế biến món ăn","May thời trang"]};
 // N36: toàn bộ ngành có trong Phụ lục NQ 36. Ngành vừa thuộc N36 vừa thuộc G70 áp dụng mức cao hơn (giảm 70%)
@@ -946,7 +948,7 @@ document.addEventListener("keydown",e=>{if(e.key!=="Enter")return;const li=e.tar
 // careers
 $("#careers").innerHTML=Object.entries(JOBS).map(([g,js])=>{const c=GC[g];return `<article class="career"><figure class="ph" data-slot="job:${g}" data-ai style="--c1:${c[0]};--c2:${c[1]}"><span class="tag">Ảnh sinh viên ${G[g]}</span></figure><div class="b"><h3>${G[g]}</h3><ul>${js.map(j=>`<li>${j}</li>`).join("")}</ul><button type="button" class="more" data-g="${g}">Xem các ngành →</button></div></article>`}).join("");
 
-document.addEventListener("click",e=>{const b=e.target.closest(".career .more");if(!b)return;showProg(b.dataset.g);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})});
+document.addEventListener("click",e=>{const b=e.target.closest(".career .more");if(!b)return;showProg(b.dataset.g);if(matchMedia("(max-width:760px)").matches)toProg(1);else $("#chuong-trinh").scrollIntoView({behavior:"smooth"})});
 const cr=$("#careers");$("#cprev").onclick=()=>cr.scrollBy({left:-cr.clientWidth*0.8,behavior:"smooth"});$("#cnext").onclick=()=>cr.scrollBy({left:cr.clientWidth*0.8,behavior:"smooth"});
 // quiz
 // Tư vấn chọn nghề: đối tượng → hoàn cảnh → sở thích → mong muốn (du học, xuất khẩu lao động) → lộ trình gợi ý
