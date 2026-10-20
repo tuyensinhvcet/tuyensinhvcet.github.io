@@ -70,7 +70,7 @@ try{const q=new URLSearchParams(location.search),c=s=>String(s).replace(/[^\p{L}
 function srcTag(){let n="",g="";try{n=localStorage.getItem("vcet-nguon")||"";g=localStorage.getItem("vcet-gt")||""}catch(e){}return (n?" · Kênh: "+n:"")+(g?" · Người giới thiệu: "+g:"")}
 (function(){
 const f=$("#rf");if(!f)return;
-const PAGE=f.dataset.major,w=$("#r-who"),l=$("#r-level"),mj=$("#r-major"),note=$("#r-note"),ALL=["cd","lt","tc","thn"];
+const PAGE=f.dataset.major||"",PLV=f.dataset.lv||"",PWHO=f.dataset.who||"",w=$("#r-who"),l=$("#r-level"),mj=$("#r-major"),note=$("#r-note"),ALL=["cd","lt","tc","thn"];
 const row=n=>M.find(m=>m[0]===n);
 w.innerHTML='<option value="">Chọn đối tượng</option>'+WHO.map(x=>"<option>"+x[0]+"</option>").join("");
 function fillM(){const k=l.value,cur=mj.value||PAGE;const L=k?M.filter(m=>m[LV_IDX[k]]):M;
@@ -79,11 +79,11 @@ function fillL(){const who=w.value,ks=who?(WHO_LV[who]||ALL):ALL,m=row(mj.value|
   let fit=m?ks.filter(k=>m[LV_IDX[k]]):ks;const miss=!!(who&&m&&!fit.length);if(miss)fit=ks;
   note.hidden=!miss;if(miss)note.textContent="Ngành "+m[0]+" chưa tuyển trình độ phù hợp với em. Em vẫn gửi được, Thầy sẽ tư vấn ngành gần nhất cho em.";
   l.innerHTML='<option value="">'+(who?"Chọn trình độ":"Chọn đối tượng trước")+'</option>'+fit.map(k=>'<option value="'+k+'">'+LV[k]+"</option>").join("");
-  l.disabled=!who;if(fit.includes(cur))l.value=cur;else if(fit.length===1)l.value=fit[0];fillM()}
+  l.disabled=!who;if(fit.includes(cur))l.value=cur;else if(PLV&&fit.includes(PLV))l.value=PLV;else if(fit.length===1)l.value=fit[0];fillM()}
 w.addEventListener("change",fillL);l.addEventListener("change",fillM);
 mj.addEventListener("change",()=>{const k=l.value;fillL();if(k&&[...l.options].some(o=>o.value===k))l.value=k});
-f.addEventListener("reset",()=>setTimeout(()=>{fillL();mj.value=PAGE},0));
-fillL();mj.value=PAGE;
+f.addEventListener("reset",()=>setTimeout(()=>{if(PWHO)w.value=PWHO;fillL();mj.value=PAGE},0));
+if(PWHO)w.value=PWHO;fillL();mj.value=PAGE;
 // Tỉnh / xã
 const names=TINH.map(x=>x[1]),t=$("#r-tinh");
 const setT=n=>{const x=TINH.find(x=>x[1]===n);if(x&&x[0]!==curTinh){curTinh=x[0];$("#r-place").value="";fillXa()}};
@@ -97,8 +97,8 @@ f.addEventListener("submit",e=>{e.preventDefault();
   err.hidden=!m;err.textContent=m;if(m)return;
   const major=(mj.value||PAGE)+(note.hidden?"":" (cần tư vấn trình độ)"),lvn=l.value?LV[l.value]:"";
   const place=[v("#r-place"),v("#r-tinh")].filter(Boolean).join(", ");
-  const data={name,phone,who:w.value,major:[lvn,major].filter(Boolean).join(" – "),cs:v("#r-cs"),place,form:"Trang ngành "+PAGE+srcTag(),note:"",page:location.href,hp:v("#r-hp")};
-  const thanks=()=>{done.hidden=false;done.innerHTML="Cảm ơn <b>"+name.replace(/[<>&]/g,"")+"</b>! Thầy Phan Thanh Bình sẽ gọi lại số <b>"+phone+"</b> để tư vấn ngành <b>"+major.replace(/[<>&]/g,"")+"</b>. Cần gấp, em nhắn Zalo 0989 465 017 nhé.";f.reset()};
+  const data={name,phone,who:w.value,major:[lvn,major].filter(Boolean).join(" – "),cs:v("#r-cs"),place,form:(f.dataset.form||"Trang ngành "+PAGE)+srcTag(),note:"",page:location.href,hp:v("#r-hp")};
+  const thanks=()=>{done.hidden=false;done.innerHTML="Cảm ơn <b>"+name.replace(/[<>&]/g,"")+"</b>! Thầy Phan Thanh Bình sẽ gọi lại số <b>"+phone+"</b> để tư vấn "+(mj.value?"ngành <b>"+major.replace(/[<>&]/g,"")+"</b>":"<b>"+(lvn||"trình độ, ngành học phù hợp")+"</b>")+". Cần gấp, em nhắn Zalo 0989 465 017 nhé.";f.reset()};
   btn.disabled=true;btn.textContent="Đang gửi...";
   fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)})
    .then(thanks).catch(()=>{err.hidden=false;err.textContent="Chưa gửi được do lỗi mạng. Em thử lại hoặc nhắn Zalo 0989 465 017."})
