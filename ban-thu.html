@@ -700,14 +700,14 @@ select:disabled{opacity:.6;cursor:not-allowed}
       <div class="pic"><figure class="ph" data-slot="about" style="--c1:#274081;--c2:#26A8D4"><span class="tag">Ảnh cổng / tòa nhà trường</span></figure><div class="float"><b>4.279</b><span>chỉ tiêu năm 2026</span></div></div>
       <div>
         <p>Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc (Vinh Phuc College of Engineering Technology – VCET) là trường công lập trực thuộc <b>Ủy ban nhân dân tỉnh Phú Thọ</b>. Trường đào tạo các trình độ Trung học nghề, Trung cấp, Cao đẳng, Liên thông cao đẳng và Sơ cấp với 10 khoa chuyên môn, tại hai cơ sở ở phường Vĩnh Yên và phường Vĩnh Phúc.</p>
-        <p>Chương trình đào tạo gắn với doanh nghiệp: một nửa thời lượng học tại trường, một nửa thực hành, thực tập tại doanh nghiệp. Sinh viên được học tiếng Nhật, Hàn, Đài Loan miễn phí và được giới thiệu việc làm, du học hoặc xuất khẩu lao động sau tốt nghiệp.</p>
+        <p>Chương trình đào tạo gắn với doanh nghiệp: một nửa thời lượng học tại trường, một nửa thực hành, thực tập tại doanh nghiệp. Sinh viên được học tiếng Nhật, Hàn, Trung Quốc miễn phí và được giới thiệu việc làm, du học hoặc xuất khẩu lao động sau tốt nghiệp.</p>
         <p style="font-weight:800;color:var(--link)">“Chọn đúng nghề – Vững tương lai”</p>
       </div>
     </div>
     <div class="ucard"><h3>Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc</h3><span class="bar"></span><p class="q">Đào tạo theo hướng <b>học đi đôi với hành</b>: một nửa thời gian học tại trường, một nửa thực hành tại doanh nghiệp, để các em ra trường <b>có nghề vững</b>.</p><div class="methods">
       <div><div class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg></div><h3>Đào tạo gắn với doanh nghiệp</h3><p>50% học tại trường, 50% thực hành, thực tập tại doanh nghiệp</p></div>
       <div><div class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div><h3>Học linh hoạt</h3><p>Một số ngành học tối, thứ 7, chủ nhật, 30% thời lượng trực tuyến</p></div>
-      <div><div class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 4-3 7-6 8M13 21l4-9 4 9M14.5 18h5"/></svg></div><h3>Ngoại ngữ miễn phí</h3><p>Tiếng Nhật, Hàn, Đài Loan; giới thiệu việc làm, du học sau tốt nghiệp</p></div>
+      <div><div class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 4-3 7-6 8M13 21l4-9 4 9M14.5 18h5"/></svg></div><h3>Ngoại ngữ miễn phí</h3><p>Tiếng Nhật, Hàn, Trung Quốc; giới thiệu việc làm, du học sau tốt nghiệp</p></div>
     </div>
     </div>
     <div class="facts">
@@ -1018,7 +1018,7 @@ function quiz(){const r=$("#quiz"),L=qsteps();
    <h4>${tops.map(g=>G[g]).join(" · ")}</h4>
    <div class="qblk"><b>Trình độ phù hợp</b><p>${lvTxt(w)}</p></div>
    <div class="qblk"><b>Ngành gợi ý và học phí sau ưu đãi</b><ul class="qlist">${sug.map(([m,k])=>qli(m,k)).join("")||(TCF(QA)&&QA.huong==="lt"?"<li>Nhóm ngành này hiện chưa có liên thông cao đẳng. Em bấm Quay lại, chọn hướng “Học ngành khác hẳn” để xem các ngành cao đẳng 2–3 năm.</li>":"<li>Thầy sẽ tư vấn ngành phù hợp.</li>")}</ul>${more.map(([g,k,R2])=>`<details class="qmore"><summary>Xem thêm ${R2.length} ngành ${G[g]}</summary><ul class="qlist">${R2.map(m=>qli(m,k)).join("")}</ul></details>`).join("")}</div>
-   ${abroad?`<div class="qblk"><b>Lộ trình ra nước ngoài${QA.nuoc&&QA.nuoc!=="Chưa chọn nước"?" – "+QA.nuoc:""}</b><p>Học nghề tại trường kết hợp học ngoại ngữ: nhà trường dạy miễn phí tiếng Anh, Nhật, Hàn, Trung, Đức và giới thiệu du học, việc làm sau tốt nghiệp. Nhà trường đang hợp tác với Tập đoàn Keio (Nhật Bản) và Tập đoàn Giáo dục Hữu Chi Kiều (Trung Quốc). Điều kiện, chi phí từng chương trình sẽ được tư vấn cụ thể.</p></div>`:""}
+   ${abroad?`<div class="qblk"><b>Lộ trình ra nước ngoài${QA.nuoc&&QA.nuoc!=="Chưa chọn nước"?" – "+QA.nuoc:""}</b><p>Học nghề tại trường kết hợp học ngoại ngữ: nhà trường dạy miễn phí tiếng Nhật, Hàn, Trung Quốc và giới thiệu du học, việc làm sau tốt nghiệp. Nhà trường đang hợp tác với Tập đoàn Keio (Nhật Bản) và Tập đoàn Giáo dục Hữu Chi Kiều (Trung Quốc). Điều kiện, chi phí từng chương trình sẽ được tư vấn cụ thể.</p></div>`:""}
    <div class="qblk"><b>Chính sách em có thể được hưởng</b><ul class="qpol">${pol.map(x=>`<li>${x}</li>`).join("")}</ul></div>
    <p class="qnote">Kết quả để tham khảo. Thầy sẽ tư vấn kỹ và xác nhận chính sách khi gọi lại.</p>
    <div class="row"><button class="btn btn-g" type="button" id="qsend">Nhận lộ trình học chi tiết cho&nbsp;em</button><button class="btn btn-n" type="button" id="qsee">Xem các ngành này</button></div>
