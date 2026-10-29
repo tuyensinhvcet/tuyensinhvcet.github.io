@@ -229,3 +229,25 @@ footer .src{margin-top:10px;font-size:.8rem;color:#8e9bbd}
 .callout a{color:var(--link)}
 @media (max-width:860px){.facts{grid-template-columns:1fr 1fr}.ngl,.docs2{grid-template-columns:1fr}}
 @media (max-width:520px){.facts{grid-template-columns:1fr}}
+
+/* thêm 30/10/2026: chân trang chung, link trình độ, bảng trang học phí/hồ sơ */
+.flinks{display:flex;flex-wrap:wrap;gap:6px 16px;margin:12px 0 4px}
+.flinks a{color:inherit;font-weight:700}
+.lvc h3 a{color:inherit;text-decoration:underline;text-decoration-color:rgba(39,64,129,.3);text-underline-offset:4px}
+.cnote a{color:inherit;font-weight:700}
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:.95rem;background:#fff;border-radius:14px;overflow:hidden}
+.tbl th,.tbl td{border-bottom:1px solid #e3e9f5;padding:10px 12px;text-align:left;vertical-align:top}
+.tbl th{background:#274081;color:#fff;font-weight:800}
+.tbl td.n{text-align:right;white-space:nowrap;font-weight:700}
+.tdcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+.tdcards a{display:block;background:#fff;border:1px solid #e3e9f5;border-radius:16px;padding:16px;text-decoration:none;color:inherit;box-shadow:0 8px 22px rgba(20,40,90,.06)}
+.tdcards b{display:block;font-size:1.1rem;color:#274081;margin-bottom:6px}
+.tdcards small{display:block;color:#5a6378;line-height:1.45}
+.nglist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+.nglist a{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid #e3e9f5;border-radius:14px;padding:14px;text-decoration:none;color:inherit}
+.nglist a b{color:#274081}
+.nglist a small{color:#5a6378}
+.prose h2{margin-top:28px}
+.hero.hero1{grid-template-columns:1fr}
+.prose h3{margin:22px 0 6px}
+@media(max-width:760px){.tbl{font-size:.88rem}.tbl th,.tbl td{padding:8px}}
