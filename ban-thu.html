@@ -546,6 +546,7 @@ select:disabled{opacity:.6;cursor:not-allowed}
 #em-la .enote{font-size:.85rem;color:var(--muted);margin-top:12px}
 .polmore{margin-top:22px;font-weight:600}.polmore a{color:var(--link);font-weight:800}
 @media (max-width:760px){#em-la .echips{display:grid;grid-template-columns:1fr 1fr}#em-la .echips button{padding:14px 10px;font-size:.95rem}#em-la .echips button:last-child{grid-column:1/-1}#em-la .ectas .btn{flex:1 1 100%;justify-content:center;text-align:center}}
+.qlist li a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}.qmore{margin-top:8px}.qmore summary{cursor:pointer;font-weight:800;color:var(--link);padding:8px 0}
 </style>
 <link rel="icon" href="anh/icon-nganh-nghe.png">
 </head>
@@ -956,12 +957,14 @@ const QS=[
  {k:"who",q:"Em (hoặc anh/chị) hiện là?",a:WHO.map(x=>[x[0],x[0]])},
  {k:"con",q:"Con của anh/chị hiện là?",when:A=>A.who==="Phụ huynh",a:WHO.slice(0,5).map(x=>[x[0],x[0]])},
  {k:"hc",q:"Gia đình em thuộc trường hợp nào?",sub:"Chọn ý đúng nhất. Thông tin giúp gợi ý chính sách miễn, giảm học phí và được gửi kèm khi em bấm gửi kết quả.",a:[["Gia đình bình thường","bt"],["Hộ nghèo hoặc cận nghèo","ngheo"],["Dân tộc thiểu số","dtts"],["Dân tộc thiểu số, thuộc hộ nghèo hoặc cận nghèo","dtts,ngheo"],["Dân tộc thiểu số, ở thôn, xã đặc biệt khó khăn","dtts,dbkk"],["Mồ côi, khuyết tật hoặc con người có công","mc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Không muốn trả lời","no"]]},
+ {k:"pt",q:"Em học THPT (lớp 12) ở tỉnh nào?",sub:"Để biết em có được hỗ trợ 800.000đ/tháng theo Nghị quyết 36/2025 của HĐND tỉnh Phú Thọ không.",when:A=>N36W.includes(A.who==="Phụ huynh"?(A.con||""):A.who),a:[["Phú Thọ (kể cả Vĩnh Phúc, Hòa Bình cũ)","pt"],["Tỉnh, thành phố khác","khac"],["Chưa có bằng tốt nghiệp THPT","chua"]]},
+ {k:"tuoi",q:"Năm nay em (anh/chị) bao nhiêu tuổi?",when:A=>A.pt==="pt"&&![A.who,A.con].includes("Tốt nghiệp THPT (lớp 12)"),a:[["Dưới 25 tuổi","duoi25"],["Từ 25 tuổi trở lên","tren25"]]},
  {k:"q1",q:"Lúc rảnh, em thích làm gì nhất?",a:[["Tháo lắp, sửa xe, máy móc","a","co"],["Lắp đồ điện, nghịch mạch điện tử","b","dien"],["Máy tính, thiết kế, chỉnh ảnh, dựng video","c","it"],["Bán hàng online, tính toán chi tiêu","d","kd"],["Nấu ăn, trang điểm, may vá","e","dv"],["Chăm vật nuôi, trồng cây","f","ny"],["Học ngoại ngữ, xem phim nước ngoài","g","nn"],["Lướt điện thoại (TikTok, Facebook, YouTube)","h",""]]},
  {k:"dt",q:"Em hay xem gì nhất trên điện thoại?",when:A=>A.q1==="h",a:[["Video sửa xe, độ xe, máy móc","a","co"],["Review đồ điện tử, mẹo sửa điện","b","dien"],["Chơi game, chỉnh ảnh, dựng video","c","it"],["Livestream bán hàng, kiếm tiền online","d","kd"],["Làm đẹp, nấu ăn, thời trang","e","dv"],["Thú cưng, trồng trọt, chăn nuôi","f","ny"],["Phim, nhạc, idol nước ngoài","g","nn"]]},
- {k:"q2",q:"Môn học nào em thấy dễ nhất?",a:[["Toán, Vật lý","a","co,dien"],["Tin học","b","it"],["Toán, Giáo dục kinh tế","c","kd"],["Công nghệ, Mỹ thuật","d","dv,co"],["Sinh học","e","ny"],["Ngoại ngữ, Ngữ văn","f","nn,kd"]]},
- {k:"q3",q:"Em muốn làm việc ở đâu?",a:[["Nhà máy, xưởng sản xuất","a","co,dien"],["Văn phòng, công ty","b","kd,it"],["Nhà hàng, khách sạn, spa, cửa hàng thời trang","c","dv"],["Trang trại, phòng khám thú y","d","ny"],["Công ty nước ngoài, làm phiên dịch","e","nn"],["Tự mở cửa hàng, xưởng riêng","f","kd,co"]]},
- {k:"q4",q:"Điểm mạnh của em là gì?",a:[["Khéo tay, thích làm thực hành","a","co,dien"],["Giao tiếp tốt, thích gặp gỡ mọi người","b","kd,dv"],["Tỉ mỉ, cẩn thận, kiên trì","c","dien,it"],["Có mắt thẩm mỹ, sáng tạo","d","dv,it"],["Yêu động vật, kiên nhẫn chăm sóc","e","ny"],["Nhớ từ mới, học ngoại ngữ nhanh","f","nn"]]},
- {k:"goal",q:"Ra trường, em mong muốn điều gì nhất?",a:[["Đi làm ngay ở khu công nghiệp","Đi làm ngay ở khu công nghiệp","co,dien"],["Làm cho doanh nghiệp nước ngoài tại Việt Nam","Làm cho doanh nghiệp nước ngoài","nn,dien,it"],["Mở cửa hàng, kinh doanh riêng","Kinh doanh riêng","kd,dv"],["Học tiếp lên đại học","Học tiếp lên đại học","it,kd"],["Đi du học","Đi du học","nn"],["Đi làm việc ở nước ngoài (xuất khẩu lao động)","Đi làm việc ở nước ngoài","co,dv,dien"]]},
+ {k:"q2",q:"Môn học nào em thấy dễ nhất?",a:[["Vật lý","a","dien,co"],["Toán","b","kd,dien"],["Tin học","c","it"],["Công nghệ","d","co,ny"],["Mỹ thuật, Âm nhạc","e","dv,it"],["Sinh học, Hóa học","f","ny,dv"],["Ngoại ngữ, Ngữ văn","g","nn,kd"]]},
+ {k:"q3",q:"Em muốn làm việc ở đâu?",a:[["Nhà máy cơ khí, xưởng sửa chữa ô tô","a","co,dien"],["Nhà máy điện tử, lắp đặt điện, máy lạnh","b","dien,co"],["Làm với máy tính, mạng, phần mềm","c","it,kd"],["Văn phòng, công ty, cửa hàng","d","kd,nn"],["Nhà hàng, khách sạn, spa, tiệm may","e","dv,kd"],["Trang trại, phòng khám thú y","f","ny"],["Công ty nước ngoài, làm phiên dịch","g","nn,kd"]]},
+ {k:"q4",q:"Điểm mạnh của em là gì?",a:[["Khéo tay, thích tháo lắp","a","co,dien"],["Tỉ mỉ, cẩn thận với chi tiết nhỏ","b","dien,it"],["Giỏi dùng máy tính, công nghệ","c","it"],["Giao tiếp tốt, thích gặp gỡ mọi người","d","kd,dv"],["Có mắt thẩm mỹ, sáng tạo","e","dv,it"],["Yêu động vật, kiên nhẫn chăm sóc","f","ny"],["Nhớ từ mới, học ngoại ngữ nhanh","g","nn"]]},
+ {k:"goal",q:"Ra trường, em mong muốn điều gì nhất?",a:[["Đi làm ngay ở khu công nghiệp","Đi làm ngay ở khu công nghiệp","co,dien"],["Làm cho doanh nghiệp nước ngoài tại Việt Nam","Làm cho doanh nghiệp nước ngoài","nn,it"],["Mở cửa hàng, kinh doanh riêng","Kinh doanh riêng","kd,dv,ny"],["Học tiếp lên đại học","Học tiếp lên đại học",""],["Đi du học","Đi du học","nn"],["Đi làm việc ở nước ngoài (xuất khẩu lao động)","Đi làm việc ở nước ngoài","co,dv,dien"]]},
  {k:"nuoc",q:"Em quan tâm nước nào?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Nhật Bản","Nhật Bản","co,dv"],["Hàn Quốc","Hàn Quốc","co,dien"],["Đài Loan","Đài Loan","dien,nn"],["Trung Quốc","Trung Quốc","nn"],["Đức","Đức","co,dien"],["Chưa biết","Chưa chọn nước",""]]},
  {k:"ngoaingu",q:"Em đã biết ngoại ngữ của nước đó chưa?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Chưa biết","Chưa biết ngoại ngữ"],["Biết chút ít","Biết chút ít ngoại ngữ"],["Đã có chứng chỉ","Đã có chứng chỉ ngoại ngữ"]]},
  {k:"khi",q:"Em muốn đi lúc nào?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Ngay sau khi tốt nghiệp","Đi ngay sau tốt nghiệp"],["Làm việc vài năm rồi mới đi","Đi sau vài năm làm việc"]]},
@@ -973,6 +976,7 @@ let QA={},qstep=0;
 const qsteps=()=>QS.filter(S=>!S.when||S.when(QA));
 const effWho=()=>QA.who==="Phụ huynh"?(QA.con||"Phụ huynh"):QA.who;
 const N36W=["Tốt nghiệp THPT (lớp 12)","Đã có bằng trung cấp","Người đi làm","Bộ đội xuất ngũ","Chưa rõ, cần tư vấn"];
+function n36ok(){return N36W.includes(effWho())&&QA.pt==="pt"&&QA.tuoi!=="tren25"}
 function feeFor(m,lv){if(lv==="thn")return "0đ <small>(miễn học phí, hỗ trợ chi phí học tập theo quy định)</small>";const hc=(QA.hc||"").split(",").filter(Boolean),w=effWho(),fk=lv==="lt"?"cd":lv,list=[];
   if(lv==="tc"&&(w==="Tốt nghiệp THCS (lớp 9)"||w==="Học hết lớp 10, 11 rồi nghỉ"))list.push([100,"miễn học phí (tốt nghiệp THCS học trung cấp)"]);
   if(hc.includes("mc"))list.push([100,"có thể được miễn học phí"]);
@@ -981,7 +985,7 @@ function feeFor(m,lv){if(lv==="thn")return "0đ <small>(miễn học phí, hỗ 
   if(hc.includes("dtts")&&hc.includes("dbkk"))list.push([70,"có thể được giảm 70%"]);
   if(hc.includes("tnld"))list.push([50,"có thể được giảm 50%"]);
   list.sort((a,b)=>b[0]-a[0]);const [pct,why]=list[0]||[0,""];const rate=FEE[fk][m[2]],pay=rate*(100-pct)/100;
-  const n36=!pct&&N36[fk].includes(m[0])&&N36W.includes(w),n36s=w==="Tốt nghiệp THPT (lớp 12)";
+  const n36=!pct&&N36[fk].includes(m[0])&&n36ok(),n36s=w==="Tốt nghiệp THPT (lớp 12)";
   return `${pct===100?"0đ":vnd(pay)+"/tháng"}${pct?` <small>(${why}, giá gốc ${vnd(rate)})</small>`:""}${n36?`<i class="q36">+ ${n36s?"Hỗ trợ":"Có thể được hỗ trợ"} 800.000đ/tháng*</i>`:""}`}
 function quiz(){const r=$("#quiz"),L=qsteps();
   if(qstep<L.length){const S=L[qstep],cur=QA[S.k];
@@ -992,26 +996,28 @@ function quiz(){const r=$("#quiz"),L=qsteps();
       else{QA[S.k]=v;qstep++;quiz();goQuiz()}});
     const nx=r.querySelector(".qnext");if(nx)nx.onclick=()=>{QA[S.k]=QA[S.k]||[];qstep++;quiz()};return}
   // kết quả
-  const sc={};L.forEach(S=>{const v=QA[S.k];(S.multi?[]:[v]).forEach(x=>{const o=S.a.find(o=>o[1]===x);if(o&&o[2])o[2].split(",").forEach((g,i)=>sc[g]=(sc[g]||0)+(i?1:2))})});
-  const tops=Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]);if(!tops.length)tops.push("co");
+  const WT={q1:[3],dt:[3],q2:[2,1],q3:[2,1],q4:[2,1],goal:[1],nuoc:[1]},RK=["q1","dt","q4","q3","q2"],sc={},pri={};
+  L.forEach(S=>{const wt=WT[S.k];if(!wt||S.multi)return;const o=S.a.find(o=>o[1]===QA[S.k]);if(!o||!o[2])return;o[2].split(",").forEach((g,i)=>{sc[g]=(sc[g]||0)+(wt[i]||wt[wt.length-1]);const r=RK.indexOf(S.k);if(i===0&&r>=0)pri[g]=Math.min(pri[g]??9,r)})});
+  const tops=Object.keys(sc).sort((a,b)=>sc[b]-sc[a]||(pri[a]??9)-(pri[b]??9)||ORDER.indexOf(a)-ORDER.indexOf(b)).slice(0,2);if(!tops.length)tops.push("co");
   const w=effWho(),lvs=WHO_LV[w]||["cd","tc","lt"],lv=lvs[0],hc=(QA.hc||"").split(",").filter(Boolean);
-  const sug=[];tops.forEach(g=>{let k=lvs.find(k=>M.some(m=>m[1]===g&&m[LV_IDX[k]]));if(!k)return;M.filter(m=>m[1]===g&&m[LV_IDX[k]]).slice(0,3).forEach(m=>sug.push([m,k]))});
+  const ben=(m,k)=>{if(k==="thn")return 0;const fk=k==="lt"?"cd":k;if(k==="tc"&&["Tốt nghiệp THCS (lớp 9)","Học hết lớp 10, 11 rồi nghỉ"].includes(w))return 0;if(G70[fk].includes(m[0]))return 1;if(n36ok()&&N36[fk].includes(m[0]))return 2;return 3};
+  const sug=[],more=[];tops.forEach(g=>{let k=lvs.find(k=>M.some(m=>m[1]===g&&m[LV_IDX[k]]));if(!k)return;const A2=M.filter(m=>m[1]===g&&m[LV_IDX[k]]).map((m,i)=>[m,i]).sort((a,b)=>ben(a[0],k)-ben(b[0],k)||a[1]-b[1]).map(x=>x[0]);A2.slice(0,3).forEach(m=>sug.push([m,k]));if(A2.length>3)more.push([g,k,A2.slice(3)])});
   if(lvs.includes("thn")&&lvs[0]!=="thn")M.filter(m=>m[6]&&tops.includes(m[1])).forEach(m=>sug.push([m,"thn"]));
   const pol=[];
   if(hc.some(x=>["ngheo","dtts","mc"].includes(x)))pol.push("Có thể được hưởng chính sách nội trú (QĐ 53/2015): học bổng 60–100% mức lương cơ sở mỗi tháng, hỗ trợ đồ dùng cá nhân, tiền đi lại và tiền Tết nếu thuộc diện.");
   if(hc.includes("vh"))pol.push("Thực tập, trải nghiệm tại doanh nghiệp được doanh nghiệp hỗ trợ khoảng 6–10 triệu đồng/tháng; người đã có bằng trung cấp có thể học liên thông, đi làm từ thứ 2 đến thứ 6.");
-  if(N36W.includes(w)&&sug.some(([m,k])=>k!=="thn"&&N36[k==="lt"?"cd":k].includes(m[0])))pol.push("*Hỗ trợ 800.000đ/tháng (NQ 36) áp dụng cho người tốt nghiệp THPT tại Phú Thọ, dưới 25 tuổi, học văn bằng thứ nhất (người có bằng trung cấp học lên cao đẳng vẫn tính là văn bằng thứ nhất), ngành trong danh mục. Không cộng thêm khi đã được miễn, giảm học phí.");
+  if(n36ok()&&sug.some(([m,k])=>k!=="thn"&&N36[k==="lt"?"cd":k].includes(m[0])))pol.push("*Hỗ trợ 800.000đ/tháng (NQ 36) áp dụng cho người tốt nghiệp THPT tại Phú Thọ, dưới 25 tuổi, học văn bằng thứ nhất (người có bằng trung cấp học lên cao đẳng vẫn tính là văn bằng thứ nhất), ngành trong danh mục. Không cộng thêm khi đã được miễn, giảm học phí.");
   if(w==="Bộ đội xuất ngũ")pol.push("Bộ đội xuất ngũ được hỗ trợ học nghề theo quy định; Thầy sẽ hướng dẫn hồ sơ cụ thể.");
   if(w==="Đã có bằng cao đẳng, đại học (văn bằng 2)")pol.push("Nhà trường nhận người đã có bằng cao đẳng, đại học học văn bằng 2.");
   if(QA.tg)pol.push("Một số ngành cao đẳng có lớp học tối, thứ 7, chủ nhật, 30% thời lượng học trực tuyến.");
   pol.push("Hồ sơ miễn, giảm học phí gồm đơn theo mẫu và giấy tờ chứng minh theo Thông báo 119/TB-CĐKTCN.");
   const abroad=QA.goal==="Đi du học"||QA.goal==="Đi làm việc ở nước ngoài";
-  const lvName=k=>LV[k];
+  const lvName=k=>LV[k],qli=(m,k)=>`<li><span><a href="nganh/${PAGES[m[0]]}.html?em=${["tc","thn"].includes(k)&&lvs.includes("thn")?9:12}">${m[0]}</a> <em>${lvName(k)}</em></span><span>${feeFor(m,k)}</span></li>`;
   r.innerHTML=`<div class="qprog"><i style="width:100%"></i></div><div class="qres">
    <div class="qnum">Lộ trình gợi ý cho ${QA.who==="Phụ huynh"?"con anh/chị":"em"}</div>
    <h4>${tops.map(g=>G[g]).join(" · ")}</h4>
    <div class="qblk"><b>Trình độ phù hợp</b><p>${LV_TXT[w]||"Thầy sẽ tư vấn trình độ phù hợp."}</p></div>
-   <div class="qblk"><b>Ngành gợi ý và học phí sau ưu đãi</b><ul class="qlist">${sug.map(([m,k])=>`<li><span>${m[0]} <em>${lvName(k)}</em></span><span>${feeFor(m,k)}</span></li>`).join("")||"<li>Thầy sẽ tư vấn ngành phù hợp.</li>"}</ul></div>
+   <div class="qblk"><b>Ngành gợi ý và học phí sau ưu đãi</b><ul class="qlist">${sug.map(([m,k])=>qli(m,k)).join("")||"<li>Thầy sẽ tư vấn ngành phù hợp.</li>"}</ul>${more.map(([g,k,R2])=>`<details class="qmore"><summary>Xem thêm ${R2.length} ngành ${G[g]}</summary><ul class="qlist">${R2.map(m=>qli(m,k)).join("")}</ul></details>`).join("")}</div>
    ${abroad?`<div class="qblk"><b>Lộ trình ra nước ngoài${QA.nuoc&&QA.nuoc!=="Chưa chọn nước"?" – "+QA.nuoc:""}</b><p>Học nghề tại trường kết hợp học ngoại ngữ: nhà trường dạy miễn phí tiếng Anh, Nhật, Hàn, Trung, Đức và giới thiệu du học, việc làm sau tốt nghiệp. Nhà trường đang hợp tác với Tập đoàn Keio (Nhật Bản) và Tập đoàn Giáo dục Hữu Chi Kiều (Trung Quốc). Điều kiện, chi phí từng chương trình sẽ được tư vấn cụ thể.</p></div>`:""}
    <div class="qblk"><b>Chính sách em có thể được hưởng</b><ul class="qpol">${pol.map(x=>`<li>${x}</li>`).join("")}</ul></div>
    <p class="qnote">Kết quả để tham khảo. Thầy sẽ tư vấn kỹ và xác nhận chính sách khi gọi lại.</p>
