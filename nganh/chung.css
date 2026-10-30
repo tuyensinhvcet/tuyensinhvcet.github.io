@@ -250,4 +250,17 @@ footer .src{margin-top:10px;font-size:.8rem;color:#8e9bbd}
 .prose h2{margin-top:28px}
 .hero.hero1{grid-template-columns:1fr}
 .prose h3{margin:22px 0 6px}
+.tbl td small{display:block;font-weight:600;font-size:.78rem;color:#5a6378}
+.tbl td.n small{color:#0a7a3d}
+.tblw{overflow-x:auto}
+.vd{background:#fff;border:1px solid #e3e9f5;border-radius:16px;padding:16px;box-shadow:0 8px 22px rgba(20,40,90,.06)}
+.vd small{display:block;color:#5a6378}
+.vd b{display:block;color:#274081;margin:4px 0}
+.vd strong{display:block;font-size:1.6rem;font-weight:900;color:#0a7a3d;margin:4px 0}
+.vd strong em{font-size:1rem;font-style:normal;color:#5a6378}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.steps li{counter-increment:s;background:#fff;border:1px solid #e3e9f5;border-radius:16px;padding:16px 16px 16px 56px;position:relative;line-height:1.45}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:50%;background:#274081;color:#fff;font-weight:900;display:grid;place-items:center}
+.steps b{display:block;color:#274081}
+#hsbo>div[hidden]{display:none}
 @media(max-width:760px){.tbl{font-size:.88rem}.tbl th,.tbl td{padding:8px}}
