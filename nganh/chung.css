@@ -263,4 +263,7 @@ footer .src{margin-top:10px;font-size:.8rem;color:#8e9bbd}
 .steps li::before{content:counter(s);position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:50%;background:#274081;color:#fff;font-weight:900;display:grid;place-items:center}
 .steps b{display:block;color:#274081}
 #hsbo>div[hidden]{display:none}
+/* 01/11/2026: khung nền trắng giữ chữ tối khi điện thoại bật chế độ tối */
+.steps li,.tdcards a,.tbl td{color:#121a33}.steps li a,.tbl td a{color:#0d74b8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hot{color:#8fd6f0}}
 @media(max-width:760px){.tbl{font-size:.88rem}.tbl th,.tbl td{padding:8px}}
