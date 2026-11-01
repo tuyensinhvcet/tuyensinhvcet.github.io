@@ -1,3 +1,5 @@
+# Cho phép mọi công cụ tìm kiếm và trợ lý AI đọc trang (Google, Bing, ChatGPT, Gemini, Perplexity...)
 User-agent: *
 Allow: /
+
 Sitemap: https://tuyensinhvcet.vn/sitemap.xml
