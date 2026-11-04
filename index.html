@@ -626,6 +626,20 @@ body.mm-open{overflow:hidden}
  .ng-d{display:none}.ng{padding:14px 14px 12px;gap:6px}
 }
 .qwin{background:linear-gradient(135deg,#fff8e1,#fff);border:2px solid #ffc43d;border-radius:16px;padding:14px 16px;margin:12px 0;color:#121a33}.qwin .qwk{display:inline-block;background:#ffc43d;color:#1b1b1b;font-weight:800;font-size:.78rem;border-radius:99px;padding:3px 10px;text-transform:uppercase}.qwin p{margin:6px 0}.qwin strong{display:block;font-size:1.7rem;line-height:1.15;color:#274081;margin:2px 0}.qwl{list-style:none;margin:8px 0;padding:0;display:grid;gap:6px}.qwl li{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed #f0d58a;padding-top:6px;font-size:.9rem}.qwl b{white-space:nowrap}.qws{font-size:.85rem;color:#5a6378}.qwin small{display:block;color:#5a6378;font-size:.8rem;margin-top:6px}.qwin a{color:#0d74b8;font-weight:700}.qsee2{border:1px solid var(--line,#dde3ee)}.qopts button small{display:block;font-weight:500;opacity:.75;font-size:.8em}
+
+/* Bản 54 */
+@media(max-width:600px){header .hot{display:none!important}header .brand b{font-size:14px;line-height:1.25}header .brand span{font-size:11px}}
+.actbar .in{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:6px}.actbar .in a{min-width:0;justify-content:center;white-space:nowrap}
+.actbar .in a svg{flex:0 0 16px}@media(max-width:420px){.actbar .in a{padding:8px 4px;gap:4px;font-size:.8rem}}
+#tinh-hoc-phi{scroll-margin-top:84px}
+.fab-call{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(140px + env(safe-area-inset-bottom,0px));z-index:44;width:48px;height:48px;border-radius:50%;background:#0a7a3d;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,30,90,.3)}
+.fab-call svg{width:22px;height:22px}
+@media(max-width:520px){.fab-call{left:auto;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(142px + env(safe-area-inset-bottom,0px))}}
+.qnext{position:sticky;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:5;box-shadow:0 8px 20px rgba(18,26,51,.25)}
+@media(max-width:760px){.qnext{width:calc(100% - 64px)}}
+.qcard{margin:12px 0 6px;width:100%;max-width:420px}
+.qlist .qjob{display:block;font-size:.8rem;color:#5b6682;font-weight:500;margin-top:2px}
+.ttbox{max-width:760px;margin:22px auto 0;text-align:left}.ttbox>h3{font-size:1.15rem;margin:0 0 10px;text-align:center}
 </style>
 <link rel="icon" href="anh/icon-nganh-nghe.png">
 </head>
@@ -689,23 +703,9 @@ body.mm-open{overflow:hidden}
   <div class="wrap">
     <span class="eyebrow">Học phí và ưu đãi</span>
     <h2 class="title">Em đóng <span class="grad">bao nhiêu?</span></h2>
-    <p class="sub">Ví dụ theo Thông báo số 127/TB-CĐKTCN về thu học phí học kỳ I năm học 2026 – 2027</p>
+    <p class="sub">Số tiền em đóng mỗi tháng, theo Thông báo số 127/TB-CĐKTCN về thu học phí học kỳ I năm học 2026 – 2027</p>
     <div class="vds"><div class="vd"><span class="vd-k">Học xong lớp 9</span><p>Học trung cấp</p><b>0đ</b><small>Miễn 100% học phí (Nghị định 238/2025/NĐ-CP)</small></div><div class="vd"><span class="vd-k">Học xong lớp 12</span><p>Cao đẳng ngành kỹ thuật như Công nghệ ô tô, Điện công nghiệp</p><b>480.000đ</b><small>mỗi tháng, đã giảm 70% (mức thu 1.600.000đ)</small></div><div class="vd"><span class="vd-k">Học xong lớp 12</span><p>Cao đẳng Logistics, Thương mại điện tử</p><b>1.500.000đ</b><small>mỗi tháng; nhận lại 800.000đ/tháng nếu thường trú Phú Thọ, có bằng THPT do Phú Thọ cấp, dưới 25 tuổi (NQ 36/2025)</small></div></div>
-    <details class="feecalc"><summary>Tính học phí cho đúng ngành của em</summary>
-<div class="fee">
-      <div class="in">
-        <div><div style="font-size:.88rem;font-weight:600;margin-bottom:6px">Trình độ</div><div class="seg" id="fee-lv"><button data-v="cd" aria-pressed="true">Cao đẳng / Liên thông</button><button data-v="tc" aria-pressed="false">Trung cấp</button></div></div>
-        <label>Ngành học<select id="fee-major"></select></label>
-        <label>Diện chính sách của em<select id="fee-cut"><option value="0">Không thuộc diện miễn, giảm</option><option value="thcs">Tốt nghiệp THCS học trung cấp: miễn 100%</option><option value="100">Khuyết tật, mồ côi, người có công, dân tộc thiểu số hộ nghèo/cận nghèo: miễn 100%</option><option value="70">Dân tộc thiểu số ở thôn, xã đặc biệt khó khăn: giảm 70%</option><option value="50">Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp: giảm 50%</option></select></label>
-        <p class="note" id="fee-note"></p>
-      </div>
-      <div class="out" aria-live="polite">
-        <div><div class="k">Học phí mỗi tháng</div><div class="v" id="fee-month">–</div></div>
-        <div class="lines" id="fee-lines"></div>
-        <p class="src">Mức thu theo nhóm ngành; học kỳ 5 tháng. Diện miễn, giảm cụ thể được xác nhận khi nộp hồ sơ.</p>
-      </div>
-    </div>
-    </details>
+    <div class="ttbox" id="tinh-hoc-phi"><h3>Tính học phí cho đúng ngành và hoàn cảnh của em</h3><div data-tt></div></div>
     <div style="margin-top:22px"><a class="btn btn-g" href="mien-giam-hoc-phi.html">Em được miễn, giảm bao nhiêu?</a> <a class="btn btn-n" href="hoc-phi.html">Học phí từng ngành</a></div>
   </div>
 </section>
@@ -810,16 +810,16 @@ body.mm-open{overflow:hidden}
       <nav class="fn" aria-label="Trình độ tuyển sinh" style="margin-bottom:10px"><a href="trinh-do/trung-cap.html">Trung cấp + THPT</a><a href="trinh-do/trung-hoc-nghe.html">Trung học nghề</a><a href="trinh-do/cao-dang.html">Cao đẳng chính quy</a><a href="trinh-do/lien-thong.html">Liên thông cao đẳng</a></nav><nav class="fn" aria-label="Các ngành đào tạo"><a href="nganh/cong-nghe-o-to.html">Công nghệ ô tô</a><a href="nganh/cong-nghe-ky-thuat-co-khi.html">Công nghệ kỹ thuật cơ khí</a><a href="nganh/cat-got-kim-loai.html">Cắt gọt kim loại</a><a href="nganh/co-khi-che-tao.html">Cơ khí chế tạo</a><a href="nganh/han.html">Hàn</a><a href="nganh/co-dien-tu.html">Cơ điện tử</a><a href="nganh/cong-nghe-ky-thuat-dien-dien-tu.html">Công nghệ kỹ thuật điện, điện tử</a><a href="nganh/cong-nghe-ky-thuat-dieu-khien-va-tu-dong-hoa.html">Công nghệ kỹ thuật điều khiển và tự động hóa</a><a href="nganh/dien-cong-nghiep.html">Điện công nghiệp</a><a href="nganh/dien-cong-nghiep-va-dan-dung.html">Điện công nghiệp và dân dụng</a><a href="nganh/dien-tu-cong-nghiep.html">Điện tử công nghiệp</a><a href="nganh/cong-nghe-vi-mach-ban-dan.html">Công nghệ vi mạch bán dẫn</a><a href="nganh/ky-thuat-may-lanh-va-dieu-hoa-khong-khi.html">Kỹ thuật máy lạnh và điều hòa không khí</a><a href="nganh/cong-nghe-co-khi-suoi-am-va-dieu-hoa-khong-khi.html">Công nghệ cơ khí, sưởi ấm và điều hòa không khí</a><a href="nganh/truyen-thong-va-mang-may-tinh.html">Truyền thông và mạng máy tính</a><a href="nganh/cong-nghe-thong-tin-ung-dung-phan-mem.html">Công nghệ thông tin (Ứng dụng phần mềm)</a><a href="nganh/ky-thuat-sua-chua-lap-rap-may-tinh.html">Kỹ thuật sửa chữa, lắp ráp máy tính</a><a href="nganh/tin-hoc-van-phong.html">Tin học văn phòng</a><a href="nganh/thuong-mai-dien-tu.html">Thương mại điện tử</a><a href="nganh/marketing-thuong-mai.html">Marketing thương mại</a><a href="nganh/logistics.html">Logistics</a><a href="nganh/ke-toan.html">Kế toán</a><a href="nganh/ke-toan-doanh-nghiep.html">Kế toán doanh nghiệp</a><a href="nganh/quan-tri-kinh-doanh.html">Quản trị kinh doanh</a><a href="nganh/quan-tri-khach-san.html">Quản trị khách sạn</a><a href="nganh/ky-thuat-che-bien-mon-an.html">Kỹ thuật chế biến món ăn</a><a href="nganh/cham-soc-sac-dep.html">Chăm sóc sắc đẹp</a><a href="nganh/may-thoi-trang.html">May thời trang</a><a href="nganh/dich-vu-thu-y.html">Dịch vụ thú y</a><a href="nganh/thu-y.html">Thú y</a><a href="nganh/chan-nuoi-thu-y.html">Chăn nuôi – thú y</a><a href="nganh/tieng-trung-quoc.html">Tiếng Trung Quốc</a></nav>
     </div>
   </div>
-  <div class="wrap legal"><nav class="fn" aria-label="Liên kết" style="margin-bottom:8px"><a href="hoc-phi.html">Học phí</a><a href="ho-so-tuyen-sinh.html">Hồ sơ tuyển sinh</a><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></nav>* Giảm 70% học phí áp dụng cho người học thuộc diện theo Nghị định 238/2025/NĐ-CP. Thông tin theo các thông báo tuyển sinh và thu học phí năm học 2026 – 2027 của Nhà trường.<p class="upd" style="font-size:.8rem;opacity:.75;margin:10px 0 0">Thông tin cập nhật ngày 03/11/2026</p></div>
+  <div class="wrap legal"><nav class="fn" aria-label="Liên kết" style="margin-bottom:8px"><a href="hoc-phi.html">Học phí</a><a href="ho-so-tuyen-sinh.html">Hồ sơ tuyển sinh</a><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></nav>* Giảm 70% học phí áp dụng cho người học thuộc diện theo Nghị định 238/2025/NĐ-CP. Thông tin theo các thông báo tuyển sinh và thu học phí năm học 2026 – 2027 của Nhà trường.<p class="upd" style="font-size:.8rem;opacity:.75;margin:10px 0 0">Thông tin cập nhật ngày 04/11/2026</p></div>
 </footer>
 
 <div class="actbar"><div class="in">
-  <a href="ho-so-tuyen-sinh.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Hồ sơ<span class="x"> tuyển sinh</span></a>
-  <a href="nop-ho-so.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Nộp hồ sơ<span class="x"> online</span></a>
-  <a href="#hoc-phi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2"/></svg>Tính học phí</a>
-  <a href="https://zalo.me/0989465017" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.7 7.1L3 21l1.9-6.3A8 8 0 1 1 21 12z"/></svg>Zalo<span class="x"> tư vấn</span></a>
+  <a href="#chuong-trinh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Ngành nghề</a>
+  <a href="#tinh-hoc-phi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h2"/></svg>Tính học phí</a>
+  <a href="#dang-ky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.7 7.1L3 21l1.9-6.3A8 8 0 1 1 21 12z"/></svg>Đăng ký tư vấn</a>
 </div></div>
 
+<a class="fab-call" href="tel:0989465017" aria-label="Gọi tư vấn 0989 465 017"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a>
 <a class="bubble" href="https://zalo.me/0989465017" target="_blank" rel="noopener" aria-label="Nhắn Zalo tư vấn 0989 465 017"><span class="t">Em cần hỗ trợ?<small>Nhắn Zalo cho thầy nhé!</small></span><span class="z">Zalo</span></a>
 
 <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-label="Đăng ký nhận thông tin">
@@ -842,6 +842,7 @@ body.mm-open{overflow:hidden}
 </div>
 <div class="toast" id="toast" hidden></div>
 
+<script src="tinh-tien.js"></script>
 <script>
 // Link theo kênh: ?nguon=tiktok, ?gt=ten-nguoi-gioi-thieu → ghi vào cột Nguồn trên Google Sheets
 (function(){try{const q=new URLSearchParams(location.search),c=s=>String(s).replace(/[^\p{L}\p{N} ._-]/gu,"").slice(0,40),n=q.get("nguon"),g=q.get("gt");if(n)localStorage.setItem("vcet-nguon",c(n));if(g)localStorage.setItem("vcet-gt",c(g));if(!n&&!localStorage.getItem("vcet-nguon")&&document.referrer){const h=new URL(document.referrer).hostname;if(!/tuyensinhvcet/.test(h))localStorage.setItem("vcet-nguon",h.replace(/^(www|m|l|lm)\./,""))}}catch(e){}})();
@@ -979,14 +980,12 @@ const QS=[
  {k:"q4",when:A=>HOB(A)||DLC(A),q:"Điểm mạnh của em là gì?",a:[["Khéo tay, thích tháo lắp","a","co,dien"],["Tỉ mỉ, cẩn thận với chi tiết nhỏ","b","dien,it"],["Giỏi dùng máy tính, công nghệ","c","it"],["Giao tiếp tốt, thích gặp gỡ mọi người","d","kd,dv"],["Có mắt thẩm mỹ, sáng tạo","e","dv,it"],["Yêu động vật, kiên nhẫn chăm sóc","f","ny"],["Nhớ từ mới, học ngoại ngữ nhanh","g","nn"]]},
  {k:"goal",when:HOB,q:"Ra trường, em mong muốn điều gì nhất?",a:[["Đi làm ngay ở khu công nghiệp","Đi làm ngay ở khu công nghiệp","co,dien"],["Làm cho doanh nghiệp nước ngoài tại Việt Nam","Làm cho doanh nghiệp nước ngoài","nn,it"],["Mở cửa hàng, kinh doanh riêng","Kinh doanh riêng","kd,dv,ny"],["Học tiếp lên đại học","Học tiếp lên đại học",""],["Đi du học","Đi du học","nn"],["Đi làm việc ở nước ngoài","Đi làm việc ở nước ngoài","co,dv,dien"]]},
  {k:"nuoc",q:"Em quan tâm nước nào?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Nhật Bản","Nhật Bản","co,dv"],["Hàn Quốc","Hàn Quốc","co,dien"],["Trung Quốc","Trung Quốc","nn"],["Đức","Đức","co,dien"],["Chưa biết","Chưa chọn nước",""]]},
- {k:"ngoaingu",q:"Em đã biết ngoại ngữ của nước đó chưa?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Chưa biết","Chưa biết ngoại ngữ"],["Biết chút ít","Biết chút ít ngoại ngữ"],["Đã có chứng chỉ","Đã có chứng chỉ ngoại ngữ"]]},
- {k:"khi",q:"Em muốn đi lúc nào?",when:A=>A.goal==="Đi du học"||A.goal==="Đi làm việc ở nước ngoài",a:[["Ngay sau khi tốt nghiệp","Đi ngay sau tốt nghiệp"],["Làm việc vài năm rồi mới đi","Đi sau vài năm làm việc"]]},
  {k:"pt",q:"Em thường trú và học THPT ở tỉnh nào?",sub:"Để biết em có được hỗ trợ 800.000đ/tháng theo Nghị quyết 36/2025 của HĐND tỉnh Phú Thọ không.",when:L12,a:[["Phú Thọ (kể cả Vĩnh Phúc, Hòa Bình cũ)","pt"],["Tỉnh, thành phố khác","khac"]]},
  {k:"pt",q:"Em (anh/chị) có bằng tốt nghiệp THPT không? Do tỉnh nào cấp, thường trú ở đâu?",sub:"Để biết có được hỗ trợ 800.000đ/tháng theo Nghị quyết 36/2025 của HĐND tỉnh Phú Thọ không.",when:A=>TCF(A)||(DL(A)&&A.bang==="thpt"),a:[["Có, bằng do Phú Thọ cấp (kể cả Vĩnh Phúc, Hòa Bình cũ) và đang thường trú tại Phú Thọ","pt"],["Có, nhưng bằng do tỉnh khác cấp hoặc không thường trú tại Phú Thọ","khac"],["Chưa có bằng tốt nghiệp THPT","chua"]]},
  {k:"tuoi",q:"Năm nay em (anh/chị) bao nhiêu tuổi?",when:A=>A.pt==="pt"&&!L12(A),a:[["Dưới 25 tuổi","duoi25"],["Từ 25 tuổi trở lên","tren25"]]},
  {k:"dtoc",q:"Em (anh/chị) là người dân tộc nào?",sub:"Để tính đúng miễn, giảm học phí và học bổng nội trú. Không bắt buộc.",a:[["Dân tộc Kinh","kinh"],["Dân tộc thiểu số","dtts","","Tày, Mường, Dao, Nùng, Thái, Mông, Sán Dìu, Sán Chay…"],["Dân tộc thiểu số rất ít người","dttsit","","Ơ Đu, Si La, Pu Péo, Cống, Bố Y, Lô Lô, La Ha, Pà Thẻn…"],["Không muốn trả lời","no"]]},
- {k:"hc",multi:1,when:A=>A.dtoc==="dtts"||A.dtoc==="dttsit",q:"Em (anh/chị) thuộc những trường hợp nào?",sub:"Chọn tất cả trường hợp đúng rồi bấm Tiếp tục. Thông tin chỉ dùng để tính quyền lợi.",a:[["Dân tộc thiểu số, gia đình thuộc hộ nghèo hoặc hộ cận nghèo","ngheo"],["Dân tộc thiểu số, em và cha mẹ thường trú ở thôn đặc biệt khó khăn, xã khu vực III","dbkk"],["Dân tộc thiểu số, là người khuyết tật","kt"],["Tốt nghiệp trường phổ thông dân tộc nội trú","ptdtnt"],["Mồ côi cả cha lẫn mẹ, không nơi nương tựa","mocoi"],["Người có công hoặc con của người có công với cách mạng","ncc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp, đang hưởng trợ cấp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Không thuộc trường hợp nào","bt"],["Không muốn trả lời","no"]]},
- {k:"hc",multi:1,when:A=>A.dtoc!=="dtts"&&A.dtoc!=="dttsit",q:"Em (anh/chị) thuộc những trường hợp nào?",sub:"Chọn tất cả trường hợp đúng rồi bấm Tiếp tục. Thông tin chỉ dùng để tính quyền lợi.",a:[["Gia đình thuộc hộ nghèo hoặc hộ cận nghèo","ngheo"],["Gia đình thường trú ở vùng đặc biệt khó khăn, vùng dân tộc thiểu số và miền núi, biên giới, hải đảo","dbkk"],["Người khuyết tật","kt"],["Tốt nghiệp trường phổ thông dân tộc nội trú","ptdtnt"],["Mồ côi cả cha lẫn mẹ, không nơi nương tựa","mocoi"],["Người có công hoặc con của người có công với cách mạng","ncc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp, đang hưởng trợ cấp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Không thuộc trường hợp nào","bt"],["Không muốn trả lời","no"]]},
+ {k:"hc",multi:1,when:A=>A.dtoc==="dtts"||A.dtoc==="dttsit",q:"Em (anh/chị) thuộc những trường hợp nào?",sub:"Không thuộc trường hợp nào thì bấm ô đầu tiên. Có nhiều trường hợp thì chọn hết rồi bấm Tiếp tục.",a:[["Không thuộc trường hợp nào","bt"],["Dân tộc thiểu số, gia đình thuộc hộ nghèo hoặc hộ cận nghèo","ngheo"],["Dân tộc thiểu số, em và cha mẹ thường trú ở thôn đặc biệt khó khăn, xã khu vực III","dbkk"],["Dân tộc thiểu số, là người khuyết tật","kt"],["Tốt nghiệp trường phổ thông dân tộc nội trú","ptdtnt"],["Mồ côi cả cha lẫn mẹ, không nơi nương tựa","mocoi"],["Người có công hoặc con của người có công với cách mạng","ncc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp, đang hưởng trợ cấp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Không muốn trả lời","no"]]},
+ {k:"hc",multi:1,when:A=>A.dtoc!=="dtts"&&A.dtoc!=="dttsit",q:"Em (anh/chị) thuộc những trường hợp nào?",sub:"Không thuộc trường hợp nào thì bấm ô đầu tiên. Có nhiều trường hợp thì chọn hết rồi bấm Tiếp tục.",a:[["Không thuộc trường hợp nào","bt"],["Gia đình thuộc hộ nghèo hoặc hộ cận nghèo","ngheo"],["Gia đình thường trú ở vùng đặc biệt khó khăn, vùng dân tộc thiểu số và miền núi, biên giới, hải đảo","dbkk"],["Người khuyết tật","kt"],["Tốt nghiệp trường phổ thông dân tộc nội trú","ptdtnt"],["Mồ côi cả cha lẫn mẹ, không nơi nương tựa","mocoi"],["Người có công hoặc con của người có công với cách mạng","ncc"],["Cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp, đang hưởng trợ cấp","tnld"],["Cần vừa học vừa có thu nhập","vh"],["Không muốn trả lời","no"]]},
  {k:"tg",q:"Anh/chị có thể học vào thời gian nào?",when:A=>A.who==="Người đi làm"||A.who==="Bộ đội xuất ngũ",a:[["Ban ngày","Học ban ngày"],["Buổi tối","Học buổi tối"],["Thứ 7, chủ nhật","Học thứ 7, chủ nhật"]]}
 ];
 const HC_TXT={kinh:"Dân tộc Kinh",dttsit:"Dân tộc thiểu số rất ít người",kt:"Người khuyết tật",mocoi:"Mồ côi cả cha lẫn mẹ",ncc:"Người có công/con người có công",ptdtnt:"Tốt nghiệp trường PTDTNT",ngheo:"Hộ nghèo/cận nghèo",dtts:"Dân tộc thiểu số",dbkk:"Ở thôn, xã đặc biệt khó khăn",mc:"Mồ côi/khuyết tật/con người có công",tnld:"Cha hoặc mẹ bị TNLĐ/bệnh nghề nghiệp",vh:"Cần vừa học vừa có thu nhập"};
@@ -995,49 +994,21 @@ let QA={},qstep=0;
 const qsteps=()=>QS.filter(S=>!S.when||S.when(QA));
 const effWho=()=>QA.who==="Phụ huynh"?(QA.con||"Phụ huynh"):QA.who;
 const N36W=["Tốt nghiệp THPT (lớp 12)","Đã có bằng trung cấp","Người đi làm","Bộ đội xuất ngũ","Chưa rõ, cần tư vấn"];
-function n36ok(){return N36W.includes(effWho())&&!["thcs","cddh"].includes(QA.bang)&&QA.pt==="pt"&&QA.tuoi!=="tren25"}
+function n36ok(){return TT.n36ok(QA)}
 const QL_LCS=2530000,QL_HT=800000,QL_TCD=30,QL_TTC=20,QL_THP=10,QL_TQD=12,QL_DD=1000000;
 const qtr=n=>n>=1e6?(Math.round(n/1e5)/10).toString().replace('.',',')+' triệu đồng':vnd(n);
 // cờ đối tượng từ 2 câu "dân tộc" + "hoàn cảnh"
-function qflags(){const f=[],d=QA.dtoc;if(d==="dtts"||d==="dttsit")f.push("dtts");if(d==="dttsit")f.push("dttsit");if(d==="kinh")f.push("kinh");
-  const h=QA.hc;(Array.isArray(h)?h:(h?String(h).split(","):[])).forEach(x=>String(x).split(",").forEach(y=>{if(y)f.push(y)}));return [...new Set(f)]}
-const qthcs=lv=>{const w=effWho();return lv==="tc"&&(w==="Tốt nghiệp THCS (lớp 9)"||w==="Học hết lớp 10, 11 rồi nghỉ"||QA.bang==="thcs")};
+function qflags(){return TT.qflags(QA)}
+const qthcs=lv=>TT.qthcs(lv,QA);
 // Một chỗ tính cho mọi nơi: NĐ 238 (mức cao nhất), NQ 36 (không cộng khi đã miễn/giảm), QĐ 53
-function qcs(m,lv){const f=qflags(),fk=lv==="lt"?"cd":lv;
-  if(lv==="thn")return{thn:1,rate:0,pct:100,why:"miễn học phí – chương trình Trung học nghề",n36:0,qd:0};
-  const rate=FEE[fk][m[2]];
-  const vb2=QA.bang==="cddh",L=[];
-  if(qthcs(lv))L.push([100,"miễn học phí – tốt nghiệp THCS học trung cấp (NĐ 238, Điều 15)"]);
-  if(f.includes("ncc"))L.push([100,"miễn học phí theo chế độ người có công (NĐ 238, Điều 15)"]);
-  if(f.includes("kt"))L.push([100,"miễn học phí – người khuyết tật (NĐ 238, Điều 15)"]);
-  if(f.includes("mocoi"))L.push([100,"miễn học phí – mồ côi cả cha lẫn mẹ (NĐ 238, Điều 15)"]);
-  if(f.includes("dtts")&&f.includes("ngheo"))L.push([100,"miễn học phí – dân tộc thiểu số hộ nghèo, cận nghèo (NĐ 238, Điều 15)"]);
-  if(f.includes("dttsit"))L.push([100,"miễn học phí – dân tộc thiểu số rất ít người ở vùng khó khăn (NĐ 238, Điều 15)"]);
-  if(G70[fk].includes(m[0]))L.push([70,"giảm 70% – ngành nặng nhọc, độc hại (NĐ 238, Điều 16)"]);
-  if(f.includes("dtts")&&!f.includes("dttsit")&&f.includes("dbkk"))L.push([70,"giảm 70% – dân tộc thiểu số ở thôn, xã đặc biệt khó khăn (NĐ 238, Điều 16)"]);
-  if(f.includes("tnld"))L.push([50,"giảm 50% – cha hoặc mẹ bị tai nạn lao động, bệnh nghề nghiệp (NĐ 238, Điều 16)"]);
-  L.sort((a,b)=>b[0]-a[0]);const [pct,why]=vb2?[0,"văn bằng 2 không được miễn, giảm học phí"]:(L[0]||[0,""]);
-  let qd=0,qdwhy="";
-  if(f.includes("dtts")&&(f.includes("ngheo")||f.includes("kt"))){qd=1;qdwhy=f.includes("ngheo")?"dân tộc thiểu số hộ nghèo, cận nghèo":"dân tộc thiểu số khuyết tật"}
-  else if(f.includes("ptdtnt")){qd=.8;qdwhy="tốt nghiệp trường phổ thông dân tộc nội trú"}
-  else if(!f.includes("dtts")&&f.includes("kt")&&f.includes("dbkk")){qd=.8;qdwhy="người khuyết tật ở vùng đặc biệt khó khăn"}
-  else if(!f.includes("dtts")&&f.includes("ngheo")&&f.includes("dbkk")){qd=.6;qdwhy="hộ nghèo, cận nghèo ở vùng đặc biệt khó khăn"}
-  const n36ng=!vb2&&!pct&&N36[fk].includes(m[0])&&n36ok();
-  return{rate,pct,why,vb2,n36:n36ng?1:0,qd,qdwhy}}
+function qcs(m,lv){return TT.qcs(m,lv,QA)}
 function feeFor(m,lv){const c=qcs(m,lv);
   if(c.thn)return "0đ <small>(miễn học phí – chương trình Trung học nghề)</small>";
   if(c.vb2)return vnd(c.rate)+"/tháng <small>(văn bằng 2 không được miễn, giảm học phí)</small>"+(c.qd&&QL_LCS?`<i class="q36">+ Học bổng nội trú khoảng ${vnd(QL_LCS*c.qd)}/tháng</i>`:"");
   const pay=c.rate*(100-c.pct)/100,n36s=effWho()==="Tốt nghiệp THPT (lớp 12)";
   return `${c.pct===100?"0đ":vnd(pay)+"/tháng"}${c.pct?` <small>(${c.why}; mức thu ${vnd(c.rate)})</small>`:""}${c.n36?`<i class="q36">+ ${n36s?"Hỗ trợ":"Có thể được hỗ trợ"} 800.000đ/tháng*</i>`:""}${c.qd&&QL_LCS?`<i class="q36">+ Học bổng nội trú khoảng ${vnd(QL_LCS*c.qd)}/tháng</i>`:""}`}
 // Tổng tiền: học phí được miễn/giảm hoặc hỗ trợ NQ 36 (10 tháng/năm), học bổng nội trú (12 tháng/năm)
-function qloi(m,k){const c=qcs(m,k);if(c.thn)return null;
-  const fk=k==="lt"?"cd":k,y=k==="cd"?((m[3]&&m[3].y)||3):k==="lt"?1:(qthcs(k)?3:2);
-  let hp=0,hpK=0,txt="";
-  if(c.pct){hp=c.rate*c.pct/100*QL_THP;hpK=hp*y;txt=c.pct===100?"Miễn học phí":"Giảm "+c.pct+"% học phí"}
-  else if(c.n36){hp=QL_HT*QL_THP;hpK=QL_HT*Math.min(y*QL_THP,fk==="tc"?QL_TTC:QL_TCD);txt="Hỗ trợ 800.000đ/tháng (NQ 36)"}
-  const qn=c.qd&&QL_LCS?QL_LCS*c.qd*QL_TQD:0,qk=qn?qn*y+QL_DD:0;
-  if(!hpK&&!qk)return null;
-  return{c,y,hp,hpK,txt,qn,qk,dong:c.rate*(100-c.pct)/100,lai:c.n36?QL_HT:0,nam:hp+qn,khoa:hpK+qk}}
+function qloi(m,k){return TT.qloi(m,k,QA)}
 function qwin(sug){let best=null;sug.forEach(([m,k])=>{const b=qloi(m,k);if(b&&(!best||b.khoa>best.b.khoa))best={m,k,b}});
   if(!best)return "";const b=best.b;
   const dong=b.c.pct===100?"0đ":vnd(b.dong);
@@ -1047,19 +1018,25 @@ function qwin(sug){let best=null;sug.forEach(([m,k])=>{const b=qloi(m,k);if(b&&(
   ${b.c.qd?`<p class="qws">Học bổng nội trú (QĐ 53) và hỗ trợ học phí là hai khoản khác nhau, được nhận cùng lúc. Kèm theo: tiền đi lại 200.000–300.000đ/năm, tiền Tết 150.000đ nếu ở lại trường.</p>`:""}
   <p class="qws">Bảo hiểm y tế học sinh, sinh viên: Nhà nước hỗ trợ 50%, em đóng khoảng 683.100đ/năm; nếu đã có thẻ BHYT do Nhà nước đóng (hộ nghèo, dân tộc thiểu số ở vùng khó khăn…) thì không phải mua thêm.</p>
   <small>Tính theo mức thu năm học 2026 – 2027, lương cơ sở ${vnd(QL_LCS)}, học đủ thời gian; Nhà trường xét theo hồ sơ. <a href="mien-giam-hoc-phi.html">Xem đủ quyền lợi →</a></small></div>`}
+// Thẻ nghề: 3 điểm mạnh rút từ câu trả lời
+const MANH={q4:{a:"Khéo tay",b:"Tỉ mỉ, cẩn thận",c:"Giỏi công nghệ",d:"Giao tiếp tốt",e:"Có mắt thẩm mỹ",f:"Kiên nhẫn, yêu động vật",g:"Học ngoại ngữ nhanh"},q1:{a:"Mê máy móc",b:"Mê điện, điện tử",c:"Mê máy tính",d:"Có máu kinh doanh",e:"Khéo nấu nướng, làm đẹp",f:"Yêu thiên nhiên, vật nuôi",g:"Mê ngoại ngữ"},q2:{a:"Giỏi Vật lý",b:"Giỏi Toán",c:"Giỏi Tin học",d:"Giỏi Công nghệ",e:"Năng khiếu nghệ thuật",f:"Giỏi Sinh, Hóa",g:"Giỏi Ngoại ngữ, Văn"},goal:{"Đi làm ngay ở khu công nghiệp":"Muốn đi làm ngay","Làm cho doanh nghiệp nước ngoài":"Muốn làm công ty nước ngoài","Kinh doanh riêng":"Muốn kinh doanh riêng","Học tiếp lên đại học":"Muốn học lên đại học","Đi du học":"Muốn đi du học","Đi làm việc ở nước ngoài":"Muốn làm việc ở nước ngoài"}};
+const MANH0={co:["Khéo tay","Mê máy móc","Thích thực hành"],dien:["Tỉ mỉ, cẩn thận","Mê điện, điện tử","Thích thực hành"],it:["Giỏi công nghệ","Tư duy logic","Thích sáng tạo"],kd:["Giao tiếp tốt","Nhanh nhạy","Có máu kinh doanh"],dv:["Khéo léo","Có mắt thẩm mỹ","Chu đáo"],ny:["Yêu động vật","Kiên nhẫn","Chịu khó"],nn:["Học ngoại ngữ nhanh","Giao tiếp tốt","Thích khám phá"]};
+function qmanh(g){const L=[MANH.q4[QA.q4],MANH.q1[QA.q1==="h"?QA.dt:QA.q1],MANH.goal[QA.goal]||MANH.q2[QA.q2]].filter(Boolean);(MANH0[g]||MANH0.co).forEach(x=>{if(L.length<3&&!L.includes(x))L.push(x)});return [...new Set(L)].slice(0,3)}
+function moThe(s){if(!s)return;const [m,k]=s,d={nganh:m[0],k,g:m[1],nhom:G[m[1]],lvTen:LV[k],manh:qmanh(m[1])};
+ if(window.TheNghe)return TheNghe.mo(d);const sc=document.createElement("script");sc.src="the-nghe.js";sc.onload=()=>TheNghe.mo(d);document.head.appendChild(sc)}
 function quiz(){const r=$("#quiz"),L=qsteps();
   if(qstep<L.length){const S=L[qstep],cur=QA[S.k];
     r.innerHTML=`<div class="qprog"><i style="width:${qstep/L.length*100}%"></i></div><div class="qnum">Bước ${qstep+1}/${L.length}${qstep?` · <button type="button" class="qback">← Quay lại</button>`:""}</div>${qben()}<div class="qtext">${S.q}</div>${S.sub?`<p class="qsub">${S.sub}</p>`:""}<div class="qopts${S.big?" big":""}">${S.a.map(o=>`<button type="button" data-v="${o[1]}"${S.multi?` aria-pressed="${(cur||[]).includes(o[1])}"`:""}>${o[0]}${o[3]?`<small>${o[3]}</small>`:""}</button>`).join("")}</div>${S.multi?`<button type="button" class="btn btn-n qnext">Tiếp tục →</button>`:""}`;
     const bk=r.querySelector(".qback");if(bk)bk.onclick=()=>{qstep--;quiz();goQuiz()};
     r.querySelectorAll(".qopts button").forEach(b=>b.onclick=()=>{const v=b.dataset.v;
-      if(S.multi){let a=QA[S.k]||[];if(v==="no"||v==="bt")a=a.includes(v)?[]:[v];else{a=a.filter(x=>x!=="no"&&x!=="bt");a=a.includes(v)?a.filter(x=>x!==v):a.concat(v)}QA[S.k]=a;r.querySelectorAll(".qopts button").forEach(x=>x.setAttribute("aria-pressed",a.includes(x.dataset.v)))}
-      else{QA[S.k]=v;qstep++;quiz();goQuiz()}});
-    const nx=r.querySelector(".qnext");if(nx)nx.onclick=()=>{QA[S.k]=QA[S.k]||[];qstep++;quiz()};return}
+      if(S.multi){let a=QA[S.k]||[];if(v==="no"||v==="bt"){QA[S.k]=[v];qstep++;quiz();goQuiz();return}else{a=a.filter(x=>x!=="no"&&x!=="bt");a=a.includes(v)?a.filter(x=>x!==v):a.concat(v)}QA[S.k]=a;r.querySelectorAll(".qopts button").forEach(x=>x.setAttribute("aria-pressed",a.includes(x.dataset.v)));const nx2=r.querySelector(".qnext");if(nx2)nx2.textContent=a.length?`Tiếp tục (đã chọn ${a.length}) →`:"Tiếp tục →"}
+      else{QA[S.k]=v;qstep++;if(qstep===1)try{goatcounter.count({path:"bat-dau-trac-nghiem",title:"Bắt đầu trắc nghiệm",event:true})}catch(_){}quiz();goQuiz()}});
+    const nx=r.querySelector(".qnext");if(nx)nx.onclick=()=>{QA[S.k]=(QA[S.k]&&QA[S.k].length)?QA[S.k]:["bt"];qstep++;quiz();goQuiz()};return}
   // kết quả
   const WT={q1:[3],dt:[3],q2:[2,1],q3:[2,1],q4:[2,1],goal:[1],nuoc:[1]},RK=["q1","dt","q4","q3","q2"],sc={},pri={};
   L.forEach(S=>{const wt=WT[S.k];if(!wt||S.multi)return;const o=S.a.find(o=>o[1]===QA[S.k]);if(!o||!o[2])return;o[2].split(",").forEach((g,i)=>{sc[g]=(sc[g]||0)+(wt[i]||wt[wt.length-1]);const r=RK.indexOf(S.k);if(i===0&&r>=0)pri[g]=Math.min(pri[g]??9,r)})});
   const tops=Object.keys(sc).sort((a,b)=>sc[b]-sc[a]||(pri[a]??9)-(pri[b]??9)||ORDER.indexOf(a)-ORDER.indexOf(b)).slice(0,2);if(!tops.length)tops.push("co");if(TCF(QA)&&QA.huong==="lt"&&QA.nhomtc)tops.splice(0,9,QA.nhomtc);else if(DL(QA)&&!TCF(QA)&&QA.lv&&QA.lv!=="chua")tops.splice(0,9,...(QA.lv==="cn"?["co","dien"]:[QA.lv]));
-  const w=effWho(),lvs=LVS(),lv=lvs[0],hc=qflags();
+  const w=effWho(),lvs=LVS(),lv=lvs[0],hc=qflags();try{TT.save(QA)}catch(_){}
   const ben=(m,k)=>{if(k==="thn")return 0;const fk=k==="lt"?"cd":k;if(k==="tc"&&(["Tốt nghiệp THCS (lớp 9)","Học hết lớp 10, 11 rồi nghỉ"].includes(w)||QA.bang==="thcs"))return 0;if(G70[fk].includes(m[0]))return 1;if(n36ok()&&N36[fk].includes(m[0]))return 2;return 3};
   const sug=[],more=[];tops.forEach(g=>{let k=lvs.find(k=>M.some(m=>m[1]===g&&m[LV_IDX[k]]));if(!k)return;const A2=M.filter(m=>m[1]===g&&m[LV_IDX[k]]).map((m,i)=>[m,i]).sort((a,b)=>ben(a[0],k)-ben(b[0],k)||a[1]-b[1]).map(x=>x[0]);A2.slice(0,3).forEach(m=>sug.push([m,k]));if(A2.length>3)more.push([g,k,A2.slice(3)])});
   if(lvs.includes("thn")&&lvs[0]!=="thn")M.filter(m=>m[6]&&tops.includes(m[1])).forEach(m=>sug.push([m,"thn"]));
@@ -1072,10 +1049,10 @@ function quiz(){const r=$("#quiz"),L=qsteps();
   if(QA.tg)pol.push("Một số ngành cao đẳng có lớp học buổi tối, thứ 7, chủ nhật, kết hợp 30% thời lượng học trực tuyến; thầy cô tư vấn lịch học cụ thể.");
   if(QA.bang!=="cddh")pol.push('Hồ sơ miễn, giảm học phí gồm đơn theo mẫu và giấy tờ chứng minh theo Thông báo 119/TB-CĐKTCN, nộp trong 45 ngày làm việc sau khi nhập học. <a href="mien-giam-hoc-phi.html">Xem em được miễn, giảm bao nhiêu →</a>');
   const abroad=QA.goal==="Đi du học"||QA.goal==="Đi làm việc ở nước ngoài";
-  const lvName=k=>LV[k],qli=(m,k)=>`<li><span><a href="nganh/${PAGES[m[0]]}.html?em=${["tc","thn"].includes(k)&&lvs.includes("thn")?9:12}">${m[0]}</a> <em>${lvName(k)}</em></span><span>${feeFor(m,k)}</span></li>`;
+  const lvName=k=>LV[k],qli=(m,k)=>`<li><span><a href="nganh/${PAGES[m[0]]}.html?em=${k==="lt"?"tc":(k==="thn"||qthcs(k))?9:12}&td=${k}">${m[0]}</a> <em>${lvName(k)}</em>${(TT.JOBS[m[0]]||[]).length?`<small class="qjob">Ra trường: ${TT.JOBS[m[0]].join("; ")}</small>`:""}</span><span>${feeFor(m,k)}</span></li>`;
   r.innerHTML=`<div class="qprog"><i style="width:100%"></i></div><div class="qres">
    <div class="qnum">Lộ trình gợi ý cho ${QA.who==="Phụ huynh"?"con anh/chị":"em"}</div>
-   <h4>${tops.map(g=>G[g]).join(" · ")}</h4>
+   <h4>${tops.map(g=>G[g]).join(" · ")}</h4>${sug.length?'<button type="button" class="btn btn-g qcard" id="qcard">Khoe thẻ nghề tương lai của em</button>':""}
    <div class="qblk"><b>Trình độ phù hợp</b><p>${lvTxt(w)}</p></div>
    ${qwin(sug)}
    <div class="qblk"><b>Ngành gợi ý và học phí sau ưu đãi</b><ul class="qlist">${sug.map(([m,k])=>qli(m,k)).join("")||(TCF(QA)&&QA.huong==="lt"?"<li>Nhóm ngành này hiện chưa có liên thông cao đẳng. Em bấm Quay lại, chọn hướng “Học ngành khác hẳn” để xem các ngành cao đẳng 2–3 năm.</li>":"<li>Thầy sẽ tư vấn ngành phù hợp.</li>")}</ul>${more.map(([g,k,R2])=>`<details class="qmore"><summary>Xem thêm ${R2.length} ngành ${G[g]}</summary><ul class="qlist">${R2.map(m=>qli(m,k)).join("")}</ul></details>`).join("")}</div>
@@ -1088,7 +1065,7 @@ function quiz(){const r=$("#quiz"),L=qsteps();
   window.QNOTE=[["bang","huong","nhomtc","muc","lv","pt","tuoi"].filter(k=>QA[k]).map(k=>qlab(k)).join(", "),"Tư vấn chọn nghề: "+tops.map(g=>G[g]).join(", "),"Ngành gợi ý: "+sug.map(([m,k])=>LV[k]+" "+m[0]).join("; "),"Mong muốn: "+(QA.goal||""),abroad?[QA.nuoc,QA.ngoaingu,QA.khi].filter(Boolean).join(", "):"",QA.tg||""].filter(x=>x&&!/: $/.test(x)).join(" | ");
   window.QHC=hc.filter(x=>HC_TXT[x]).map(x=>HC_TXT[x]).join(", ");
   $("#qsee").onclick=()=>{showProg(tops[0]);$("#chuong-trinh").scrollIntoView({behavior:"smooth"})};
-  $("#qre").onclick=()=>{QA={};qstep=0;quiz();goQuiz()};
+  $("#qre").onclick=()=>{QA={};qstep=0;quiz();goQuiz()};{const b=$("#qcard");if(b)b.onclick=()=>moThe(sug[0])}
   {const url="https://tuyensinhvcet.vn/?nguon=chia-se-ket-qua#trac-nghiem",txt="Mình vừa làm Tư vấn chọn nghề của Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc: hợp nhóm "+G[tops[0]]+". Bạn làm thử 2 phút xem hợp nghề gì nhé!";
    $("#qfb").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url);
    if(navigator.share){$("#qsh").hidden=false;$("#qsh").onclick=()=>navigator.share({title:"Tư vấn chọn nghề VCET",text:txt,url}).catch(()=>{})}
@@ -1101,23 +1078,7 @@ document.addEventListener("click",e=>{const a=e.target.closest('a[href="#trac-ng
 if(location.hash==="#trac-nghiem")addEventListener("load",()=>setTimeout(()=>goQuiz(true),150));
 quiz();
 
-// fee
-let flv="cd";
-$("#fee-lv").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;flv=b.dataset.v;$("#fee-lv").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));fillFee()});
-function fillFee(){const sel=$("#fee-major"),prev=sel.value;sel.innerHTML="";
-  M.filter(m=>flv==="cd"?(m[3]||m[4]):m[5]).forEach(m=>{const o=document.createElement("option");o.value=m[0];o.textContent=m[0]+(G70[flv].includes(m[0])?" · giảm 70%":N36[flv].includes(m[0])?" · hỗ trợ 800.000đ":"");sel.appendChild(o);
-    if(flv==="cd"&&m[3]&&m[3].clc){const c=document.createElement("option");c.value=m[0]+"|clc";c.textContent=m[0]+" (CLC)"+(G70.cd.includes(m[0])?" · giảm 70%":N36.cd.includes(m[0])?" · hỗ trợ 800.000đ":"");sel.appendChild(c)}});
-  if([...sel.options].some(o=>o.value===prev))sel.value=prev;calc()}
-function syncCut(){const o=$("#fee-cut").querySelector('option[value="thcs"]');o.hidden=o.disabled=flv!=="tc";if(flv!=="tc"&&$("#fee-cut").value==="thcs")$("#fee-cut").value="0"}
-function calc(){syncCut();const [name,clc]=$("#fee-major").value.split("|");const m=M.find(x=>x[0]===name);if(!m)return;
-  const rate=clc?FEE.cd.clc:FEE[flv][m[2]];const cv=$("#fee-cut").value;const g70=G70[flv].includes(name);const pct=(cv==="thcs"||cv==="100")?100:Math.max(cv==="0"?0:+cv,g70?70:0);const pay=rate*(100-pct)/100;
-  $("#fee-month").innerHTML=vnd(pay)+' <small>/ tháng</small>';
-  let L=`<div><span>Mức thu ${clc?"chương trình CLC":"nhóm ngành"}</span><b>${vnd(rate)}</b></div>`;
-  if(pct)L+=`<div><span>${pct===100?"Miễn học phí":"Giảm "+pct+"%"}${pct===70&&g70&&cv!=="70"?" – ngành nặng nhọc, độc hại (NĐ 238, TB 119)"+(N36[flv].includes(name)?". Người được giảm học phí không nhận thêm hỗ trợ 800.000đ (NQ 36, Điều 2)":""):" theo NĐ 238"}</span><b>−${vnd(rate*pct/100)}</b></div>`;
-  L+=`<div><span>Học kỳ I (5 tháng)</span><b>${vnd(pay*5)}</b></div>`;
-  if(!pct&&N36[flv].includes(name))L+=`<div class="plus"><span>Ngành được hỗ trợ học tập theo NQ 36: nhận thêm 800.000đ/tháng nếu thường trú tại Phú Thọ, có bằng tốt nghiệp THPT do tỉnh Phú Thọ cấp (kể cả Vĩnh Phúc, Hòa Bình cũ), dưới 25 tuổi khi nhập học</span><b>+800.000đ</b></div>`;
-  $("#fee-lines").innerHTML=L;$("#fee-note").textContent=clc?"Chương trình chất lượng cao: 1.800.000đ/tháng.":"Nhóm ngành: "+FG[m[2]]+"."}
-$("#fee-major").addEventListener("change",calc);$("#fee-cut").addEventListener("change",calc);fillFee();
+
 
 // docs
 const D={
@@ -1220,6 +1181,9 @@ applyPhotos();
 function op(v){m.hidden=!v;b.setAttribute("aria-expanded",v);document.body.classList.toggle("mm-open",v);if(v){var x=m.querySelector(".mm-x");x&&x.focus()}else b.focus()}
 b.addEventListener("click",function(){op(true)});m.addEventListener("click",function(e){if(e.target===m||e.target.closest(".mm-x")){op(false);return}var a=e.target.closest("a");if(a)op(false)});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!m.hidden)op(false)})})();</script>
+<div class="td-pop" id="td-pop" hidden role="dialog" aria-label="Theo dõi VCET"><button type="button" class="td-x" aria-label="Đóng">✕</button><b>Theo dõi VCET để cập nhật thông tin tuyển sinh</b><div class="td-k"><a class="td-fb" href="https://www.facebook.com/thaybinhhuongnghiep" target="_blank" rel="noopener" data-td="fb">Facebook</a><a class="td-tt" href="https://www.tiktok.com/@caodangktcnvp" target="_blank" rel="noopener" data-td="tt">TikTok</a><a class="td-yt" href="https://www.youtube.com/@truongcdktcnvp?sub_confirmation=1" target="_blank" rel="noopener" data-td="yt">YouTube</a></div></div>
+<style>.td-pop{position:fixed;z-index:70;background:#fff;color:#121a33;border-radius:18px;box-shadow:0 18px 50px rgba(7,13,34,.35);padding:16px 16px 14px}.td-pop[hidden]{display:none}.td-pop b{display:block;margin:0 34px 10px 0;font-size:1rem;color:#121a33;line-height:1.35}.td-x{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:0;background:#eef1f7;color:#121a33;font-size:16px;cursor:pointer}.td-k{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.td-k a{display:block;text-align:center;color:#fff!important;font-weight:800;border-radius:12px;padding:11px 4px;text-decoration:none;font-size:.92rem}.td-fb{background:#1877f2}.td-tt{background:#111}.td-yt{background:#e00}.td-mob{left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));animation:tdup .35s ease-out}@keyframes tdup{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}.td-desk{left:50%;top:50%;width:420px;transform:translate(-50%,-50%)}.td-sau{background:#f2f6fd;color:#121a33;border-radius:14px;padding:12px;margin-top:10px}.td-sau b{display:block;margin-bottom:8px;color:#121a33}</style>
+<script>(function(){var K="vcet-td",S="vcet-td-s";function lg(k){try{return localStorage.getItem(k)}catch(e){return "x"}}function ls(k,v){try{localStorage.setItem(k,v)}catch(e){}}function sg(k){try{return sessionStorage.getItem(k)}catch(e){return null}}function ss(k,v){try{sessionStorage.setItem(k,v)}catch(e){}}function ev(p,t){try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:p,title:t,event:true})}catch(e){}}if(lg(K)===null){ls(K,"moi");ss(S,"1")}var ok=sg(S)==="1",pg=+(sg("vcet-pg")||0)+1;ss("vcet-pg",pg);var t0=+(sg("vcet-t0")||Date.now());ss("vcet-t0",t0);var pop=document.getElementById("td-pop");if(!pop)return;var desk=matchMedia("(pointer:fine) and (min-width:1061px)").matches;function show(){if(!ok||lg(K)!=="moi")return;if(document.querySelector(".modal:not([hidden]),.mmenu:not([hidden]),.tn-ov"))return;var a=document.activeElement;if(a&&/INPUT|SELECT|TEXTAREA/.test(a.tagName))return;var f=document.getElementById("dang-ky");if(f){var r=f.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)return}ok=false;ls(K,"xong");pop.className="td-pop "+(desk?"td-desk":"td-mob");pop.hidden=false;ev("hien-moi-theo-doi","Hiện lời mời theo dõi")}pop.querySelector(".td-x").onclick=function(){pop.hidden=true};document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-td]");if(a){ls(K,"xong");ev("theo-doi-"+a.dataset.td,"Bấm theo dõi "+a.textContent);pop.hidden=true;return}var b=e.target.closest&&e.target.closest('a[href*="nop-ho-so"],a[href$="#dang-ky"],[data-open],#qsend');if(b)ok=false});if(desk)document.addEventListener("mouseout",function(e){if(!e.relatedTarget&&e.clientY<=0)show()});else{var tm=0;addEventListener("scroll",function(){if(tm||!ok)return;tm=setTimeout(function(){tm=0;var d=document.documentElement,p=(scrollY+innerHeight)/d.scrollHeight;if(p>.6&&(pg>=2||Date.now()-t0>60000))show()},400)},{passive:true})}["l-done","m-done","r-done","nhs-done"].forEach(function(id){var el=document.getElementById(id);if(!el||!window.MutationObserver)return;new MutationObserver(function(){if(el.hidden||el.querySelector(".td-sau"))return;ls(K,"xong");ok=false;var d=document.createElement("div");d.className="td-sau";d.innerHTML="<b>Theo dõi VCET để cập nhật lịch nhập học, thông báo mới:</b><div class=\"td-k\">"+pop.querySelector(".td-k").innerHTML+"</div>";el.appendChild(d)}).observe(el,{attributes:true,attributeFilter:["hidden"]})})})();</script>
 <!--dem-luot--><script data-goatcounter="https://tuyensinhvcet.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><script>(function(){function ev(n,t){var g=window.goatcounter;if(g&&g.count)g.count({path:n,title:t||n,event:true})}
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;var h=a.getAttribute("href")||"";
 if(h.indexOf("nop-ho-so")>-1)ev("bam-nop-ho-so","Bấm Nộp hồ sơ online");else if(h.indexOf("zalo.me")>-1)ev("bam-zalo","Bấm Zalo");
