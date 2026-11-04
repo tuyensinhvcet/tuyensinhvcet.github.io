@@ -1176,6 +1176,8 @@ const W=1080,H=1920,F="'Be Vietnam Pro',Inter,'Segoe UI',Arial,sans-serif",URL_Q
 const ROOT=(function(){try{return document.currentScript.src.replace(/the-nghe\.js.*$/,"")}catch(e){return "/"}})();
 function img(src){return new Promise(ok=>{const i=new Image();i.onload=()=>ok(i);i.onerror=()=>ok(null);i.src=src})}
 function cover(x,i,dx,dy,dw,dh){if(!i)return;const r=Math.max(dw/i.width,dh/i.height),w=i.width*r,h=i.height*r;x.drawImage(i,dx+(dw-w)/2,dy+(dh-h)/2,w,h)}
+let PM={mx:0,my:0};
+function coverP(x,i,dx,dy,dw,dh,z,ox,oy){const r=Math.max(dw/i.width,dh/i.height)*z,w=i.width*r,h=i.height*r,mx=(w-dw)/2,my=(h-dh)/2;PM={mx,my};x.drawImage(i,dx-mx*(1+ox),dy-my*(1+oy),w,h)}
 function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
 function lines(x,t,maxW){const w=String(t).split(/\s+/),L=[];let c="";w.forEach(s=>{const n=c?c+" "+s:s;if(x.measureText(n).width>maxW&&c){L.push(c);c=s}else c=n});if(c)L.push(c);return L}
 function fit(x,t,maxW,size,min,n){let s=size,L;do{x.font=`900 ${s}px ${F}`;L=lines(x,t,maxW);if(L.length<=n)break;s-=4}while(s>min);return{L,s}}
@@ -1186,7 +1188,7 @@ let LOGO=null;
 // o: {ten, nghe, danhHieu, dong2, nhom, g, manh:[3]}
 async function ve(cv,o){cv.width=W;cv.height=H;const x=cv.getContext("2d");
   try{await Promise.all([document.fonts.load(`900 40px 'Be Vietnam Pro'`),document.fonts.load(`700 40px 'Be Vietnam Pro'`)])}catch(e){}
-  const [ph,lg]=await Promise.all([img(ROOT+"anh/"+(ANH[o.g]||ANH.co)),LOGO?Promise.resolve(LOGO):img(ROOT+"anh/logo-vcet.png")]);LOGO=lg;
+  const [ph,lg]=await Promise.all([o.anh?Promise.resolve(null):img(ROOT+"anh/"+(ANH[o.g]||ANH.co)),LOGO?Promise.resolve(LOGO):img(ROOT+"anh/logo-vcet.png")]);LOGO=lg;
   const [c1,c2]=MAU[o.g]||MAU.co,ten=(o.ten||"").trim().toUpperCase().slice(0,24)||"EM";
   const g=x.createRadialGradient(W/2,700,80,W/2,800,1200);g.addColorStop(0,c2);g.addColorStop(.45,c1);g.addColorStop(1,"#070d22");x.fillStyle=g;x.fillRect(0,0,W,H);
   x.save();x.globalAlpha=.08;x.strokeStyle="#fff";x.lineWidth=2;for(let i=-H;i<W;i+=60){x.beginPath();x.moveTo(i,0);x.lineTo(i+H,H);x.stroke()}x.restore();
@@ -1195,7 +1197,7 @@ async function ve(cv,o){cv.width=W;cv.height=H;const x=cv.getContext("2d");
   const cx=90,cy=225,cw=W-180,ch=1295,PH=580;
   const hb=x.createLinearGradient(cx,cy,cx+cw,cy+ch);["#ffe58a","#ff9d00","#8ff0ff","#c58bff","#ffe58a"].forEach((c,i,a)=>hb.addColorStop(i/(a.length-1),c));
   rr(x,cx-10,cy-10,cw+20,ch+20,58);x.fillStyle=hb;x.fill();rr(x,cx,cy,cw,ch,48);x.fillStyle="#0d1838";x.fill();
-  x.save();rr(x,cx+30,cy+30,cw-60,PH,32);x.clip();cover(x,ph,cx+30,cy+30,cw-60,PH);x.fillStyle=grad(x,cy+PH-220,cy+PH+30,[[0,"rgba(13,24,56,0)"],[1,"rgba(13,24,56,.9)"]]);x.fillRect(cx,cy,cw,PH+60);x.restore();
+  x.save();rr(x,cx+30,cy+30,cw-60,PH,32);x.clip();if(o.anh)coverP(x,o.anh,cx+30,cy+30,cw-60,PH,o.z||1,o.ox||0,o.oy==null?-.6:o.oy);else cover(x,ph,cx+30,cy+30,cw-60,PH);x.fillStyle=grad(x,cy+PH-220,cy+PH+30,[[0,"rgba(13,24,56,0)"],[1,"rgba(13,24,56,.9)"]]);x.fillRect(cx,cy,cw,PH+60);x.restore();
   x.font=`900 30px ${F}`;const nt=o.nhom.toUpperCase(),nw=Math.min(cw-120,x.measureText(nt).width+52);rr(x,cx+60,cy+60,nw,64,32);x.fillStyle="#ffcc33";x.fill();x.fillStyle="#0d1838";x.fillText(nt,cx+86,cy+103,nw-52);
   let y=cy+PH+60;const t=fit(x,o.nghe.toUpperCase(),cw-120,92,56,3);const gg=grad(x,y,y+t.L.length*t.s+20,[[0,"#fff3b0"],[.45,"#ffcc33"],[1,"#ff9d00"]]);x.fillStyle=gg;t.L.forEach(l=>{y+=t.s*1.04;x.fillText(l,cx+60,y)});
   y+=58;x.fillStyle="#8ff0ff";x.font=`800 40px ${F}`;x.fillText(o.danhHieu,cx+60,y,cw-120);y+=50;x.fillStyle="rgba(255,255,255,.78)";x.font=`600 32px ${F}`;x.fillText(o.dong2,cx+60,y,cw-120);
@@ -1214,7 +1216,7 @@ const CSS=`.tn-ov{position:fixed;inset:0;z-index:90;background:rgba(7,13,34,.82)
 .tn-pv{margin:12px auto 0;max-width:300px}.tn-pv img{display:block;width:100%;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
 .tn-note{font-size:.8rem;color:#5b6682;margin:8px 0 0;text-align:center}
 .tn-btns{display:grid;gap:8px;margin-top:12px}.tn-btns button{border:0;border-radius:999px;padding:13px;font:inherit;font-weight:800;cursor:pointer}
-.tn-share,.tn-tao{background:#ffb000;color:#121a33}.tn-tao:disabled{opacity:.45;cursor:default}.tn-s2[hidden],.tn-b0[hidden]{display:none}.tn-l{text-align:left!important;margin:6px 0 0!important}.tn-dl{background:#274081;color:#fff}.tn-doi{background:#fff;color:#274081;border:1.5px solid #274081!important}`;
+.tn-share,.tn-tao{background:#ffb000;color:#121a33}.tn-tao:disabled{opacity:.45;cursor:default}.tn-s2[hidden],.tn-b0[hidden]{display:none}.tn-l{text-align:left!important;margin:6px 0 0!important}.tn-dl{background:#274081;color:#fff}.tn-anh{background:#eef1f7;color:#274081;border:1.5px dashed #274081!important}.tn-pv img.tn-keo{cursor:grab;touch-action:none}.tn-zm[hidden]{display:none}.tn-zm{display:flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:.85rem;color:#3b4560}.tn-zm input{flex:1;margin:0;padding:0;border:0}.tn-doi{background:#fff;color:#274081;border:1.5px solid #274081!important}`;
 let busy=0;
 async function mo(d){if(busy)return;busy=1;ev("tao-the-nghe","Mở thẻ nghề");
   if(!document.getElementById("tn-css")){const s=document.createElement("style");s.id="tn-css";s.textContent=CSS;document.head.appendChild(s)}
@@ -1222,16 +1224,16 @@ async function mo(d){if(busy)return;busy=1;ev("tao-the-nghe","Mở thẻ nghề"
   const ov=document.createElement("div");ov.className="tn-ov";ov.innerHTML=`<div class="tn-box" role="dialog" aria-modal="true" aria-label="Thẻ nghề tương lai"><button type="button" class="tn-x" aria-label="Đóng">✕</button>
     <h3>Thẻ nghề tương lai của em</h3><label>Em tên gì?<input class="tn-ten" maxlength="24" placeholder="Ví dụ: Minh Anh" autocomplete="given-name"></label>
     <p class="tn-note tn-l">Tên chỉ in lên thẻ trên điện thoại của em, không gửi đi đâu.</p>
-    <div class="tn-btns tn-b0"><button type="button" class="tn-tao" disabled>Tạo thẻ của em</button></div>
-    <div class="tn-s2" hidden><div class="tn-pv"><img alt="Thẻ nghề tương lai"></div><p class="tn-note">Không tải được thì nhấn giữ vào ảnh để lưu.</p>
-    <div class="tn-btns"><button type="button" class="tn-share">Chia sẻ thẻ cho bạn</button><button type="button" class="tn-dl">Tải ảnh về</button>${nghe.length>1?'<button type="button" class="tn-doi">Đổi nghề khác của ngành này</button>':""}</div></div></div>`;
+    <input type="file" class="tn-file" accept="image/*" hidden><div class="tn-btns tn-b0"><button type="button" class="tn-anh">📷 Thêm ảnh của em (nếu muốn)</button><button type="button" class="tn-tao" disabled>Tạo thẻ của em</button></div>
+    <div class="tn-s2" hidden><div class="tn-pv"><img alt="Thẻ nghề tương lai"></div><label class="tn-zm" hidden>Kéo ảnh để căn · Phóng to<input type="range" class="tn-z" min="1" max="3" step="0.05" value="1" aria-label="Phóng to ảnh của em"></label><p class="tn-note">Không tải được thì nhấn giữ vào ảnh để lưu.</p>
+    <div class="tn-btns"><button type="button" class="tn-share">Chia sẻ thẻ cho bạn</button><button type="button" class="tn-dl">Tải ảnh về</button><button type="button" class="tn-anh">📷 Thêm ảnh của em</button>${nghe.length>1?'<button type="button" class="tn-doi">Đổi nghề khác của ngành này</button>':""}</div></div></div>`;
   document.body.appendChild(ov);document.body.style.overflow="hidden";
-  const cv=document.createElement("canvas"),im=ov.querySelector("img"),inp=ov.querySelector(".tn-ten");let ttm=0,blob=null;
+  const cv=document.createElement("canvas"),im=ov.querySelector("img"),inp=ov.querySelector(".tn-ten");let ttm=0,blob=null,anh=null,z=1,ox=0,oy=-.6;
   const lv=d.k==="lt"||d.k==="cd"?"cd":"tc";
   const s2=ov.querySelector(".tn-s2"),tao=ov.querySelector(".tn-tao");
   const ten=()=>inp.value.trim().replace(/\s+/g," ");
   function dien(){const t=ten();if(!t)return;["m-name","l-name"].forEach(id=>{const e=document.getElementById(id);if(e&&(!e.value||e.dataset.tn)){e.value=t;e.dataset.tn="1"}})}
-  async function draw(){if(!ten())return;blob=null;await ve(cv,{ten:inp.value,nghe:nghe[i],danhHieu:(lv==="cd"?T.cd:T.tc)||"",dong2:d.lvTen+" "+d.nganh,nhom:d.nhom,g:d.g,manh:d.manh});im.src=cv.toDataURL("image/jpeg",.9)}
+  async function draw(){if(!ten())return;blob=null;await ve(cv,{ten:inp.value,nghe:nghe[i],danhHieu:(lv==="cd"?T.cd:T.tc)||"",dong2:d.lvTen+" "+d.nganh,nhom:d.nhom,g:d.g,manh:d.manh,anh,z,ox,oy});im.src=cv.toDataURL("image/jpeg",.9)}
   const getBlob=()=>blob?Promise.resolve(blob):new Promise(ok=>cv.toBlob(b=>{blob=b;ok(b)},"image/jpeg",.92));
   function close(){ov.remove();document.body.style.overflow="";busy=0;const q=document.getElementById("qsend");if(q)q.scrollIntoView({behavior:"smooth",block:"center"})}
   ov.querySelector(".tn-x").onclick=close;ov.addEventListener("click",e=>{if(e.target===ov)close()});
@@ -1240,6 +1242,19 @@ async function mo(d){if(busy)return;busy=1;ev("tao-the-nghe","Mở thẻ nghề"
   tao.onclick=async()=>{if(!ten())return;tao.textContent="Đang tạo thẻ…";await draw();dien();ov.querySelector(".tn-b0").hidden=true;s2.hidden=false;ev("tao-the-nghe-xong","Tạo xong thẻ nghề")};
   const doi=ov.querySelector(".tn-doi");if(doi)doi.onclick=()=>{i=(i+1)%nghe.length;try{sessionStorage.setItem("vcet-tn-"+d.nganh,i)}catch(e){}draw()};
   function tai(b){const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="the-nghe-tuong-lai-vcet.jpg";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000)}
+  const fi=ov.querySelector(".tn-file"),zm=ov.querySelector(".tn-zm"),zr=ov.querySelector(".tn-z");
+  function nhan(){ov.querySelectorAll(".tn-anh").forEach(b=>b.textContent=anh?"📷 Đổi ảnh khác":(b.closest(".tn-b0")?"📷 Thêm ảnh của em (nếu muốn)":"📷 Thêm ảnh của em"));zm.hidden=!anh;im.classList.toggle("tn-keo",!!anh)}
+  ov.querySelectorAll(".tn-anh").forEach(b=>b.onclick=()=>fi.click());
+  fi.onchange=async()=>{const f=fi.files&&fi.files[0];fi.value="";if(!f)return;const u=URL.createObjectURL(f),i0=await img(u);URL.revokeObjectURL(u);if(!i0)return;
+    const k=Math.min(1,1600/Math.max(i0.width,i0.height)),c=document.createElement("canvas");c.width=Math.round(i0.width*k);c.height=Math.round(i0.height*k);c.getContext("2d").drawImage(i0,0,0,c.width,c.height);
+    anh=c;z=1;zr.value=1;ox=0;oy=-.6;nhan();ev("the-nghe-them-anh","Thẻ nghề: thêm ảnh");if(!s2.hidden)draw();else if(ten())tao.click();else inp.focus()};
+  let rd=0;const ve2=()=>{if(rd)return;rd=1;setTimeout(async()=>{await draw();rd=0},60)};
+  zr.oninput=()=>{z=+zr.value;ve2()};
+  let kp=null;im.addEventListener("pointerdown",e=>{if(!anh)return;kp={x:e.clientX,y:e.clientY};try{im.setPointerCapture(e.pointerId)}catch(x){}e.preventDefault()});
+  im.addEventListener("pointermove",e=>{if(!kp||!anh)return;const k=W/im.clientWidth,dx=(e.clientX-kp.x)*k,dy=(e.clientY-kp.y)*k;kp={x:e.clientX,y:e.clientY};
+    if(PM.mx>0)ox=Math.max(-1,Math.min(1,ox-dx/PM.mx));if(PM.my>0)oy=Math.max(-1,Math.min(1,oy-dy/PM.my));ve2()});
+  ["pointerup","pointercancel"].forEach(t=>im.addEventListener(t,()=>{kp=null}));
+  im.addEventListener("dragstart",e=>e.preventDefault());
   ov.querySelector(".tn-dl").onclick=async()=>{tai(await getBlob());ev("tai-the-nghe","Tải thẻ nghề")};
   ov.querySelector(".tn-share").onclick=async()=>{const b=await getBlob(),f=new File([b],"the-nghe-tuong-lai-vcet.jpg",{type:"image/jpeg"});ev("chia-se-the-nghe","Chia sẻ thẻ nghề");
     const text=ten()+" hợp nghề "+nghe[i]+"! Còn bạn hợp nghề gì? Làm thử 2 phút: "+URL_QR;
