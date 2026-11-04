@@ -267,3 +267,17 @@ footer .src{margin-top:10px;font-size:.8rem;color:#8e9bbd}
 .steps li,.tdcards a,.tbl td{color:#121a33}.steps li a,.tbl td a{color:#0d74b8}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hot{color:#8fd6f0}}
 @media(max-width:760px){.tbl{font-size:.88rem}.tbl th,.tbl td{padding:8px}}
+
+/* Bản 54 */
+@media(max-width:600px){header .hot{display:none!important}header .brand b{font-size:14px;line-height:1.25}header .brand small{font-size:11px}}
+.bar .wrap a{white-space:nowrap}
+.fabs{position:fixed;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:44;display:flex;flex-direction:column;gap:10px}
+.fabs a{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;font-size:.72rem;text-decoration:none;box-shadow:0 8px 22px rgba(0,30,90,.3)}
+.fabs .fab-call{background:#0a7a3d}.fabs .fab-call svg{width:22px;height:22px}.fabs .fab-zalo{background:#0068ff}
+@media(min-width:1061px){.fabs{bottom:24px}}
+.ctas .btn-n{white-space:nowrap}
+.tt-q .emla{display:none!important}
+.lvc .fee .ttp{display:block;color:#0a7a3d;font-weight:700}
+.fees .r[hidden]{display:none!important}
+.ttbox{max-width:760px}
+#tinh-hoc-phi{scroll-margin-top:84px}
