@@ -36,7 +36,7 @@
 .mm-call{background:var(--gold,#FFC43D);color:#1b1b1b}
 .mm-zalo{background:#0068ff;color:#fff}
 body.mm-open{overflow:hidden}
-</style>
+.fab-an{opacity:0!important;pointer-events:none!important;transform:scale(.6)!important}.fabs,.fab-call,.bubble{transition:opacity .2s,transform .2s}</style>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -83,5 +83,6 @@ var da={};function theo(id,n,t){var el=document.getElementById(id);if(!el)return
 theo("l-done","dang-ky-thanh-cong","Gửi đăng ký tư vấn thành công");theo("m-done","dang-ky-thanh-cong","Gửi đăng ký tư vấn thành công");
 theo("r-done","dang-ky-thanh-cong","Gửi đăng ký tư vấn thành công");theo("nhs-done","nop-ho-so-thanh-cong","Gửi hồ sơ online thành công");
 var q=document.getElementById("quiz");if(q)new MutationObserver(function(){if(!da.q&&q.querySelector(".qres")){da.q=1;ev("trac-nghiem-xong","Làm xong trắc nghiệm")}}).observe(q,{childList:true,subtree:true})})();</script><!--dem-luot-->
+<script>(function(){var F=document.querySelectorAll(".fabs,.fab-call,.bubble");if(!F.length)return;var Z=[].slice.call(document.querySelectorAll("#rf,#nhs-form,#lead,.lead-sec form,.tn-ov"));function u(){var y=scrollY,h=innerHeight,an=y<240;if(!an){var a=document.activeElement;if(a&&/INPUT|SELECT|TEXTAREA/.test(a.tagName))an=true}if(!an)for(var i=0;i<Z.length;i++){var r=Z[i].getBoundingClientRect();if(r.top<h*.85&&r.bottom>h*.25&&r.height){an=true;break}}F.forEach(function(f){f.classList.toggle("fab-an",an)})}addEventListener("scroll",u,{passive:true});addEventListener("resize",u);document.addEventListener("focusin",u);document.addEventListener("focusout",function(){setTimeout(u,50)});u()})();</script>
 </body>
 </html>

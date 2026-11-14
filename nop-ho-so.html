@@ -37,7 +37,7 @@
 .mm-call{background:var(--gold,#FFC43D);color:#1b1b1b}
 .mm-zalo{background:#0068ff;color:#fff}
 body.mm-open{overflow:hidden}
-</style>
+.fab-an{opacity:0!important;pointer-events:none!important;transform:scale(.6)!important}.fabs,.fab-call,.bubble{transition:opacity .2s,transform .2s}</style>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -73,7 +73,7 @@ body.mm-open{overflow:hidden}
 #nhs-prog{display:grid;gap:6px}#nhs-prog[hidden]{display:none}#nhs-prog div{height:10px;background:#e3e9f5;border-radius:99px;overflow:hidden}#nhs-prog i{display:block;height:100%;width:0;background:#0a7a3d;transition:width .3s}
 #nhs-bang[hidden],.slot [hidden]{display:none!important}#nhs-bang{margin-top:12px}
 .slot.later{border-style:dashed;background:#f7f9fd}.slot .lt{color:#0a7a3d;font-weight:700}small.lt{display:block}
-#nhs-done{background:#e9f7ef;border:1.5px solid #0a7a3d;border-radius:16px;padding:18px}#nhs-done b{font-size:1.4rem;letter-spacing:.08em;color:#274081}
+#nhs-done{background:#e9f7ef;border:1.5px solid #0a7a3d;border-radius:16px;padding:18px}#nhs-done>b{display:block;font-size:1.4rem;letter-spacing:.08em;color:#274081}
 </style>
   <section class="sec" id="nop">
     <h2>Gửi ảnh <em>hồ sơ</em></h2>
@@ -114,7 +114,7 @@ for(const k in F)delete F[k];
  lb();$("#nhs-step2").hidden=false;}
 function ve1(d,x){const th=d.querySelector(".th");th.innerHTML="";F[x.o].forEach((f,i)=>{const s=document.createElement("span");s.className="t";if(f.type.startsWith("image/")){const im=new Image();im.src=URL.createObjectURL(f);s.append(im)}else s.textContent="PDF";const r=document.createElement("button");r.type="button";r.textContent="✕";r.setAttribute("aria-label","Xóa ảnh");r.onclick=()=>{F[x.o].splice(i,1);ve1(d,x)};s.append(r);th.append(s)});d.querySelector(".cnt").textContent=F[x.o].length+"/"+x.max;d.classList.toggle("ok",F[x.o].length>0);dem()}
 function thieu(){return (C.slots[bo]||[]).filter(x=>x.req&&!(F[x.o]||[]).length).map(x=>LATE(x)?x.ten+" (đang học, bổ sung khi nhập học)":x.ten)}
-function dem(){const m=sl.querySelector(".meter");if(!m)return;const R=(C.slots[bo]||[]).filter(x=>x.req&&!LATE(x)),c=R.filter(x=>(F[x.o]||[]).length).length,p=R.length?Math.round(c/R.length*100):100;m.querySelector("i").style.width=p+"%";m.querySelector("span").innerHTML=p===100?`<b>Hồ sơ đã đủ ${c}/${R.length} mục</b> – em bấm Gửi hồ sơ nhé!`:(c?`<b>Đã có ${c}/${R.length} mục</b> – gửi ngay được, mục còn thiếu bổ sung sau.`:`<b>Hồ sơ của em: 0/${R.length} mục</b> – có giấy tờ nào chụp giấy tờ đó, gửi trước, bổ sung sau.`)}
+function dem(){const m=sl.querySelector(".meter");if(!m)return;const R=(C.slots[bo]||[]).filter(x=>x.req&&!LATE(x)),c=R.filter(x=>(F[x.o]||[]).length).length,p=R.length?Math.round(c/R.length*100):100;m.querySelector("i").style.width=p+"%";m.querySelector("span").innerHTML=p===100?`<b>Hồ sơ đã đủ ${c}/${R.length} mục</b> – em bấm Gửi hồ sơ nhé!`:(c?`<b>Đã có ${c}/${R.length} mục</b> – gửi ngay được, mục còn thiếu bổ sung sau.`:`<b>Hồ sơ của em: 0/${R.length} mục</b> – chưa có ảnh vẫn gửi trước họ tên, số điện thoại, ngành được; ảnh bổ sung sau.`);const sb=$("#nhs-send");if(sb&&!BS)sb.textContent=Object.keys(F).some(k=>F[k].length)?"Gửi hồ sơ":"Gửi thông tin trước (ảnh bổ sung sau)"}
 function nen(f){return new Promise((ok,no)=>{if(f.type==="application/pdf"){if(f.size>4e6)return no("Tệp PDF quá lớn (tối đa 4 MB)");const r=new FileReader();r.onload=()=>ok({mime:f.type,data:r.result.split(",")[1]});r.onerror=()=>no("Không đọc được tệp");return r.readAsDataURL(f)}
  const im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok({mime:"image/jpeg",data:c.toDataURL("image/jpeg",.78).split(",")[1]})};im.onerror=()=>no("Không đọc được ảnh "+f.name+". Em chụp lại bằng camera điện thoại.");im.src=URL.createObjectURL(f)})}
 async function gui(o){for(let t=0;t<3;t++){try{const r=await fetch(C.url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(o)});const j=await r.json();if(j.ok)return j;if(j.err)throw new Error(j.err)}catch(e){if(t===2||(e.message&&!/fetch|network|JSON/i.test(e.message)))throw e}await new Promise(r=>setTimeout(r,1500))}throw new Error("Mạng yếu, em thử lại")}
@@ -127,7 +127,7 @@ $("#nhs-form").addEventListener("submit",async ev=>{ev.preventDefault();bao("");
  if(!BS){
   if(!$("#nhs-dy").checked)return bao("Em đánh dấu đồng ý gửi ảnh hồ sơ.");}
  else if(!$("#nhs-ma").value.trim())return bao("Em nhập mã hồ sơ.");
- const L=[];for(const x of C.slots[bo])F[x.o].forEach((f,i)=>L.push([x.o,i+1,f]));if(!L.length)return bao("Em thêm ít nhất 1 ảnh giấy tờ để gửi.");const TH=thieu();
+ const L=[];for(const x of C.slots[bo])F[x.o].forEach((f,i)=>L.push([x.o,i+1,f]));if(!L.length&&BS)return bao("Em thêm ít nhất 1 ảnh giấy tờ để gửi.");const TH=thieu();
  const btn=$("#nhs-send");btn.disabled=true;prog.hidden=false;const P=prog.querySelector("i"),T=prog.querySelector("span");
  try{let ma=$("#nhs-ma").value.trim().toUpperCase();
   if(!BS){T.textContent="Đang tạo hồ sơ…";ma=(await gui({action:"hs-bat-dau",name,phone,dob:$("#nhs-dob").value,bo,major:$("#nhs-major").value,cs:$("#nhs-cs").value,tt:$("#nhs-tt").value,dongY:1,hp:""})).ma;if(!ma)throw new Error("Chức năng nộp hồ sơ online đang được cài đặt. Em gọi hoặc nhắn Zalo 0989 465 017 để được hướng dẫn.")}
@@ -143,7 +143,7 @@ $("#nhs-form").addEventListener("submit",async ev=>{ev.preventDefault();bao("");
 <footer><div class="wrap">
   <b>Trường Cao đẳng Kỹ thuật - Công nghệ Vĩnh Phúc</b><br>Cơ sở 1: Số 55B đường Hùng Vương, phường Vĩnh Yên, tỉnh Phú Thọ · Cơ sở 2: Khu hành chính 15, phường Vĩnh Phúc, tỉnh Phú Thọ<br>Tư vấn tuyển sinh: Thầy Phan Thanh Bình – <a href="tel:0989465017">0989 465 017</a> · <a href="./">tuyensinhvcet.vn</a>
   <nav class="flinks" aria-label="Liên kết"><a href="trinh-do/trung-cap.html">Trung cấp + THPT</a><a href="trinh-do/trung-hoc-nghe.html">Trung học nghề</a><a href="trinh-do/cao-dang.html">Cao đẳng chính quy</a><a href="trinh-do/lien-thong.html">Liên thông cao đẳng</a><a href="hoc-phi.html">Học phí</a><a href="ho-so-tuyen-sinh.html">Hồ sơ tuyển sinh</a><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></nav>
-<p class="upd" style="font-size:.8rem;opacity:.75;margin:10px 0 0">Thông tin cập nhật ngày 04/11/2026</p></div></footer>
+<p class="upd" style="font-size:.8rem;opacity:.75;margin:10px 0 0">Thông tin cập nhật ngày 14/11/2026</p></div></footer>
 <div class="bar"><div class="wrap"><a href="./#chuong-trinh">Ngành nghề</a><a href="mien-giam-hoc-phi.html#tinh-hoc-phi">Tính học phí</a><a href="./#dang-ky">Đăng ký tư vấn</a></div></div>
 <div class="fabs"><a class="fab-call" href="tel:0989465017" aria-label="Gọi tư vấn 0989 465 017"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a><a class="fab-zalo" href="https://zalo.me/0989465017" target="_blank" rel="noopener" aria-label="Nhắn Zalo tư vấn 0989 465 017">Zalo</a></div>
 <script>(function(){var b=document.querySelector(".mbtn"),m=document.getElementById("mmenu");if(!b||!m)return;
@@ -161,5 +161,6 @@ var da={};function theo(id,n,t){var el=document.getElementById(id);if(!el)return
 theo("l-done","dang-ky-thanh-cong","Gửi đăng ký tư vấn thành công");theo("m-done","dang-ky-thanh-cong","Gửi đăng ký tư vấn thành công");
 theo("r-done","dang-ky-thanh-cong","Gửi đăng ký tư vấn thành công");theo("nhs-done","nop-ho-so-thanh-cong","Gửi hồ sơ online thành công");
 var q=document.getElementById("quiz");if(q)new MutationObserver(function(){if(!da.q&&q.querySelector(".qres")){da.q=1;ev("trac-nghiem-xong","Làm xong trắc nghiệm")}}).observe(q,{childList:true,subtree:true})})();</script><!--dem-luot-->
+<script>(function(){var F=document.querySelectorAll(".fabs,.fab-call,.bubble");if(!F.length)return;var Z=[].slice.call(document.querySelectorAll("#rf,#nhs-form,#lead,.lead-sec form,.tn-ov"));function u(){var y=scrollY,h=innerHeight,an=y<240;if(!an){var a=document.activeElement;if(a&&/INPUT|SELECT|TEXTAREA/.test(a.tagName))an=true}if(!an)for(var i=0;i<Z.length;i++){var r=Z[i].getBoundingClientRect();if(r.top<h*.85&&r.bottom>h*.25&&r.height){an=true;break}}F.forEach(function(f){f.classList.toggle("fab-an",an)})}addEventListener("scroll",u,{passive:true});addEventListener("resize",u);document.addEventListener("focusin",u);document.addEventListener("focusout",function(){setTimeout(u,50)});u()})();</script>
 </body>
 </html>
