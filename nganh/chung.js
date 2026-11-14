@@ -64,7 +64,7 @@ async function fillXa(){const c=curTinh;xaList=[];
 // ===== Form đăng ký trang ngành: dùng cùng dữ liệu, cùng cách lọc với form trang chủ =====
 const SHEET_URL="https://script.google.com/macros/s/AKfycbzNSQJMOURAFVrGaNKgF0lqLLHR6SoTt3_0mY6zGAkjFrUcqTPgSRrxsYcU5XJZdKblrQ/exec";
 // Kênh: ?nguon=... ?gt=... (giống trang chủ)
-try{const q=new URLSearchParams(location.search),c=s=>String(s).replace(/[^\p{L}\p{N} ._-]/gu,"").slice(0,40),n=q.get("nguon"),g=q.get("gt");
+try{const q=new URLSearchParams(location.search),c=s=>String(s).replace(/[^\p{L}\p{N} ._-]/gu,"").slice(0,40),n=q.get("nguon")||q.get("utm_source"),g=q.get("gt");
   if(n)localStorage.setItem("vcet-nguon",c(n));if(g)localStorage.setItem("vcet-gt",c(g));
   if(!n&&!localStorage.getItem("vcet-nguon")&&document.referrer){const h=new URL(document.referrer).hostname;if(!/tuyensinhvcet/.test(h))localStorage.setItem("vcet-nguon",h.replace(/^(www|m|l|lm)\./,""))}}catch(e){}
 function srcTag(){let n="",g="";try{n=localStorage.getItem("vcet-nguon")||"";g=localStorage.getItem("vcet-gt")||""}catch(e){}return (n?" · Kênh: "+n:"")+(g?" · Người giới thiệu: "+g:"")}
