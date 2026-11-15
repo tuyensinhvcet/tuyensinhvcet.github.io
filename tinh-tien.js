@@ -106,7 +106,7 @@ const CSS=`.tt{--tn:#121a33;--tb:#274081;--tg:#ffb000;color:var(--tn);text-align
 .tt-re{margin-top:12px}`;
 function css(){if(document.getElementById("tt-css"))return;const s=document.createElement("style");s.id="tt-css";s.textContent=CSS;document.head.appendChild(s)}
 const LIVE=new Set(["who","bang","lv","ng","pt","tuoi","dtoc","hc","clc","huong"]);
-function mount(el,o){css();o=o||{};let A={},hist=[],done=0;
+function mount(el,o){css();o=o||{};let A={},hist=[],done=0,PEND={};
   const q=new URLSearchParams(location.search);
   const S0=load();["who","bang","pt","tuoi","dtoc","hc"].forEach(k=>{if(S0[k]!==undefined&&S0[k]!=="")A[k]=S0[k]});
   if(S0.who===TCW&&S0.huong)A.lv=S0.huong==="lt"?"lt":"cd";
@@ -119,21 +119,22 @@ function mount(el,o){css();o=o||{};let A={},hist=[],done=0;
   function answer(k,v){A[k]=v;hist.push(k);fix();save(A);draw();top()}
   function draw(){fix();const L=vis(),cur=L.find(s=>A[s.k]===undefined);
     if(!cur)return res();
-    const i=L.indexOf(cur),n=L.length,opts=cur.sel?null:cur.a(A);
-    let h=`<div class="tt-card"><div class="tt-prog"><i style="width:${Math.round(i/n*100)}%"></i></div><div class="tt-num">Bước ${i+1}/${n}${hist.length?' · <button type="button" class="tt-back">← Quay lại</button>':''}</div><div class="tt-q">${cur.q}</div>${cur.sub?`<p class="tt-sub">${cur.sub}</p>`:""}`;
+    const i=L.indexOf(cur),n=L.length,PD=cur.multi?(PEND[cur.k]||[]):[],o0=cur.sel?null:cur.a(A);  // Bản 56: câu chọn nhiều hỏi tiếp, bấm là chuyển
+    const opts=PD.length?[["Không, xem kết quả","done"]].concat(o0.filter(x=>!PD.includes(x[1])&&x[1]!=="bt"&&x[1]!=="no")):o0;
+    const qT=PD.length?"Em (anh/chị) còn thuộc trường hợp nào khác không?":cur.q,qS=PD.length?"Đã chọn: "+PD.map(v=>(o0.find(x=>x[1]===v)||[v])[0]).join("; ")+". Không còn thì bấm ô đầu tiên.":(cur.multi?"Bấm vào trường hợp của em; thuộc nhiều trường hợp thì bấm lần lượt từng cái. Không thuộc trường hợp nào thì bấm ô đầu tiên.":cur.sub);
+    let h=`<div class="tt-card"><div class="tt-prog"><i style="width:${Math.round(i/n*100)}%"></i></div><div class="tt-num">Bước ${i+1}/${n}${hist.length||PD.length?' · <button type="button" class="tt-back">← Quay lại</button>':''}</div><div class="tt-q">${qT}</div>${qS?`<p class="tt-sub">${qS}</p>`:""}`;
     if(cur.sel){const k=curLv(A);let g="";["co","dien","it","kd","dv","ny","nn"].forEach(gr=>{const L2=M.filter(m=>m[1]===gr&&coNganh(m,k));if(!L2.length)return;g+=`<optgroup label="${G[gr]}">`+L2.map(m=>`<option value="${m[0]}">${m[0]}</option>`+(k==="cd"&&m[3]&&m[3].clc?`<option value="${m[0]}|clc">${m[0]} (chất lượng cao)</option>`:"")).join("")+`</optgroup>`});
       h+=`<select class="tt-sel" aria-label="Chọn ngành"><option value="">Chọn ngành (${LV[k]})…</option>${g}</select><p class="tt-hint">Chưa biết chọn ngành nào? <a href="${ROOT}#trac-nghiem">Làm trắc nghiệm chọn nghề 2 phút</a></p>`}
-    else{const sel=A[cur.k]||[];h+=`<div class="tt-opts${cur.big?" big":""}">`+opts.map(x=>`<button type="button" data-v="${x[1]}"${cur.multi?` aria-pressed="${sel.includes(x[1])}"`:""}>${x[0]}${x[2]?`<small>${x[2]}</small>`:""}</button>`).join("")+`</div>`+(cur.multi?`<button type="button" class="tt-next">Tiếp tục →</button>`:"")}
+    else{const sel=A[cur.k]||[];h+=`<div class="tt-opts${cur.big?" big":""}">`+opts.map(x=>`<button type="button" data-v="${x[1]}">${x[0]}${x[2]?`<small>${x[2]}</small>`:""}</button>`).join("")+`</div>`}
     el.innerHTML=h+`</div>`;
-    const bk=el.querySelector(".tt-back");if(bk)bk.onclick=()=>{const k=hist.pop();delete A[k];if(k==="ng")delete A.clc;save(A);draw();top()};
+    const bk=el.querySelector(".tt-back");if(bk)bk.onclick=()=>{if(PD.length){PEND[cur.k]=PD.slice(0,-1);draw();top();return}const k=hist.pop();delete A[k];if(k==="ng")delete A.clc;save(A);draw();top()};
     const se=el.querySelector(".tt-sel");if(se)se.onchange=()=>{if(!se.value)return;const [nm,c]=se.value.split("|");if(c)A.clc=1;else delete A.clc;answer("ng",nm)};
     let tmp=(A[cur.k]||[]).slice();
     el.querySelectorAll(".tt-opts button").forEach(b=>b.onclick=()=>{const v=b.dataset.v;
       if(!cur.multi)return answer(cur.k,v);
-      if(v==="bt"||v==="no")return answer(cur.k,[v]);
-      tmp=tmp.filter(x=>x!=="bt"&&x!=="no");tmp=tmp.includes(v)?tmp.filter(x=>x!==v):tmp.concat(v);
-      el.querySelectorAll(".tt-opts button").forEach(x=>x.setAttribute("aria-pressed",tmp.includes(x.dataset.v)));
-      const nx=el.querySelector(".tt-next");nx.textContent=tmp.length?`Tiếp tục (đã chọn ${tmp.length}) →`:"Tiếp tục →"});
+      if(v==="bt"||v==="no"){delete PEND[cur.k];return answer(cur.k,[v])}
+      if(v==="done"){delete PEND[cur.k];return answer(cur.k,PD.length?PD:["bt"])}
+      PEND[cur.k]=PD.concat(v);draw();top()});
     const nx=el.querySelector(".tt-next");if(nx)nx.onclick=()=>answer(cur.k,tmp.length?tmp:["bt"])}
   function res(){const m=find(A.ng),k=curLv(A);if(!m||!k){A={};return draw()}
     const c=qcs(m,k,A),b=qloi(m,k,A),dong=c.thn||c.pct===100?0:c.rate*(100-c.pct)/100,ten=m[0]+(A.clc?" (chất lượng cao)":"");
@@ -153,7 +154,7 @@ function mount(el,o){css();o=o||{};let A={},hist=[],done=0;
     <p class="tt-re"><button type="button" class="tt-link tt-again">Tính lại từ đầu</button></p></div>`;
     el.innerHTML=h;if(!done){done=1;ev("tinh-hoc-phi-xong","Tính học phí xong")}
     el.querySelector(".tt-edit").onclick=()=>{const k=hist.pop()||"hc";delete A[k];draw();top()};
-    el.querySelector(".tt-again").onclick=()=>{A={};hist=[];save({who:undefined,bang:undefined,pt:undefined,tuoi:undefined,dtoc:undefined,hc:undefined,huong:undefined});draw();top()};
+    el.querySelector(".tt-again").onclick=()=>{A={};hist=[];PEND={};save({who:undefined,bang:undefined,pt:undefined,tuoi:undefined,dtoc:undefined,hc:undefined,huong:undefined});draw();top()};
     const dk=el.querySelector("[data-tt-dk]");if(dk&&!document.getElementById("dang-ky"))dk.href=ROOT+"#dang-ky"}
   draw()}
 // ===== Trang ngành: học sinh đi từ kết quả trắc nghiệm (?em=…&td=…) – chỉ hiện đúng đối tượng =====
